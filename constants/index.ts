@@ -2,7 +2,7 @@ export const headerData = [
   { title: "Home", href: "/" },
   { 
     title: "Categories", 
-    href: "#",
+    href: "/category",
     hasDropdown: true,
     dropdownItems: [
       { title: "Singles Dating", href: "/category/singles-dating" },
@@ -69,7 +69,7 @@ export const faqsData = [
   {
     question: "How can I get support for Shopcart products?",
     answer:
-      "You can reach our support team through our contact page or by emailing support@Shopcart.com.",
+      "You can reach our support team through our contact page or by emailing webdating.com.",
   },
   {
     question: "Does Shopcart offer training for its products?",

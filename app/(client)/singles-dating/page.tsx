@@ -47,7 +47,29 @@ const SinglesDatingPage = () => {
           <Badge className="bg-shop_orange text-white">Featured Category</Badge>
         </div>
 
-        {/* Services */}
+        {/* Content Section */}
+        <div className="bg-white/70 backdrop-blur-sm rounded-xl p-8 mb-12 shadow-md border border-gray-100/50">
+          <div className="prose max-w-none">
+            <h2 className="text-2xl font-bold text-shop_dark_green mb-6">Singles Dating</h2>
+            <p className="text-dark-text mb-6">
+              When it comes to singles dating, you might be confused as to what is different in this case. Well, for starters, singles dating helps you to connect with local singles. That way, both of you can see if you are good enough for each other, and if you are, you can take your relationship ahead. One of the key advantages of single dating is that you get to meet people of your age, and relationship. These people are single and so share the same mentality as you do.
+            </p>
+            
+            <h3 className="text-xl font-semibold text-shop_dark_green mb-4">Is Singles Dating For Me?</h3>
+            <p className="text-dark-text mb-6">
+              If you are single, then yes, it is definitely for you. At the end of the day, it might seem tough to find a person, who has the same thoughts and same lifestyle as yours, but you should never quit trying. If you are single, and have never been married, then singles dating is definitely for you. On the other hand, even if you are divorced or separated, you can look for a partner in the dating world. However, do decide if you want something casual or something long term, when it comes to choosing partners. This way, you will be able to screen the people who match with you.
+            </p>
+            
+            <h3 className="text-xl font-semibold text-shop_dark_green mb-4">Is Age A Factor?</h3>
+            <p className="text-dark-text mb-6">
+              To be honest, once you are a bit aged, you might not find a lot of matches. However, considering all the different platforms available, age is not a factor when it comes to online dating. You would get a lot of interested partners and matches, if you fill out your information and look for a partner to spend your life with.
+            </p>
+            
+            <p className="text-dark-text mb-6">
+              With online dating you get a plethora of options. Be it religious dating or normal dating, you can choose the type of partners you want, and then check from the matches. So, now that you are prepared, it is time to choose your partner. Go get started!
+            </p>
+          </div>
+        </div>
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {services.map((service, index) => (
             <Card key={index} className="hover:shadow-lg transition-all">

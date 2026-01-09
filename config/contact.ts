@@ -2,8 +2,8 @@
 
 export const contactConfig = {
   company: {
-    name: process.env.NEXT_PUBLIC_COMPANY_NAME || "ShopCart",
-    email: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "support@shopcart.com",
+    name: process.env.NEXT_PUBLIC_COMPANY_NAME || "webdating",
+    email: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "webdating.com",
     phone: process.env.NEXT_PUBLIC_COMPANY_PHONE || "+1 (555) 123-4567",
     address:
       process.env.NEXT_PUBLIC_COMPANY_ADDRESS ||
@@ -22,8 +22,8 @@ export const contactConfig = {
       "Saturday - Sunday: 10AM - 4PM EST",
   },
   emails: {
-    support: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@shopcart.com",
-    sales: process.env.NEXT_PUBLIC_SALES_EMAIL || "sales@shopcart.com",
+    support: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@webdating.com",
+    sales: process.env.NEXT_PUBLIC_SALES_EMAIL || "sales@webdating.com",
   },
   responseTime: {
     standard:

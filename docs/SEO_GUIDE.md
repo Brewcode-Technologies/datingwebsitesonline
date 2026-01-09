@@ -585,7 +585,7 @@ GOOGLE_SITE_VERIFICATION=your-verification-code
 
 # Company Information (used in schemas)
 NEXT_PUBLIC_COMPANY_NAME=ShopCart
-NEXT_PUBLIC_COMPANY_EMAIL=support@shopcart.com
+NEXT_PUBLIC_COMPANY_EMAIL=support@webdating.com
 NEXT_PUBLIC_COMPANY_PHONE=+1 (555) 123-4567
 NEXT_PUBLIC_COMPANY_ADDRESS=123 Shopping Street, Commerce District
 ```

@@ -39,10 +39,11 @@ const HeaderMenu = () => {
     }, 300); // 300ms delay before closing
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (title: string) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
+    setOpenDropdown(title);
   };
 
   return (
@@ -52,34 +53,37 @@ const HeaderMenu = () => {
           key={item?.title}
           className="relative"
           ref={item.hasDropdown ? dropdownRef : null}
-          onMouseEnter={handleMouseEnter}
+          onMouseEnter={item.hasDropdown ? () => handleMouseEnter(item.title) : undefined}
           onMouseLeave={item.hasDropdown ? handleMouseLeave : undefined}
         >
           {item.hasDropdown ? (
-            <button
-              onClick={() => handleDropdownClick(item.title)}
-              className={`hover:text-shop_light_green hoverEffect relative group ${
-                pathname === item?.href || 
-                (item.hasDropdown && item.dropdownItems?.some(dropItem => pathname === dropItem.href))
-                  ? 'text-shop_light_green' : ''
-              }`}
-            >
-              {item?.title}
-              <span
-                className={`absolute -bottom-0.5 left-1/2 w-0 h-0.5 bg-shop_light_green transition-all duration-300 group-hover:w-1/2 group-hover:left-0 ${
+            <div className="relative">
+              <Link
+                href={item?.href}
+                className={`hover:text-shop_light_green hoverEffect relative group ${
                   pathname === item?.href || 
                   (item.hasDropdown && item.dropdownItems?.some(dropItem => pathname === dropItem.href))
-                    ? 'w-1/2' : ''
+                    ? 'text-shop_light_green' : ''
                 }`}
-              />
-              <span
-                className={`absolute -bottom-0.5 right-1/2 w-0 h-0.5 bg-shop_light_green transition-all duration-300 group-hover:w-1/2 group-hover:right-0 ${
-                  pathname === item?.href || 
-                  (item.hasDropdown && item.dropdownItems?.some(dropItem => pathname === dropItem.href))
-                    ? 'w-1/2' : ''
-                }`}
-              />
-            </button>
+                onClick={() => setOpenDropdown(null)}
+              >
+                {item?.title}
+                <span
+                  className={`absolute -bottom-0.5 left-1/2 w-0 h-0.5 bg-shop_light_green transition-all duration-300 group-hover:w-1/2 group-hover:left-0 ${
+                    pathname === item?.href || 
+                    (item.hasDropdown && item.dropdownItems?.some(dropItem => pathname === dropItem.href))
+                      ? 'w-1/2' : ''
+                  }`}
+                />
+                <span
+                  className={`absolute -bottom-0.5 right-1/2 w-0 h-0.5 bg-shop_light_green transition-all duration-300 group-hover:w-1/2 group-hover:right-0 ${
+                    pathname === item?.href || 
+                    (item.hasDropdown && item.dropdownItems?.some(dropItem => pathname === dropItem.href))
+                      ? 'w-1/2' : ''
+                  }`}
+                />
+              </Link>
+            </div>
           ) : (
             <Link
               href={item?.href}

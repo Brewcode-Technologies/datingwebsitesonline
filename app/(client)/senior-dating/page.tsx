@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import Container from "@/components/Container";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Heart, Star, Users, ArrowRight, Crown } from "lucide-react";
-import Link from "next/link";
+import Container from '@/components/Container';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Heart, Star, Users, ArrowRight, Crown } from 'lucide-react';
+import Link from 'next/link';
 
 const SeniorDatingPage = () => {
   const services = [
     {
-      title: "Mature Dating Platform",
-      price: "$42.99",
-      description: "Designed specifically for singles over 50 seeking companionship",
+      title: 'Mature Dating Platform',
+      price: '$42.99',
+      description: 'Designed specifically for singles over 50 seeking companionship',
       rating: 4.9,
       reviews: 312,
     },
     {
-      title: "Senior Dating Guide",
-      price: "$29.99", 
-      description: "Expert advice for dating in your golden years",
+      title: 'Senior Dating Guide',
+      price: '$29.99',
+      description: 'Expert advice for dating in your golden years',
       rating: 4.8,
       reviews: 187,
     },
     {
-      title: "Companionship Matching",
-      price: "$24.99",
-      description: "Find meaningful companionship and lasting friendships",
+      title: 'Companionship Matching',
+      price: '$24.99',
+      description: 'Find meaningful companionship and lasting friendships',
       rating: 4.7,
       reviews: 156,
     },
@@ -58,14 +58,10 @@ const SeniorDatingPage = () => {
                 <div className="w-12 h-12 bg-shop_light_green/10 rounded-lg flex items-center justify-center mb-4">
                   <Crown className="w-6 h-6 text-shop_light_green" />
                 </div>
-                <h3 className="text-lg font-semibold text-shop_dark_green mb-2">
-                  {service.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-shop_dark_green mb-2">{service.title}</h3>
                 <p className="text-dark-text text-sm mb-4">{service.description}</p>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-shop_dark_green">
-                    {service.price}
-                  </span>
+                  <span className="text-2xl font-bold text-shop_dark_green">{service.price}</span>
                   <div className="flex items-center gap-1">
                     <Star className="w-4 h-4 text-yellow-400 fill-current" />
                     <span className="text-sm text-dark-text">
@@ -84,11 +80,10 @@ const SeniorDatingPage = () => {
         {/* CTA */}
         <div className="bg-gradient-to-r from-shop_light_green/10 to-shop_dark_green/10 rounded-xl p-8 text-center">
           <Users className="w-12 h-12 mx-auto mb-4 text-shop_dark_green" />
-          <h2 className="text-2xl font-bold text-shop_dark_green mb-4">
-            Love Has No Age Limit
-          </h2>
+          <h2 className="text-2xl font-bold text-shop_dark_green mb-4">Love Has No Age Limit</h2>
           <p className="text-dark-text mb-6 max-w-2xl mx-auto">
-            Join mature singles who believe it's never too late to find love, companionship, and happiness.
+            Join mature singles who believe it's never too late to find love, companionship, and
+            happiness.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-shop_dark_green hover:bg-shop_light_green">
@@ -97,12 +92,12 @@ const SeniorDatingPage = () => {
                 Start Dating Today
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-shop_light_green text-shop_light_green hover:bg-shop_light_green hover:text-white">
+            {/* <Button asChild size="lg" variant="outline" className="border-shop_light_green text-shop_light_green hover:bg-shop_light_green hover:text-white">
               <Link href="/category">
                 <ArrowRight className="w-5 h-5 mr-2" />
                 View All Categories
               </Link>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </Container>

@@ -592,7 +592,7 @@ const generateOrderConfirmationHTML = (data: OrderConfirmationData): string => {
                 <div class="contact-info">
                     <div class="contact-item">
                         <strong>Email</strong>
-                        <span>support@shopcart.com</span>
+                        <span>support@webdating.com</span>
                     </div>
                     <div class="contact-item">
                         <strong>Phone</strong>

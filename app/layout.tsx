@@ -28,28 +28,30 @@ const opensans = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shopcartpro.reactbd.org"),
+  // metadataBase: new URL("https://findlove-dating.com"),
   title: {
-    template: "%s | ShopCart - Premium Online Shopping",
-    default: "ShopCart - Your Trusted Online Shopping Destination",
+    template: "%s | Find Love",
+    default: "Find Love - Your Premier Dating Platform for Meaningful Connections",
   },
   description:
-    "Discover amazing products at ShopCart, your trusted online shopping destination for quality items and exceptional customer service. Shop electronics, fashion, home goods and more with fast delivery.",
+    "Find your perfect match with Find Love, the premier dating platform connecting singles worldwide. Join thousands who found love through our secure, inclusive dating community for all relationship types.",
   keywords: [
-    "online shopping",
-    "e-commerce",
-    "buy online",
-    "shop online",
-    "electronics",
-    "fashion",
-    "home goods",
-    "deals",
-    "discounts",
-    "ShopCart",
+    "online dating",
+    "dating app",
+    "find love",
+    "singles dating",
+    "christian dating",
+    "gay dating",
+    "lesbian dating",
+    "senior dating",
+    "relationships",
+    "matchmaking",
+    "dating platform",
+    "Find Love",
   ],
-  authors: [{ name: "ShopCart" }],
-  creator: "ShopCart",
-  publisher: "ShopCart",
+  authors: [{ name: "Find Love" }],
+  creator: "Find Love",
+  publisher: "Find Love",
   formatDetection: {
     email: false,
     address: false,
@@ -58,27 +60,27 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://shopcartpro.reactbd.org",
-    siteName: "ShopCart",
-    title: "ShopCart - Your Trusted Online Shopping Destination",
+    url: "https://findlove-dating.com",
+    siteName: "Find Love",
+    title: "Find Love - Your Premier Dating Platform for Meaningful Connections",
     description:
-      "Discover amazing products at ShopCart, your trusted online shopping destination for quality items and exceptional customer service.",
+      "Find your perfect match with Find Love, the premier dating platform connecting singles worldwide. Join our secure, inclusive dating community.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ShopCart Online Store",
+        alt: "Find Love Dating Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ShopCart - Your Trusted Online Shopping Destination",
+    title: "Find Love - Your Premier Dating Platform for Meaningful Connections",
     description:
-      "Discover amazing products at ShopCart, your trusted online shopping destination for quality items and exceptional customer service.",
+      "Find your perfect match with Find Love, the premier dating platform connecting singles worldwide. Join our secure, inclusive dating community.",
     images: ["/og-image.jpg"],
-    creator: "@shopcart",
+    creator: "@findlove",
   },
   robots: {
     index: true,
@@ -96,7 +98,7 @@ export const metadata: Metadata = {
     // Add other verification codes as needed
   },
   alternates: {
-    canonical: "https://shopcartpro.reactbd.org",
+    canonical: "https://findlove-dating.com",
   },
 };
 

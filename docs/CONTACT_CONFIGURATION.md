@@ -27,8 +27,8 @@ NEXT_PUBLIC_COMPANY_BUSINESS_HOURS_WEEKEND=Saturday - Sunday: 10AM - 4PM EST
 ### Contact Emails
 
 ```bash
-NEXT_PUBLIC_SUPPORT_EMAIL=support@shopcart.com             # Customer support email
-NEXT_PUBLIC_SALES_EMAIL=sales@shopcart.com                 # Sales team email
+NEXT_PUBLIC_SUPPORT_EMAIL=webdating@gmail.com             # Customer support email
+NEXT_PUBLIC_SALES_EMAIL=webdating@gmail.com                 # Sales team email
 ```
 
 ### Response Times

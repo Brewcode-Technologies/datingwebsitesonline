@@ -1,5 +1,5 @@
-import Container from "@/components/Container";
-import Title from "@/components/Title";
+import Container from '@/components/Container';
+import Title from '@/components/Title';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,52 +7,57 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import Link from "next/link";
-import { ArrowRight, Package, Tag, Heart } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+} from '@/components/ui/breadcrumb';
+import Link from 'next/link';
+import { ArrowRight, Package, Tag, Heart } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 // Mock categories data
 const mockCategories = [
   {
-    _id: "1",
-    title: "Singles Dating",
-    slug: { current: "singles-dating" },
-    description: "Find your perfect match with our comprehensive singles dating platform. Connect with like-minded individuals looking for meaningful relationships.",
+    _id: '1',
+    title: 'Singles Dating',
+    slug: { current: 'singles-dating' },
+    description:
+      'Find your perfect match with our comprehensive singles dating platform. Connect with like-minded individuals looking for meaningful relationships.',
     featured: true,
-    range: "18-65",
+    range: '18-65',
   },
   {
-    _id: "2",
-    title: "Christian Dating",
-    slug: { current: "christian-dating" },
-    description: "Faith-based dating for Christian singles. Build relationships founded on shared values and beliefs.",
+    _id: '2',
+    title: 'Christian Dating',
+    slug: { current: 'christian-dating' },
+    description:
+      'Faith-based dating for Christian singles. Build relationships founded on shared values and beliefs.',
     featured: false,
-    range: "21-60",
+    range: '21-60',
   },
   {
-    _id: "3",
-    title: "Gay Dating",
-    slug: { current: "gay-dating" },
-    description: "Safe and inclusive dating platform for gay men. Find love, friendship, and meaningful connections.",
+    _id: '3',
+    title: 'Gay Dating',
+    slug: { current: 'gay-dating' },
+    description:
+      'Safe and inclusive dating platform for gay men. Find love, friendship, and meaningful connections.',
     featured: false,
-    range: "18-65",
+    range: '18-65',
   },
   {
-    _id: "4",
-    title: "Lesbian Dating",
-    slug: { current: "lesbian-dating" },
-    description: "Empowering lesbian women to find love and build lasting relationships in a supportive community.",
+    _id: '4',
+    title: 'Lesbian Dating',
+    slug: { current: 'lesbian-dating' },
+    description:
+      'Empowering lesbian women to find love and build lasting relationships in a supportive community.',
     featured: false,
-    range: "18-65",
+    range: '18-65',
   },
   {
-    _id: "5",
-    title: "Senior Dating",
-    slug: { current: "senior-dating" },
-    description: "Dating for mature singles over 50. Find companionship and love in your golden years.",
+    _id: '5',
+    title: 'Senior Dating',
+    slug: { current: 'senior-dating' },
+    description:
+      'Dating for mature singles over 50. Find companionship and love in your golden years.',
     featured: true,
-    range: "50+",
+    range: '50+',
   },
 ];
 
@@ -84,8 +89,8 @@ const CategoryPage = async () => {
             Dating Categories
           </Title>
           <p className="text-base lg:text-lg text-dark-text max-w-2xl mx-auto mb-6">
-            Discover our wide range of dating platforms organized by categories. Find
-            exactly what you're looking for with ease.
+            Discover our wide range of dating platforms organized by categories. Find exactly what
+            you're looking for with ease.
           </p>
 
           {/* View All Products Button */}
@@ -152,7 +157,7 @@ const CategoryPage = async () => {
 
                     <div className="flex items-center justify-between text-xs text-light-text">
                       <span className="capitalize truncate text-xs">
-                        {category.slug?.current?.replace(/-/g, " ")}
+                        {category.slug?.current?.replace(/-/g, ' ')}
                       </span>
                       <Badge className="bg-shop_light_pink/50 text-shop_dark_green text-xs">
                         Explore
@@ -173,7 +178,8 @@ const CategoryPage = async () => {
                   Ready to Find Love?
                 </h3>
                 <p className="text-dark-text text-sm lg:text-base mb-6">
-                  Join thousands of singles who have found meaningful relationships through our dating platforms.
+                  Join thousands of singles who have found meaningful relationships through our
+                  dating platforms.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
@@ -202,8 +208,8 @@ const CategoryPage = async () => {
                 No Categories Available
               </h3>
               <p className="text-dark-text text-sm mb-6">
-                It looks like there are no categories set up yet. Check back
-                soon for our dating categories!
+                It looks like there are no categories set up yet. Check back soon for our dating
+                categories!
               </p>
               <Link
                 href="/shop"

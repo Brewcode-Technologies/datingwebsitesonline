@@ -1,5 +1,5 @@
-import Container from "@/components/Container";
-import Title from "@/components/Title";
+import Container from '@/components/Container';
+import Title from '@/components/Title';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,8 +7,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import Link from "next/link";
+} from '@/components/ui/breadcrumb';
+import Link from 'next/link';
 import {
   ArrowLeft,
   ArrowRight,
@@ -19,12 +19,12 @@ import {
   TrendingUp,
   Heart,
   Star,
-} from "lucide-react";
-import React from "react";
-import { Metadata } from "next";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+} from 'lucide-react';
+import React from 'react';
+import { Metadata } from 'next';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -33,70 +33,76 @@ type Props = {
 // Mock categories data
 const mockCategories = [
   {
-    _id: "1",
-    title: "Singles Dating",
-    slug: { current: "singles-dating" },
-    description: "Find your perfect match with our comprehensive singles dating platform. Connect with like-minded individuals looking for meaningful relationships.",
+    _id: '1',
+    title: 'Singles Dating',
+    slug: { current: 'singles-dating' },
+    description:
+      'Find your perfect match with our comprehensive singles dating platform. Connect with like-minded individuals looking for meaningful relationships.',
     featured: true,
-    range: "18-65",
+    range: '18-65',
   },
   {
-    _id: "2",
-    title: "Christian Dating",
-    slug: { current: "christian-dating" },
-    description: "Faith-based dating for Christian singles. Build relationships founded on shared values and beliefs.",
+    _id: '2',
+    title: 'Christian Dating',
+    slug: { current: 'christian-dating' },
+    description:
+      'Faith-based dating for Christian singles. Build relationships founded on shared values and beliefs.',
     featured: false,
-    range: "21-60",
+    range: '21-60',
   },
   {
-    _id: "3",
-    title: "Gay Dating",
-    slug: { current: "gay-dating" },
-    description: "Safe and inclusive dating platform for gay men. Find love, friendship, and meaningful connections.",
+    _id: '3',
+    title: 'Gay Dating',
+    slug: { current: 'gay-dating' },
+    description:
+      'Safe and inclusive dating platform for gay men. Find love, friendship, and meaningful connections.',
     featured: false,
-    range: "18-65",
+    range: '18-65',
   },
   {
-    _id: "4",
-    title: "Lesbian Dating",
-    slug: { current: "lesbian-dating" },
-    description: "Empowering lesbian women to find love and build lasting relationships in a supportive community.",
+    _id: '4',
+    title: 'Lesbian Dating',
+    slug: { current: 'lesbian-dating' },
+    description:
+      'Empowering lesbian women to find love and build lasting relationships in a supportive community.',
     featured: false,
-    range: "18-65",
+    range: '18-65',
   },
   {
-    _id: "5",
-    title: "Senior Dating",
-    slug: { current: "senior-dating" },
-    description: "Dating for mature singles over 50. Find companionship and love in your golden years.",
+    _id: '5',
+    title: 'Senior Dating',
+    slug: { current: 'senior-dating' },
+    description:
+      'Dating for mature singles over 50. Find companionship and love in your golden years.',
     featured: true,
-    range: "50+",
+    range: '50+',
   },
 ];
 
 // Mock products data
 const mockProducts = [
   {
-    _id: "p1",
-    title: "Premium Dating Profile Setup",
+    _id: 'p1',
+    title: 'Premium Dating Profile Setup',
     price: 29.99,
-    description: "Professional profile creation service to help you stand out and attract the right matches.",
+    description:
+      'Professional profile creation service to help you stand out and attract the right matches.',
     rating: 4.8,
     reviews: 156,
   },
   {
-    _id: "p2",
-    title: "Dating Coach Consultation",
+    _id: 'p2',
+    title: 'Dating Coach Consultation',
     price: 89.99,
-    description: "One-on-one session with certified dating experts to improve your dating success.",
+    description: 'One-on-one session with certified dating experts to improve your dating success.',
     rating: 4.9,
     reviews: 89,
   },
   {
-    _id: "p3",
-    title: "Relationship Compatibility Test",
+    _id: 'p3',
+    title: 'Relationship Compatibility Test',
     price: 19.99,
-    description: "Comprehensive personality assessment to find your most compatible matches.",
+    description: 'Comprehensive personality assessment to find your most compatible matches.',
     rating: 4.7,
     reviews: 234,
   },
@@ -104,11 +110,11 @@ const mockProducts = [
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const currentCategory = mockCategories.find(cat => cat.slug.current === slug);
-  
+  const currentCategory = mockCategories.find((cat) => cat.slug.current === slug);
+
   if (!currentCategory) {
     return {
-      title: "Category Not Found",
+      title: 'Category Not Found',
       description: "The category you're looking for could not be found.",
     };
   }
@@ -121,15 +127,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const CategoryPage = async ({ params }: Props) => {
   const { slug } = await params;
-  
+
   // Find the current category
-  const currentCategory = mockCategories.find(cat => cat.slug.current === slug);
-  const categoryTitle = currentCategory?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  
+  const currentCategory = mockCategories.find((cat) => cat.slug.current === slug);
+  const categoryTitle =
+    currentCategory?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+
   // Get related categories (exclude current category)
-  const relatedCategories = mockCategories
-    .filter((cat) => cat.slug.current !== slug)
-    .slice(0, 4);
+  const relatedCategories = mockCategories.filter((cat) => cat.slug.current !== slug).slice(0, 4);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-shop_light_bg via-white to-shop_light_pink">
@@ -200,24 +205,24 @@ const CategoryPage = async ({ params }: Props) => {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3">
-                <Link
+                {/* <Link
                   href="/category"
                   className="inline-flex items-center gap-2 text-shop_dark_green hover:text-shop_light_green transition-colors duration-300 text-sm font-medium"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back to Categories
-                </Link>
+                </Link> */}
 
-                <div className="h-4 w-px bg-gray-300" />
+                {/* <div className="h-4 w-px bg-gray-300" /> */}
 
-                <Link
+                {/* <Link
                   href="/shop"
                   className="inline-flex items-center gap-2 bg-shop_light_green hover:bg-shop_dark_green text-white px-4 py-2 rounded-full font-medium text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
                 >
                   <Package className="w-4 h-4" />
-                  View All Products
+                  View All Services
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </Link> */}
               </div>
             </div>
 
@@ -250,9 +255,7 @@ const CategoryPage = async ({ params }: Props) => {
                   <h3 className="text-lg font-semibold text-shop_dark_green mb-2">
                     {product.title}
                   </h3>
-                  <p className="text-dark-text text-sm mb-4">
-                    {product.description}
-                  </p>
+                  <p className="text-dark-text text-sm mb-4">{product.description}</p>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-2xl font-bold text-shop_dark_green">
                       ${product.price}
@@ -305,7 +308,7 @@ const CategoryPage = async ({ params }: Props) => {
                   <h4 className="text-sm font-medium text-shop_dark_green group-hover:text-shop_light_green transition-colors duration-300 line-clamp-1">
                     {category.title}
                   </h4>
-                  
+
                   {category.featured && (
                     <Badge className="mt-2 bg-shop_orange/10 text-shop_orange text-xs">
                       Featured
@@ -324,7 +327,8 @@ const CategoryPage = async ({ params }: Props) => {
               Ready to Find Love?
             </h3>
             <p className="text-dark-text mb-6 text-sm lg:text-base">
-              Join thousands of singles who have found meaningful relationships through our {categoryTitle.toLowerCase()} platform.
+              Join thousands of singles who have found meaningful relationships through our{' '}
+              {categoryTitle.toLowerCase()} platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="bg-shop_dark_green hover:bg-shop_light_green">
@@ -333,7 +337,12 @@ const CategoryPage = async ({ params }: Props) => {
                   Start Dating Today
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-shop_light_green text-shop_light_green hover:bg-shop_light_green hover:text-white">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-shop_light_green text-shop_light_green hover:bg-shop_light_green hover:text-white"
+              >
                 <Link href="/category">
                   <Grid3X3 className="w-5 h-5 mr-2" />
                   All Categories
