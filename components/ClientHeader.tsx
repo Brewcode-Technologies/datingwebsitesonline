@@ -76,8 +76,8 @@ const ClientHeader = () => {
 
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-4">
-              <CartIcon />
-              <FavoriteButton />
+              {/* <CartIcon /> */}
+              {/* <FavoriteButton /> */}
               <NotificationBell />
 
               <ClerkLoaded>
@@ -106,8 +106,8 @@ const ClientHeader = () => {
 
             {/* Tablet Actions (Medium screens) */}
             <div className="hidden md:flex lg:hidden items-center gap-2">
-              <CartIcon />
-              <FavoriteButton />
+              {/* <CartIcon /> */}
+              {/* <FavoriteButton /> */}
               <NotificationBell />
 
               <ClerkLoaded>

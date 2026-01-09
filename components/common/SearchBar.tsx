@@ -125,7 +125,7 @@ const SearchBar = () => {
 
           {/* Placeholder Text */}
           <span className="text-sm text-gray-500 group-hover:text-gray-700 transition-colors duration-200 flex-1 text-left">
-            Search products...
+            Find your perfect match...
           </span>
 
           {/* Keyboard Shortcut Badge */}
@@ -170,7 +170,7 @@ const SearchBar = () => {
                     <Search className="w-5 h-5" />
                   </div>
                   <div className="flex items-center gap-3">
-                    <h2 className="text-xl font-bold">Search Products</h2>
+                    <h2 className="text-xl font-bold">Find Matches</h2>
                     <div className="hidden sm:flex items-center gap-1 bg-white/10 px-2 py-1 rounded-md border border-white/20">
                       <span className="text-xs font-mono">
                         {isMac ? "Cmd" : "Ctrl"}
@@ -195,7 +195,7 @@ const SearchBar = () => {
                 <div className="relative">
                   <Input
                     ref={inputRef}
-                    placeholder="Search your favorite products..."
+                    placeholder="Search for your perfect match..."
                     className="w-full pl-12 pr-16 py-4 text-lg bg-white/10 border-white/20 placeholder:text-white/70 text-white focus:bg-white/20 focus:border-white/40 rounded-xl"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -225,7 +225,7 @@ const SearchBar = () => {
               {loading ? (
                 <div className="flex flex-col items-center justify-center py-16 text-shop_dark_green">
                   <Loader2 className="w-8 h-8 animate-spin mb-3" />
-                  <p className="text-lg font-semibold">Searching products...</p>
+                  <p className="text-lg font-semibold">Finding matches...</p>
                   <p className="text-sm text-gray-500">Please wait a moment</p>
                 </div>
               ) : products?.length > 0 ? (
@@ -330,10 +330,10 @@ const SearchBar = () => {
                           </div>
                         </div>
                         <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                          Discover Amazing Products
+                          Discover Amazing Matches
                         </h3>
                         <div className="text-gray-600 mb-6">
-                          <p>Search and explore thousands of products from</p>{" "}
+                          <p>Search and explore thousands of potential matches from</p>{" "}
                           <Logo className="inline text-base font-bold text-shop_dark_green" />
                         </div>
 
@@ -377,7 +377,7 @@ const SearchBar = () => {
                           No Results Found
                         </h3>
                         <p className="text-gray-600 mb-4">
-                          Sorry, we couldn&apos;t find any products matching{" "}
+                          Sorry, we couldn&apos;t find any matches for{" "}
                           <span className="font-semibold text-red-600">
                             &quot;{search}&quot;
                           </span>

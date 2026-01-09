@@ -12,20 +12,26 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-let app: FirebaseApp;
-if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApps()[0];
-}
+// Check if Firebase config is complete
+const isFirebaseConfigured = firebaseConfig.projectId && firebaseConfig.apiKey;
 
+let app: FirebaseApp | null = null;
 let analytics: Analytics | null = null;
-if (typeof window !== "undefined") {
-  isSupported().then((supported) => {
-    if (supported) {
-      analytics = getAnalytics(app);
-    }
-  });
+
+if (isFirebaseConfigured) {
+  if (!getApps().length) {
+    app = initializeApp(firebaseConfig);
+  } else {
+    app = getApps()[0];
+  }
+
+  if (typeof window !== "undefined" && app) {
+    isSupported().then((supported) => {
+      if (supported) {
+        analytics = getAnalytics(app!);
+      }
+    });
+  }
 }
 
 export { app, analytics };

@@ -104,7 +104,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
   const GADSENSE_CLIENT_ID = "ca-pub-6542623777003381"; // Define it once
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <Head>
           <meta name="google-adsense-account" content={GADSENSE_CLIENT_ID} />
         </Head>

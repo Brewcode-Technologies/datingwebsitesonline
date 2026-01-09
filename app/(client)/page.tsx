@@ -1,15 +1,13 @@
-import HomeCategories from "@/components/HomeCategories";
-import LatestBlog from "@/components/LatestBlog";
 import HomeBanner from "@/components/HomeBanner";
-import ProductGrid from "@/components/ProductGrid";
-import ShopByBrands from "@/components/ShopByBrands";
-import ShopFeatures from "@/components/ShopFeatures";
-import { getCategories } from "@/sanity/queries";
+import IntroductionSection from "@/components/IntroductionSection";
+import WhyOnlineDatingSection from "@/components/WhyOnlineDatingSection";
+import FreeVsPaidSection from "@/components/FreeVsPaidSection";
+import KeyFeaturesSection from "@/components/KeyFeaturesSection";
+import SecurityPrivacySection from "@/components/SecurityPrivacySection";
+import DatingCategoriesSection from "@/components/DatingCategoriesSection";
 import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
 
 export default async function Home() {
-  const categories = await getCategories(8);
-
   // Generate structured data
   const organizationSchema = generateOrganizationSchema();
   const websiteSchema = generateWebsiteSchema();
@@ -31,13 +29,12 @@ export default async function Home() {
       />
 
       <HomeBanner />
-      <div className="py-10">
-        <ProductGrid />
-        <HomeCategories categories={categories} />
-        <ShopFeatures />
-        <ShopByBrands />
-        <LatestBlog />
-      </div>
+      <IntroductionSection />
+      <WhyOnlineDatingSection />
+      <FreeVsPaidSection />
+      <KeyFeaturesSection />
+      <SecurityPrivacySection />
+      <DatingCategoriesSection />
     </div>
   );
 }

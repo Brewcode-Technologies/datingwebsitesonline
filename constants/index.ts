@@ -1,9 +1,19 @@
 export const headerData = [
   { title: "Home", href: "/" },
-  { title: "Shop", href: "/shop" },
-  { title: "Hot Deal", href: "/deal" },
-  { title: "Blog", href: "/blog" },
-  { title: "Contact", href: "/contact" },
+  { 
+    title: "Categories", 
+    href: "#",
+    hasDropdown: true,
+    dropdownItems: [
+      { title: "Singles Dating", href: "/category/singles-dating" },
+      { title: "Christian Dating", href: "/category/christian-dating" },
+      { title: "Gay Dating", href: "/category/gay-dating" },
+      { title: "Lesbian Dating", href: "/category/lesbian-dating" },
+      { title: "Senior Dating", href: "/category/senior-dating" },
+    ]
+  },
+  { title: "About Us", href: "/about" },
+  { title: "Contact Us", href: "/contact" },
 ];
 
 export const productType = [
@@ -23,16 +33,11 @@ export const quickLinksData = [
 ];
 
 export const categoriesData = [
-  { title: "Mobiles", href: "mobiles" },
-  { title: "Appliances", href: "appliances" },
-  { title: "Smartphones", href: "smartphones" },
-  { title: "Air Conditioners", href: "air-conditioners" },
-  { title: "Washing Machine", href: "washing-machine" },
-  { title: "Kitchen Appliances", href: "kitchen-appliances" },
-  { title: "Gadget Accessories", href: "gadget-accessories" },
-  // { title: "Electronics", href: "electronics" },
-  // { title: "Home & Garden", href: "home-garden" },
-  // { title: "Sports & Fitness", href: "sports-fitness" },
+  { title: "Singles Dating", href: "singles-dating" },
+  { title: "Christian Dating", href: "christian-dating" },
+  { title: "Gay Dating", href: "gay-dating" },
+  { title: "Lesbian Dating", href: "lesbian-dating" },
+  { title: "Senior Dating", href: "senior-dating" },
 ];
 
 // Enhanced user account menu items
@@ -49,7 +54,7 @@ export const userAccountData = [
 // Support and help menu items
 export const supportData = [
   { title: "Help Center", href: "/help" },
-  { title: "Customer Service", href: "/support" },
+  { title: "Customer Service", href: "/contact" },
   { title: "Track Your Order", href: "/track-order" },
   { title: "Return Policy", href: "/returns" },
   { title: "Shipping Info", href: "/shipping" },

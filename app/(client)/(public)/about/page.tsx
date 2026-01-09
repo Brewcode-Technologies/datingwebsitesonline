@@ -21,36 +21,36 @@ import Link from "next/link";
 
 const AboutPage = () => {
   const stats = [
-    { number: "10K+", label: "Happy Customers", icon: Users },
-    { number: "500+", label: "Products", icon: ShoppingBag },
-    { number: "50+", label: "Brands", icon: Award },
-    { number: "99%", label: "Satisfaction", icon: Heart },
+    { number: "10K+", label: "Happy Couples", icon: Users },
+    { number: "500+", label: "Dating Sites Reviewed", icon: ShoppingBag },
+    { number: "50+", label: "Dating Categories", icon: Award },
+    { number: "99%", label: "Success Rate", icon: Heart },
   ];
 
   const values = [
     {
       icon: Target,
-      title: "Customer First",
-      description: "Every decision we make starts with our customers in mind.",
+      title: "User First",
+      description: "Every decision we make starts with helping users find their perfect match.",
       color: "text-shop_light_green",
     },
     {
       icon: Shield,
-      title: "Quality Assurance",
-      description: "We ensure every product meets our high standards.",
+      title: "Quality Reviews",
+      description: "We ensure every dating platform review meets our high standards.",
       color: "text-shop_dark_green",
     },
     {
       icon: Zap,
       title: "Innovation",
-      description: "Constantly evolving to bring you the latest and greatest.",
+      description: "Constantly evolving to bring you the latest dating insights and trends.",
       color: "text-shop_orange",
     },
     {
       icon: Globe,
-      title: "Sustainability",
+      title: "Inclusivity",
       description:
-        "Committed to eco-friendly practices and responsible sourcing.",
+        "We don't discriminate - covering dating for all ages, orientations, and preferences.",
       color: "text-shop_light_green",
     },
   ];
@@ -60,19 +60,19 @@ const AboutPage = () => {
       name: "Sarah Johnson",
       role: "CEO & Founder",
       image: "/images/team/ceo.jpg",
-      description: "Visionary leader with 15+ years in e-commerce",
+      description: "Dating industry expert with 15+ years in relationship consulting",
     },
     {
       name: "Michael Chen",
-      role: "CTO",
+      role: "Lead Researcher",
       image: "/images/team/cto.jpg",
-      description: "Tech innovator driving our digital transformation",
+      description: "Dating platform analyst specializing in user safety and experience",
     },
     {
       name: "Emily Rodriguez",
-      role: "Head of Design",
+      role: "Head of Content",
       image: "/images/team/design.jpg",
-      description: "Creative force behind our user experience",
+      description: "Relationship expert creating comprehensive dating guides",
     },
   ];
 
@@ -90,12 +90,10 @@ const AboutPage = () => {
               Est. 2025
             </Badge>
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-              About ShopCart
+              About Find Love
             </h1>
             <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              We&apos;re revolutionizing online shopping with curated products,
-              exceptional service, and innovative technology that puts customers
-              first.
+              With an aim to help users make the correct choice between the different types of platforms, service and apps, the team of researchers at Find Love have gone through all the nooks and corners of the dating world.
             </p>
           </motion.div>
         </Container>
@@ -140,19 +138,13 @@ const AboutPage = () => {
                 Our Story
               </Badge>
               <h2 className="text-4xl font-bold text-shop_dark_green mb-6">
-                Building the Future of E-commerce
+                Building the Future of Online Dating
               </h2>
               <p className="text-lg text-dark-text mb-6 leading-relaxed">
-                Founded in 2020 with a simple mission: make online shopping more
-                personal, more accessible, and more enjoyable for everyone. What
-                started as a small team with big dreams has grown into a
-                platform trusted by thousands of customers worldwide.
+                We help users make a better and informed choice by reviewing all the websites available in the dating world. Be it for older couples or for same sex marriage, we don't discriminate, and this attitude helps us to provide you with information, which others might miss.
               </p>
               <p className="text-lg text-dark-text mb-8 leading-relaxed">
-                We believe shopping should be an experience, not just a
-                transaction. That&apos;s why we carefully curate every product,
-                partner with ethical brands, and continuously innovate to serve
-                you better.
+                Our team of researchers have gone through all the nooks and corners of the dating world to bring you comprehensive reviews and insights. We believe finding love should be accessible to everyone, regardless of age, orientation, or relationship preferences.
               </p>
               <Button
                 asChild
@@ -173,16 +165,16 @@ const AboutPage = () => {
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="bg-white/20 rounded-lg p-4 text-center">
                     <Star className="w-6 h-6 mx-auto mb-2" />
-                    <p className="font-semibold">Premium Quality</p>
+                    <p className="font-semibold">Expert Reviews</p>
                   </div>
                   <div className="bg-white/20 rounded-lg p-4 text-center">
                     <Shield className="w-6 h-6 mx-auto mb-2" />
-                    <p className="font-semibold">Secure Shopping</p>
+                    <p className="font-semibold">Safe Dating</p>
                   </div>
                 </div>
                 <blockquote className="text-lg italic">
-                  &quot;Shopping should be delightful, not a chore. We&apos;re
-                  here to make every purchase feel special.&quot;
+                  &quot;Finding love should be accessible to everyone. We&apos;re
+                  here to help you make the right choice in your dating journey.&quot;
                 </blockquote>
                 <p className="mt-4 font-semibold">- Sarah Johnson, Founder</p>
               </div>
@@ -207,8 +199,8 @@ const AboutPage = () => {
               What We Stand For
             </h2>
             <p className="text-lg text-dark-text max-w-2xl mx-auto">
-              These core values guide everything we do, from product selection
-              to customer service.
+              These core values guide everything we do, from platform reviews
+              to user guidance and support.
             </p>
           </motion.div>
 
@@ -253,11 +245,11 @@ const AboutPage = () => {
               Leadership Team
             </Badge>
             <h2 className="text-4xl font-bold text-shop_dark_green mb-4">
-              Meet the Minds Behind ShopCart
+              Meet the Minds Behind Find Love
             </h2>
             <p className="text-lg text-dark-text max-w-2xl mx-auto">
-              Our passionate team of experts working tirelessly to create the
-              best shopping experience for you.
+              Our passionate team of dating experts working tirelessly to help you
+              find the perfect dating platform for your needs.
             </p>
           </motion.div>
 
@@ -305,11 +297,10 @@ const AboutPage = () => {
             className="text-center"
           >
             <h2 className="text-4xl font-bold mb-4">
-              Ready to Experience the Difference?
+              Ready to Find Your Perfect Match?
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who trust ShopCart for their
-              shopping needs.
+              If you have any questions regarding the content of our site, feel free to reach out to us. Join thousands who trust Find Love for their dating guidance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -317,8 +308,8 @@ const AboutPage = () => {
                 size="lg"
                 className="bg-white text-shop_dark_green hover:bg-white/90"
               >
-                <Link href="/shop">
-                  Start Shopping <ShoppingBag className="w-5 h-5 ml-2" />
+                <Link href="/category/singles-dating">
+                  Start Dating <Heart className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
               <Button
