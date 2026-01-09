@@ -434,6 +434,39 @@
   width: 100%;
 }
 
+/* Custom Clerk Component Styling */
+.cl-socialButtonsBlockButton {
+  border: 1px solid var(--color-shop_light_green) !important;
+  background: white !important;
+  color: var(--color-shop_dark_green) !important;
+  transition: all 0.3s ease !important;
+}
+
+.cl-socialButtonsBlockButton:hover {
+  background: var(--color-shop_light_green) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(59, 156, 60, 0.2) !important;
+}
+
+.cl-formButtonPrimary {
+  background: var(--color-shop_dark_green) !important;
+  border: 1px solid var(--color-shop_dark_green) !important;
+}
+
+.cl-formButtonPrimary:hover {
+  background: var(--color-shop_light_green) !important;
+  border: 1px solid var(--color-shop_light_green) !important;
+}
+
+.cl-footerActionLink {
+  color: var(--color-shop_light_green) !important;
+}
+
+.cl-footerActionLink:hover {
+  color: var(--color-shop_dark_green) !important;
+}
+
 /* Minimal responsive adjustments */
 @media (max-width: 640px) {
   .clerk-sign-in,

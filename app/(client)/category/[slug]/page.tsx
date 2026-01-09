@@ -257,9 +257,9 @@ const CategoryPage = async ({ params }: Props) => {
                   </h3>
                   <p className="text-dark-text text-sm mb-4">{product.description}</p>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-shop_dark_green">
+                    {/* <span className="text-2xl font-bold text-shop_dark_green">
                       ${product.price}
-                    </span>
+                    </span> */}
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
                       <span className="text-sm text-dark-text">

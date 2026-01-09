@@ -42,7 +42,7 @@ export const contactConfig = {
   legal: {
     copyright:
       process.env.NEXT_PUBLIC_COPYRIGHT_TEXT ||
-      "© 2024 ShopCart. All rights reserved.",
+      "© 2024 FindLove. All rights reserved.",
     privacyPolicy: process.env.NEXT_PUBLIC_PRIVACY_POLICY_URL || "/privacy",
     terms: process.env.NEXT_PUBLIC_TERMS_URL || "/terms",
   },

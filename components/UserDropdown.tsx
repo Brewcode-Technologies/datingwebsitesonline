@@ -124,7 +124,7 @@ const UserDropdown = () => {
             </span>
           </Link>
 
-          <Link
+          {/* <Link
             href="/user/orders"
             onClick={handleLinkClick}
             className="flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg hover:bg-shop_light_bg transition-colors duration-200 group"
@@ -166,7 +166,7 @@ const UserDropdown = () => {
             <span className="text-gray-800 group-hover:text-shop_light_green transition-colors">
               Dashboard
             </span>
-          </Link>
+          </Link> */}
 
           <Link
             href="/user/settings"
@@ -182,7 +182,7 @@ const UserDropdown = () => {
           <div className="my-1 border-t border-gray-100"></div>
 
           {/* Employee Dashboard - Available for Everyone (Paid Feature) */}
-          <Link
+          {/* <Link
             href="/employee"
             onClick={handleLinkClick}
             className="flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg hover:bg-purple-50 transition-colors duration-200 group border border-purple-100"
@@ -194,7 +194,7 @@ const UserDropdown = () => {
               </span>
               <Crown className="w-4 h-4 text-purple-500" />
             </div>
-          </Link>
+          </Link> */}
 
           <Link
             href="/help"

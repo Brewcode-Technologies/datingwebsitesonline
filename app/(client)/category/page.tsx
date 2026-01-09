@@ -95,14 +95,14 @@ const CategoryPage = async () => {
 
           {/* View All Products Button */}
           <div className="flex justify-center">
-            <Link
+            {/* <Link
               href="/shop"
               className="inline-flex items-center justify-center gap-2 bg-shop_dark_green hover:bg-shop_light_green text-white px-8 py-3 rounded-full font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               <Package className="w-5 h-5" />
               View All Services
               <ArrowRight className="w-5 h-5" />
-            </Link>
+            </Link> */}
           </div>
         </div>
 
@@ -223,7 +223,7 @@ const CategoryPage = async () => {
         )}
 
         {/* Additional Info Section */}
-        {categories.length > 0 && (
+        {/* {categories.length > 0 && (
           <div className="mt-12 bg-white/70 backdrop-blur-sm rounded-xl p-6 lg:p-8 shadow-md border border-gray-100/50">
             <div className="text-center">
               <h3 className="text-xl lg:text-2xl font-bold text-shop_dark_green mb-3">
@@ -250,7 +250,7 @@ const CategoryPage = async () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </Container>
     </div>
   );

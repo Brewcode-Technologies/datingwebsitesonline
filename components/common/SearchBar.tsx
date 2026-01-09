@@ -1,23 +1,17 @@
 "use client";
-import { Loader2, Search, X, TrendingUp, Clock, Star } from "lucide-react";
+import { Loader2, Search, X, TrendingUp } from "lucide-react";
 import { useCallback, useEffect, useState, useRef } from "react";
-import { client } from "@/sanity/lib/client";
 import { Input } from "../ui/input";
-import AddToCartButton from "../AddToCartButton";
-import { urlFor } from "@/sanity/lib/image";
-import { Product } from "@/sanity.types";
-import PriceView from "../PriceView";
-import Image from "next/image";
 import Link from "next/link";
 import Logo from "./Logo";
 import { useOutsideClick } from "@/hooks";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
-  const [products, setProducts] = useState([]);
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [featuredProduct, setFeaturedProduct] = useState([]);
+  const [featuredCategories, setFeaturedCategories] = useState([]);
   const [isMac, setIsMac] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const modalRef = useOutsideClick<HTMLDivElement>(() => setShowSearch(false));
@@ -27,19 +21,32 @@ const SearchBar = () => {
     setIsMac(navigator.platform.toUpperCase().indexOf("MAC") >= 0);
   }, []);
 
-  const fetchFeaturedProducts = useCallback(async () => {
+  const mockCategories = [
+    { _id: '1', title: 'Singles Dating', slug: { current: 'singles-dating' }, description: 'Find your perfect match with our comprehensive singles dating platform.' },
+    { _id: '2', title: 'Christian Dating', slug: { current: 'christian-dating' }, description: 'Faith-based dating for Christian singles.' },
+    { _id: '3', title: 'Gay Dating', slug: { current: 'gay-dating' }, description: 'Safe and inclusive dating platform for gay men.' },
+    { _id: '4', title: 'Lesbian Dating', slug: { current: 'lesbian-dating' }, description: 'Empowering lesbian women to find love.' },
+    { _id: '5', title: 'Senior Dating', slug: { current: 'senior-dating' }, description: 'Dating for mature singles over 50.' },
+  ];
+
+  const mockSections = [
+    { _id: 's1', title: 'About Us', href: '/about', description: 'Learn more about our dating platform' },
+    { _id: 's2', title: 'Contact Us', href: '/contact', description: 'Get in touch with our support team' },
+    { _id: 's3', title: 'Help Center', href: '/help', description: 'Find answers to common questions' },
+    { _id: 's4', title: 'Privacy Policy', href: '/privacy', description: 'Our commitment to your privacy' },
+  ];
+
+  const fetchFeaturedCategories = useCallback(async () => {
     try {
-      const query = `*[_type == "product" && isFeatured == true] | order(name asc)`;
-      const response = await client.fetch(query);
-      setFeaturedProduct(response);
+      setFeaturedCategories(mockCategories.slice(0, 3));
     } catch (error) {
-      console.error("Error fetching featured products:", error);
+      console.error("Error fetching featured categories:", error);
     }
   }, []);
 
   useEffect(() => {
     if (showSearch === true) {
-      fetchFeaturedProducts();
+      fetchFeaturedCategories();
       // Focus input when modal opens
       const timeoutId = setTimeout(() => {
         inputRef.current?.focus();
@@ -47,7 +54,7 @@ const SearchBar = () => {
 
       return () => clearTimeout(timeoutId); // Cleanup timeout
     }
-  }, [showSearch, fetchFeaturedProducts]);
+  }, [showSearch, fetchFeaturedCategories]);
 
   // Handle escape key to close modal and Ctrl+K to open modal
   useEffect(() => {
@@ -82,21 +89,32 @@ const SearchBar = () => {
     };
   }, [showSearch]);
 
-  // Fetch products from Sanity based on search input
-  const fetchProducts = useCallback(async () => {
+  // Search through categories and sections
+  const searchResults = useCallback(async () => {
     if (!search) {
-      setProducts([]);
+      setResults([]);
       return;
     }
 
     setLoading(true);
     try {
-      const query = `*[_type == "product" && name match $search] | order(name asc)`;
-      const params = { search: `${search}*` };
-      const response = await client.fetch(query, params);
-      setProducts(response);
+      const searchTerm = search.toLowerCase();
+      
+      // Search categories
+      const categoryResults = mockCategories.filter(category => 
+        category.title.toLowerCase().includes(searchTerm) ||
+        category.description.toLowerCase().includes(searchTerm)
+      ).map(category => ({ ...category, type: 'category' }));
+      
+      // Search sections
+      const sectionResults = mockSections.filter(section => 
+        section.title.toLowerCase().includes(searchTerm) ||
+        section.description.toLowerCase().includes(searchTerm)
+      ).map(section => ({ ...section, type: 'section' }));
+      
+      setResults([...categoryResults, ...sectionResults]);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Error searching:", error);
     } finally {
       setLoading(false);
     }
@@ -105,11 +123,11 @@ const SearchBar = () => {
   // Debounce input changes to reduce API calls
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
-      fetchProducts();
+      searchResults();
     }, 300); // Delay of 300ms
 
     return () => clearTimeout(debounceTimer); // Cleanup the timer
-  }, [fetchProducts]);
+  }, [searchResults]);
   return (
     <>
       {/* Search Trigger Button - Modern Input Style */}
@@ -228,94 +246,44 @@ const SearchBar = () => {
                   <p className="text-lg font-semibold">Finding matches...</p>
                   <p className="text-sm text-gray-500">Please wait a moment</p>
                 </div>
-              ) : products?.length > 0 ? (
+              ) : results?.length > 0 ? (
                 <div className="divide-y divide-gray-100">
-                  {products.map((product: Product) => (
+                  {results.map((item: any) => (
                     <div
-                      key={product?._id}
+                      key={item?._id}
                       className="p-4 hover:bg-gray-50 transition-colors duration-200 group"
                     >
-                      <div className="flex items-center gap-4">
-                        <Link
-                          href={`/product/${product?.slug?.current}`}
-                          onClick={() => setShowSearch(false)}
-                          className="relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl border border-gray-200 group-hover:border-shop_light_green transition-colors duration-200"
-                        >
-                          {product?.images && (
-                            <Image
-                              width={80}
-                              height={80}
-                              src={urlFor(product?.images[0]).url()}
-                              alt={product.name || "Product"}
-                              className={`object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 ${
-                                product?.stock === 0
-                                  ? "opacity-50 grayscale"
-                                  : ""
-                              }`}
-                            />
+                      <Link
+                        href={item.type === 'category' ? `/category/${item.slug.current}` : item.href}
+                        onClick={() => setShowSearch(false)}
+                        className="flex items-center gap-4 w-full"
+                      >
+                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-lg flex items-center justify-center">
+                          {item.type === 'category' ? (
+                            <Search className="w-6 h-6 text-white" />
+                          ) : (
+                            <TrendingUp className="w-6 h-6 text-white" />
                           )}
-                          {product?.discount && product.discount > 0 && (
-                            <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full font-semibold">
-                              -{product.discount}%
-                            </div>
-                          )}
-                        </Link>
-
+                        </div>
+                        
                         <div className="flex-1 min-w-0">
-                          <Link
-                            href={`/product/${product?.slug?.current}`}
-                            onClick={() => setShowSearch(false)}
-                            className="block group-hover:text-shop_dark_green transition-colors duration-200"
-                          >
-                            <h3 className="font-semibold text-base sm:text-lg line-clamp-1 mb-1">
-                              {product.name}
-                            </h3>
-                          </Link>
-
-                          <div className="flex items-center justify-between">
-                            <PriceView
-                              price={product?.price}
-                              discount={product?.discount}
-                              className="text-sm sm:text-base"
-                            />
-
-                            <div className="flex items-center gap-2">
-                              {product?.stock === 0 ? (
-                                <span className="text-red-500 text-sm font-medium">
-                                  Out of Stock
-                                </span>
-                              ) : (
-                                <AddToCartButton
-                                  product={product}
-                                  className="px-3 py-1.5 text-sm"
-                                />
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Product Status Badges */}
+                          <h3 className="font-semibold text-base sm:text-lg line-clamp-1 mb-1 group-hover:text-shop_dark_green transition-colors">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 line-clamp-2">
+                            {item.description}
+                          </p>
                           <div className="flex items-center gap-2 mt-2">
-                            {product?.status === "hot" && (
-                              <span className="inline-flex items-center gap-1 bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full font-medium">
-                                <TrendingUp className="w-3 h-3" />
-                                Hot Deal
-                              </span>
-                            )}
-                            {product?.status === "new" && (
-                              <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full font-medium">
-                                <Clock className="w-3 h-3" />
-                                New Arrival
-                              </span>
-                            )}
-                            {product?.isFeatured && (
-                              <span className="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full font-medium">
-                                <Star className="w-3 h-3" />
-                                Featured
-                              </span>
-                            )}
+                            <span className={`inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full font-medium ${
+                              item.type === 'category' 
+                                ? 'bg-shop_light_green/10 text-shop_dark_green'
+                                : 'bg-blue-100 text-blue-700'
+                            }`}>
+                              {item.type === 'category' ? 'Dating Category' : 'Page Section'}
+                            </span>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -337,26 +305,25 @@ const SearchBar = () => {
                           <Logo className="inline text-base font-bold text-shop_dark_green" />
                         </div>
 
-                        {/* Featured Products Suggestions */}
-                        {featuredProduct?.length > 0 && (
+                        {/* Featured Categories Suggestions */}
+                        {featuredCategories?.length > 0 && (
                           <div>
                             <h4 className="text-sm font-semibold text-gray-700 mb-3 text-left">
-                              Popular Searches:
+                              Popular Categories:
                             </h4>
                             <div className="flex flex-wrap gap-2">
-                              {featuredProduct
-                                .slice(0, 6)
-                                .map((item: Product) => (
+                              {featuredCategories
+                                .map((item: any) => (
                                   <button
                                     key={item?._id}
                                     onClick={() =>
-                                      setSearch(item?.name as string)
+                                      setSearch(item?.title as string)
                                     }
                                     className="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-shop_light_green hover:bg-shop_light_green/5 px-3 py-2 rounded-full text-sm font-medium text-gray-700 hover:text-shop_dark_green transition-all duration-200"
                                   >
                                     <Search className="w-3 h-3" />
                                     <span className="line-clamp-1">
-                                      {item?.name}
+                                      {item?.title}
                                     </span>
                                   </button>
                                 ))}

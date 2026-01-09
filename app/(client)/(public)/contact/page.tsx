@@ -1,11 +1,11 @@
-"use client";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import Container from "@/components/Container";
-import { contactConfig } from "@/config/contact";
+'use client';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import Container from '@/components/Container';
+import { contactConfig } from '@/config/contact';
 import {
   CheckCircle,
   Mail,
@@ -17,9 +17,9 @@ import {
   Loader2,
   AlertCircle,
   ExternalLink,
-} from "lucide-react";
-import { FormEvent, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+} from 'lucide-react';
+import { FormEvent, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface FormData {
   name: string;
@@ -31,37 +31,35 @@ interface FormData {
 const ContactPage = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('');
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
     // Clear error when user starts typing
-    if (error) setError("");
+    if (error) setError('');
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
+    setError('');
     setSuccess(false);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
+      const response = await fetch('/api/contact', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
@@ -71,17 +69,17 @@ const ContactPage = () => {
       if (response.ok) {
         setSuccess(true);
         setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
         });
       } else {
-        setError(data.error || "Something went wrong. Please try again.");
+        setError(data.error || 'Something went wrong. Please try again.');
       }
     } catch (err) {
-      setError("Network error. Please check your connection and try again.");
-      console.error("Contact form error:", err);
+      setError('Network error. Please check your connection and try again.');
+      console.error('Contact form error:', err);
     } finally {
       setLoading(false);
     }
@@ -90,38 +88,38 @@ const ContactPage = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: "Visit Our Store",
+      title: 'Visit Our Store',
       details: contactConfig.company.address,
       subDetails: contactConfig.company.city,
-      color: "text-shop_dark_green",
-      bgColor: "bg-shop_dark_green/10",
+      color: 'text-shop_dark_green',
+      bgColor: 'bg-shop_dark_green/10',
       href: `https://maps.google.com/?q=${encodeURIComponent(`${contactConfig.company.address}, ${contactConfig.company.city}`)}`,
     },
     {
       icon: Phone,
-      title: "Call Us",
+      title: 'Call Us',
       details: contactConfig.company.phone,
       subDetails: contactConfig.businessHours.weekday,
-      color: "text-shop_light_green",
-      bgColor: "bg-shop_light_green/10",
-      href: `tel:${contactConfig.company.phone.replace(/\D/g, "")}`,
+      color: 'text-shop_light_green',
+      bgColor: 'bg-shop_light_green/10',
+      href: `tel:${contactConfig.company.phone.replace(/\D/g, '')}`,
     },
     {
       icon: Mail,
-      title: "Email Support",
+      title: 'Email Support',
       details: contactConfig.emails.support,
       subDetails: contactConfig.responseTime.standard,
-      color: "text-shop_orange",
-      bgColor: "bg-shop_orange/10",
+      color: 'text-shop_orange',
+      bgColor: 'bg-shop_orange/10',
       href: `mailto:${contactConfig.emails.support}`,
     },
     {
       icon: Clock,
-      title: "Business Hours",
+      title: 'Business Hours',
       details: contactConfig.businessHours.weekday,
       subDetails: contactConfig.businessHours.weekend,
-      color: "text-purple-600",
-      bgColor: "bg-purple-600/10",
+      color: 'text-purple-600',
+      bgColor: 'bg-purple-600/10',
     },
   ];
 
@@ -140,9 +138,8 @@ const ContactPage = () => {
             </Badge>
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">Contact Us</h1>
             <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Have questions about our products or need assistance? We&apos;d
-              love to hear from you. Our team is here to help with any inquiries
-              you may have.
+              Have questions about our products or need assistance? We&apos;d love to hear from you.
+              Our team is here to help with any inquiries you may have.
             </p>
           </motion.div>
         </Container>
@@ -158,9 +155,7 @@ const ContactPage = () => {
             className="lg:col-span-1"
           >
             <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8 border border-gray-100">
-              <h2 className="text-2xl font-bold text-shop_dark_green mb-6">
-                Contact Information
-              </h2>
+              <h2 className="text-2xl font-bold text-shop_dark_green mb-6">Contact Information</h2>
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -175,35 +170,23 @@ const ContactPage = () => {
                       <info.icon className={`w-5 h-5 ${info.color}`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-shop_dark_green mb-1">
-                        {info.title}
-                      </h3>
+                      <h3 className="font-semibold text-shop_dark_green mb-1">{info.title}</h3>
                       {info.href ? (
                         <a
                           href={info.href}
                           className="text-dark-text text-sm mb-1 hover:text-shop_dark_green transition-colors duration-200 flex items-center gap-1 group"
-                          target={
-                            info.href.startsWith("http") ? "_blank" : "_self"
-                          }
-                          rel={
-                            info.href.startsWith("http")
-                              ? "noopener noreferrer"
-                              : undefined
-                          }
+                          target={info.href.startsWith('http') ? '_blank' : '_self'}
+                          rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                         >
                           {info.details}
-                          {info.href.startsWith("http") && (
+                          {info.href.startsWith('http') && (
                             <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                           )}
                         </a>
                       ) : (
-                        <p className="text-dark-text text-sm mb-1">
-                          {info.details}
-                        </p>
+                        <p className="text-dark-text text-sm mb-1">{info.details}</p>
                       )}
-                      <p className="text-light-text text-xs">
-                        {info.subDetails}
-                      </p>
+                      <p className="text-light-text text-xs">{info.subDetails}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -213,13 +196,9 @@ const ContactPage = () => {
               <div className="mt-8 p-4 bg-shop_light_pink rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <MessageCircle className="w-4 h-4 text-shop_dark_green" />
-                  <h4 className="font-semibold text-shop_dark_green">
-                    Quick Response
-                  </h4>
+                  <h4 className="font-semibold text-shop_dark_green">Quick Response</h4>
                 </div>
-                <p className="text-sm text-dark-text">
-                  {contactConfig.responseTime.quick}
-                </p>
+                <p className="text-sm text-dark-text">{contactConfig.responseTime.quick}</p>
               </div>
             </div>
           </motion.div>
@@ -232,17 +211,12 @@ const ContactPage = () => {
             className="lg:col-span-2"
           >
             <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8 border border-gray-100">
-              <h2 className="text-2xl font-bold text-shop_dark_green mb-6">
-                Send us a Message
-              </h2>
+              <h2 className="text-2xl font-bold text-shop_dark_green mb-6">Send us a Message</h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="name"
-                      className="text-shop_dark_green font-medium"
-                    >
+                    <Label htmlFor="name" className="text-shop_dark_green font-medium">
                       Full Name *
                     </Label>
                     <Input
@@ -258,10 +232,7 @@ const ContactPage = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="email"
-                      className="text-shop_dark_green font-medium"
-                    >
+                    <Label htmlFor="email" className="text-shop_dark_green font-medium">
                       Email Address *
                     </Label>
                     <Input
@@ -279,10 +250,7 @@ const ContactPage = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label
-                    htmlFor="subject"
-                    className="text-shop_dark_green font-medium"
-                  >
+                  <Label htmlFor="subject" className="text-shop_dark_green font-medium">
                     Subject *
                   </Label>
                   <Input
@@ -299,10 +267,7 @@ const ContactPage = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label
-                    htmlFor="message"
-                    className="text-shop_dark_green font-medium"
-                  >
+                  <Label htmlFor="message" className="text-shop_dark_green font-medium">
                     Message *
                   </Label>
                   <Textarea
@@ -322,7 +287,7 @@ const ContactPage = () => {
                   {error && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
+                      animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg"
                     >
@@ -355,7 +320,7 @@ const ContactPage = () => {
         </div>
 
         {/* FAQ Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -401,7 +366,7 @@ const ContactPage = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
       </Container>
 
       {/* Success Modal */}
@@ -428,7 +393,7 @@ const ContactPage = () => {
                   animate={{ scale: 1 }}
                   transition={{
                     delay: 0.2,
-                    type: "spring",
+                    type: 'spring',
                     stiffness: 200,
                     damping: 10,
                   }}
@@ -440,8 +405,8 @@ const ContactPage = () => {
                   Message Sent Successfully!
                 </h3>
                 <p className="text-dark-text mb-6">
-                  Thank you for contacting us. We&apos;ve received your message
-                  and will get back to you within 24 hours.
+                  Thank you for contacting us. We&apos;ve received your message and will get back to
+                  you within 24 hours.
                 </p>
                 <Button
                   onClick={() => setSuccess(false)}

@@ -1,7 +1,5 @@
 "use server";
 
-import { client, writeClient } from "@/sanity/lib/client";
-
 interface SubscriptionData {
   email: string;
   source?: string;
@@ -17,15 +15,18 @@ interface SubscriptionResponse {
   alreadySubscribed?: boolean;
 }
 
+// Mock storage for demo purposes - in production, use a real database
+const mockSubscriptions = new Set<string>();
+
 /**
  * Subscribe a user to the newsletter
- * Checks for existing subscription before creating a new one
+ * Mock implementation for demo purposes
  */
 export async function subscribeToNewsletter(
   subscriptionData: SubscriptionData
 ): Promise<SubscriptionResponse> {
   try {
-    const { email, source = "footer", ipAddress, userAgent } = subscriptionData;
+    const { email } = subscriptionData;
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,76 +41,24 @@ export async function subscribeToNewsletter(
     // Normalize email
     const normalizedEmail = email.toLowerCase().trim();
 
-    // Check if email already exists (first check)
-    const existingSubscription = await client.fetch(
-      `*[_type == "subscription" && email == $email][0]`,
-      { email: normalizedEmail }
-    );
-
-    if (existingSubscription) {
-      // If already subscribed and active
-      if (existingSubscription.status === "active") {
-        return {
-          success: false,
-          message:
-            "You're already subscribed to our newsletter! Check your inbox for our latest updates.",
-          alreadySubscribed: true,
-        };
-      }
-
-      // If previously unsubscribed, reactivate
-      if (existingSubscription.status === "unsubscribed") {
-        await writeClient
-          .patch(existingSubscription._id)
-          .set({
-            status: "active",
-            subscribedAt: new Date().toISOString(),
-            unsubscribedAt: null,
-          })
-          .commit();
-
-        return {
-          success: true,
-          message:
-            "Welcome back! You've been successfully resubscribed to our newsletter.",
-          data: { reactivated: true },
-        };
-      }
-    }
-
-    // Double-check before creating (prevents race conditions)
-    const doubleCheck = await client.fetch(
-      `*[_type == "subscription" && email == $email][0]`,
-      { email: normalizedEmail }
-    );
-
-    if (doubleCheck) {
+    // Check if already subscribed
+    if (mockSubscriptions.has(normalizedEmail)) {
       return {
         success: false,
-        message:
-          "You're already subscribed to our newsletter! Check your inbox for our latest updates.",
+        message: "You're already subscribed to our newsletter! Check your inbox for our latest updates.",
         alreadySubscribed: true,
       };
     }
 
-    // Create new subscription
-    const newSubscription = await writeClient.create({
-      _type: "subscription",
-      email: normalizedEmail,
-      status: "active",
-      subscribedAt: new Date().toISOString(),
-      source,
-      ipAddress: ipAddress || "unknown",
-      userAgent: userAgent || "unknown",
-    });
+    // Add to mock storage
+    mockSubscriptions.add(normalizedEmail);
 
     return {
       success: true,
-      message:
-        "Thank you for subscribing! Check your email for a welcome message.",
+      message: "Thank you for subscribing! Check your email for a welcome message.",
       data: {
-        subscriptionId: newSubscription._id,
-        email: newSubscription.email,
+        subscriptionId: `sub_${Date.now()}`,
+        email: normalizedEmail,
       },
     };
   } catch (error) {
@@ -129,25 +78,16 @@ export async function unsubscribeFromNewsletter(
   email: string
 ): Promise<SubscriptionResponse> {
   try {
-    const subscription = await client.fetch(
-      `*[_type == "subscription" && email == $email && status == "active"][0]`,
-      { email: email.toLowerCase().trim() }
-    );
-
-    if (!subscription) {
+    const normalizedEmail = email.toLowerCase().trim();
+    
+    if (!mockSubscriptions.has(normalizedEmail)) {
       return {
         success: false,
         message: "Email not found in our subscription list",
       };
     }
 
-    await writeClient
-      .patch(subscription._id)
-      .set({
-        status: "unsubscribed",
-        unsubscribedAt: new Date().toISOString(),
-      })
-      .commit();
+    mockSubscriptions.delete(normalizedEmail);
 
     return {
       success: true,
@@ -170,18 +110,12 @@ export async function checkSubscriptionStatus(
   email: string
 ): Promise<{ subscribed: boolean; status?: string }> {
   try {
-    const subscription = await client.fetch(
-      `*[_type == "subscription" && email == $email][0]`,
-      { email: email.toLowerCase().trim() }
-    );
-
-    if (!subscription) {
-      return { subscribed: false };
-    }
-
+    const normalizedEmail = email.toLowerCase().trim();
+    const subscribed = mockSubscriptions.has(normalizedEmail);
+    
     return {
-      subscribed: subscription.status === "active",
-      status: subscription.status,
+      subscribed,
+      status: subscribed ? "active" : "inactive",
     };
   } catch (error) {
     console.error("Error checking subscription status:", error);
