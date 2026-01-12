@@ -29,6 +29,17 @@ import {
 import Link from "next/link";
 
 const PrivacyPage = () => {
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long'
+  });
+
+  const currentFullDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
   const privacyHighlights = [
     {
       icon: Shield,
@@ -51,7 +62,7 @@ const PrivacyPage = () => {
     {
       icon: Lock,
       title: "Secure Processing",
-      description: "Industry-standard security for all transactions",
+      description: "Industry-standard security for all interactions",
       color: "text-shop_dark_green",
     },
   ];
@@ -68,12 +79,12 @@ const PrivacyPage = () => {
       icon: UserCheck,
     },
     {
-      category: "Purchase Data",
+      category: "Dating Activity",
       items: [
-        "Order history",
-        "Payment information",
-        "Shipping addresses",
-        "Product reviews",
+        "Match history",
+        "Subscription information",
+        "Dating preferences",
+        "Profile interactions",
       ],
       icon: Database,
     },
@@ -147,7 +158,7 @@ const PrivacyPage = () => {
               collect, use, and protect your personal information.
             </p>
             <Badge className="mt-6 bg-white/20 text-white border-white/30">
-              Last updated: January 2024
+              Last updated: {currentDate}
             </Badge>
           </motion.div>
         </Container>
@@ -214,7 +225,7 @@ const PrivacyPage = () => {
             </h2>
             <p className="text-lg text-dark-text max-w-3xl mx-auto">
               We collect different types of information to provide you with the
-              best shopping experience while respecting your privacy.
+              best dating experience while respecting your privacy.
             </p>
           </motion.div>
 
@@ -292,7 +303,7 @@ const PrivacyPage = () => {
                     <ul className="space-y-2 pl-4">
                       <li>
                         • Information you provide when creating an account or
-                        making purchases
+                        setting up your dating profile
                       </li>
                       <li>
                         • Automatic information collected through cookies and
@@ -331,7 +342,7 @@ const PrivacyPage = () => {
                     <ul className="space-y-2 pl-4">
                       <li>
                         • With service providers who assist in our operations
-                        (payment processing, shipping)
+                        (payment processing, identity verification)
                       </li>
                       <li>
                         • When required by law or to protect our rights and
@@ -518,10 +529,10 @@ const PrivacyPage = () => {
                 <p className="text-sm text-light-text mt-6">
                   Email us directly at{" "}
                   <a
-                    href="mailto:privacy@shopcart.com"
+                    href="mailto:privacy@webdating.com"
                     className="text-shop_light_green hover:underline"
                   >
-                    privacy@shopcart.com
+                    privacy@webdating.com
                   </a>
                 </p>
               </CardContent>
@@ -537,7 +548,7 @@ const PrivacyPage = () => {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Clock className="w-4 h-4 text-shop_light_green" />
               <p className="text-sm text-light-text">
-                This privacy policy was last updated on January 15, 2024
+                This privacy policy was last updated on {currentFullDate}
               </p>
             </div>
             <p className="text-xs text-light-text">

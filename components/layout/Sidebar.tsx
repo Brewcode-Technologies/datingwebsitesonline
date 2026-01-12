@@ -1,30 +1,14 @@
-import {
-  X,
-  Home,
-  ShoppingBag,
-  BookOpen,
-  Flame,
-  User,
-  ShoppingCart,
-  Heart,
-  Package,
-  Tag,
-  Phone,
-  HelpCircle,
-  Info,
-  Grid3X3,
-  Logs,
-} from "lucide-react";
-import { usePathname } from "next/navigation";
-import { FC } from "react";
-import { motion } from "motion/react";
-import Link from "next/link";
-import { useOutsideClick } from "@/hooks";
-import { categoriesData } from "@/constants";
-import { ClerkLoaded, SignedIn } from "@clerk/nextjs";
-import useStore from "@/store";
-import Logo from "../common/Logo";
-import SocialMedia from "../common/SocialMedia";
+import { X, Home, Phone, Info, LogIn, UserPlus } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { FC } from 'react';
+import { motion } from 'motion/react';
+import Link from 'next/link';
+import { useOutsideClick } from '@/hooks';
+import { categoriesData } from '@/constants';
+import Logo from '../common/Logo';
+import Image from 'next/image';
+import { ClerkLoaded, SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import UserDropdown from '../UserDropdown';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -34,35 +18,17 @@ interface SidebarProps {
 const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
   const pathname = usePathname();
   const sidebarRef = useOutsideClick<HTMLDivElement>(onClose);
-  const { items, favoriteProduct } = useStore();
-
-  // Enhanced menu sections with icons
-  const userMenuItems = [
-    { title: "My Account", href: "/account", icon: User },
-    { title: "My Orders", href: "/orders", icon: Package },
-    { title: "Wishlist", href: "/wishlist", icon: Heart },
-    { title: "Shopping Cart", href: "/cart", icon: ShoppingCart },
-  ];
 
   const mainMenuItems = [
-    { title: "Home", href: "/", icon: Home },
-    { title: "Shop", href: "/shop", icon: ShoppingBag },
-    { title: "Categories", href: "/category", icon: Grid3X3 },
-    { title: "Brands", href: "/brands", icon: Tag },
-    { title: "Blog", href: "/blog", icon: BookOpen },
-    { title: "Hot Deal", href: "/deal", icon: Flame },
-  ];
-
-  const supportMenuItems = [
-    { title: "Help Center", href: "/help", icon: HelpCircle },
-    { title: "Customer Service", href: "/support", icon: Phone },
-    { title: "About Us", href: "/about", icon: Info },
+    { title: 'Home', href: '/', icon: Home },
+    { title: 'About Us', href: '/about', icon: Info },
+    { title: 'Contact Us', href: '/contact', icon: Phone },
   ];
 
   return (
     <div
       className={`fixed inset-y-0 h-screen left-0 z-50 w-full bg-primary/50 shadow-xl transform ${
-        isOpen ? "translate-x-0" : "-translate-x-full"
+        isOpen ? 'translate-x-0' : '-translate-x-full'
       } transition-transform ease-in-out duration-300`}
     >
       <motion.div
@@ -74,96 +40,21 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-shop_dark_green">
-          <Logo className="text-white" />
+          {/* <Logo className="text-white" /> */}
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={100}
+            height={100}
+            className="object-contain h-10 sm:h-12 md:h-14 lg:h-16 w-auto cursor-pointer hover:scale-105 transition-transform duration-200 bg-transparent"
+            priority
+          />
           <button
             onClick={onClose}
             className="hover:text-shop_light_green hoverEffect p-2 rounded-md hover:bg-shop_dark_green/30"
           >
             <X size={20} />
           </button>
-        </div>
-
-        {/* Mobile Quick Actions */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
-            Quick Access
-          </h3>
-          <div className="grid grid-cols-3 gap-3">
-            {/* Shopping Cart */}
-            <Link
-              onClick={onClose}
-              href="/cart"
-              className="flex flex-col items-center gap-2 p-3 rounded-lg bg-shop_dark_green/30 hover:bg-shop_dark_green/50 transition-colors duration-200 text-center relative"
-            >
-              <ShoppingCart size={20} className="text-shop_light_green" />
-              <span className="text-xs font-medium text-zinc-300">Cart</span>
-              {items?.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-shop_btn_dark_green text-white h-4 w-4 rounded-full text-xs font-semibold flex items-center justify-center">
-                  {items.length}
-                </span>
-              )}
-            </Link>
-
-            {/* Wishlist */}
-            <Link
-              onClick={onClose}
-              href="/wishlist"
-              className="flex flex-col items-center gap-2 p-3 rounded-lg bg-shop_dark_green/30 hover:bg-shop_dark_green/50 transition-colors duration-200 text-center relative"
-            >
-              <Heart size={20} className="text-pink-400" />
-              <span className="text-xs font-medium text-zinc-300">
-                Wishlist
-              </span>
-              {favoriteProduct?.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-pink-500 text-white h-4 w-4 rounded-full text-xs font-semibold flex items-center justify-center">
-                  {favoriteProduct.length}
-                </span>
-              )}
-            </Link>
-
-            {/* Orders */}
-            <ClerkLoaded>
-              <SignedIn>
-                <Link
-                  onClick={onClose}
-                  href="/user/orders"
-                  className="flex flex-col items-center gap-2 p-3 rounded-lg bg-shop_dark_green/30 hover:bg-shop_dark_green/50 transition-colors duration-200 text-center"
-                >
-                  <Logs size={20} className="text-blue-400" />
-                  <span className="text-xs font-medium text-zinc-300">
-                    Orders
-                  </span>
-                </Link>
-              </SignedIn>
-            </ClerkLoaded>
-          </div>
-        </div>
-
-        {/* User Section */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
-            My Account
-          </h3>
-          <div className="flex flex-col gap-2">
-            {userMenuItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  onClick={onClose}
-                  key={item.title}
-                  href={item.href}
-                  className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${
-                    pathname === item.href
-                      ? "text-shop_light_green bg-shop_dark_green/50"
-                      : "text-zinc-300"
-                  }`}
-                >
-                  <Icon size={18} />
-                  {item.title}
-                </Link>
-              );
-            })}
-          </div>
         </div>
 
         {/* Main Navigation */}
@@ -181,8 +72,8 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
                   href={item.href}
                   className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${
                     pathname === item.href
-                      ? "text-shop_light_green bg-shop_dark_green/50"
-                      : "text-zinc-300"
+                      ? 'text-shop_light_green bg-shop_dark_green/50'
+                      : 'text-zinc-300'
                   }`}
                 >
                   <Icon size={18} />
@@ -196,111 +87,63 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
         {/* Categories Section */}
         <div className="space-y-3">
           <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
-            Popular Categories
+            Categories
           </h3>
           <div className="flex flex-col gap-1">
-            {categoriesData.slice(0, 6).map((item) => (
+            {categoriesData.map((item) => (
               <Link
                 onClick={onClose}
                 key={item.title}
                 href={`/category/${item.href}`}
-                className="text-xs font-medium text-zinc-400 hover:text-shop_light_green transition-colors duration-200 py-1.5 px-2 rounded hover:bg-shop_dark_green/20 capitalize"
+                className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${
+                  pathname === item.href
+                    ? 'text-shop_light_green bg-shop_dark_green/50'
+                    : 'text-zinc-300'
+                }`}
               >
                 {item.title}
               </Link>
             ))}
-            <Link
-              onClick={onClose}
-              href="/category"
-              className="text-xs font-semibold text-shop_orange hover:text-shop_light_orange transition-colors duration-200 py-1.5 px-2 rounded hover:bg-shop_dark_green/20 mt-1"
-            >
-              View All Categories →
-            </Link>
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
-            Quick Actions
-          </h3>
-          <div className="grid grid-cols-2 gap-2">
-            <Link
-              onClick={onClose}
-              href="/deal"
-              className="flex flex-col items-center gap-1 p-3 rounded-lg bg-shop_dark_green/30 hover:bg-shop_dark_green/50 transition-colors duration-200 text-center"
-            >
-              <Flame size={20} className="text-shop_orange" />
-              <span className="text-xs font-medium text-zinc-300">
-                Hot Deals
-              </span>
-            </Link>
-            <Link
-              onClick={onClose}
-              href="/wishlist"
-              className="flex flex-col items-center gap-1 p-3 rounded-lg bg-shop_dark_green/30 hover:bg-shop_dark_green/50 transition-colors duration-200 text-center"
-            >
-              <Heart size={20} className="text-shop_light_green" />
-              <span className="text-xs font-medium text-zinc-300">
-                Wishlist
-              </span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Support Section */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
-            Support
-          </h3>
-          <div className="flex flex-col gap-2">
-            {supportMenuItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  onClick={onClose}
-                  key={item.title}
-                  href={item.href}
-                  className={`flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 ${
-                    pathname === item.href
-                      ? "text-shop_light_green bg-shop_dark_green/50"
-                      : "text-zinc-300"
-                  }`}
-                >
-                  <Icon size={18} />
-                  {item.title}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-shop_dark_green my-2"></div>
-
-        {/* Promotional Banner */}
-        <div className="bg-gradient-to-r from-shop_dark_green to-shop_btn_dark_green rounded-lg p-4 text-center">
-          <h4 className="text-sm font-bold text-shop_light_green mb-1">
-            Special Offer!
-          </h4>
-          <p className="text-xs text-zinc-300 mb-2">
-            Get 20% off on your first order
-          </p>
-          <Link
-            onClick={onClose}
-            href="/deal"
-            className="inline-block text-xs font-semibold text-white bg-shop_orange hover:bg-shop_light_orange px-3 py-1 rounded-full transition-colors duration-200"
-          >
-            Shop Now
-          </Link>
-        </div>
-
-        {/* Social Media */}
-        <div className="mt-4">
-          <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider mb-3">
-            Follow Us
-          </h3>
-          <SocialMedia />
+        {/* Authentication Section */}
+        <div className="mt-auto pt-4 border-t border-shop_dark_green">
+          <ClerkLoaded>
+            <SignedIn>
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
+                  Account
+                </h3>
+                <UserDropdown />
+              </div>
+            </SignedIn>
+            <SignedOut>
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
+                  Get Started
+                </h3>
+                <div className="flex flex-col gap-2">
+                  <Link
+                    onClick={onClose}
+                    href="/sign-in"
+                    className="flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 text-zinc-300"
+                  >
+                    <LogIn size={18} />
+                    Sign In
+                  </Link>
+                  <Link
+                    onClick={onClose}
+                    href="/sign-up"
+                    className="flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 bg-shop_light_green text-black hover:bg-shop_light_green/90"
+                  >
+                    <UserPlus size={18} />
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
+            </SignedOut>
+          </ClerkLoaded>
         </div>
       </motion.div>
     </div>

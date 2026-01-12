@@ -1,13 +1,13 @@
-"use client";
-import { Loader2, Search, X, TrendingUp } from "lucide-react";
-import { useCallback, useEffect, useState, useRef } from "react";
-import { Input } from "../ui/input";
-import Link from "next/link";
-import Logo from "./Logo";
-import { useOutsideClick } from "@/hooks";
+'use client';
+import { Loader2, Search, X, TrendingUp } from 'lucide-react';
+import { useCallback, useEffect, useState, useRef } from 'react';
+import { Input } from '../ui/input';
+import Link from 'next/link';
+import Logo from './Logo';
+import { useOutsideClick } from '@/hooks';
 
 const SearchBar = () => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -18,29 +18,74 @@ const SearchBar = () => {
 
   // Detect if user is on Mac
   useEffect(() => {
-    setIsMac(navigator.platform.toUpperCase().indexOf("MAC") >= 0);
+    setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0);
   }, []);
 
   const mockCategories = [
-    { _id: '1', title: 'Singles Dating', slug: { current: 'singles-dating' }, description: 'Find your perfect match with our comprehensive singles dating platform.' },
-    { _id: '2', title: 'Christian Dating', slug: { current: 'christian-dating' }, description: 'Faith-based dating for Christian singles.' },
-    { _id: '3', title: 'Gay Dating', slug: { current: 'gay-dating' }, description: 'Safe and inclusive dating platform for gay men.' },
-    { _id: '4', title: 'Lesbian Dating', slug: { current: 'lesbian-dating' }, description: 'Empowering lesbian women to find love.' },
-    { _id: '5', title: 'Senior Dating', slug: { current: 'senior-dating' }, description: 'Dating for mature singles over 50.' },
+    {
+      _id: '1',
+      title: 'Singles Dating',
+      slug: { current: 'singles-dating' },
+      description: 'Find your perfect match with our comprehensive singles dating platform.',
+    },
+    {
+      _id: '2',
+      title: 'Christian Dating',
+      slug: { current: 'christian-dating' },
+      description: 'Faith-based dating for Christian singles.',
+    },
+    {
+      _id: '3',
+      title: 'Gay Dating',
+      slug: { current: 'gay-dating' },
+      description: 'Safe and inclusive dating platform for gay men.',
+    },
+    {
+      _id: '4',
+      title: 'Lesbian Dating',
+      slug: { current: 'lesbian-dating' },
+      description: 'Empowering lesbian women todatingwebsitesonline.',
+    },
+    {
+      _id: '5',
+      title: 'Senior Dating',
+      slug: { current: 'senior-dating' },
+      description: 'Dating for mature singles over 50.',
+    },
   ];
 
   const mockSections = [
-    { _id: 's1', title: 'About Us', href: '/about', description: 'Learn more about our dating platform' },
-    { _id: 's2', title: 'Contact Us', href: '/contact', description: 'Get in touch with our support team' },
-    { _id: 's3', title: 'Help Center', href: '/help', description: 'Find answers to common questions' },
-    { _id: 's4', title: 'Privacy Policy', href: '/privacy', description: 'Our commitment to your privacy' },
+    {
+      _id: 's1',
+      title: 'About Us',
+      href: '/about',
+      description: 'Learn more about our dating platform',
+    },
+    {
+      _id: 's2',
+      title: 'Contact Us',
+      href: '/contact',
+      description: 'Get in touch with our support team',
+    },
+    {
+      _id: 's3',
+      title: 'Help Center',
+      href: '/help',
+      description: 'Find answers to common questions',
+    },
+    {
+      _id: 's4',
+      title: 'Privacy Policy',
+      href: '/privacy',
+      description: 'Our commitment to your privacy',
+    },
   ];
 
   const fetchFeaturedCategories = useCallback(async () => {
     try {
       setFeaturedCategories(mockCategories.slice(0, 3));
     } catch (error) {
-      console.error("Error fetching featured categories:", error);
+      console.error('Error fetching featured categories:', error);
     }
   }, []);
 
@@ -60,13 +105,13 @@ const SearchBar = () => {
   useEffect(() => {
     const handleKeydown = (e: KeyboardEvent) => {
       // Handle Escape key to close modal
-      if (e.key === "Escape" && showSearch) {
+      if (e.key === 'Escape' && showSearch) {
         setShowSearch(false);
         return;
       }
 
       // Handle Ctrl+K (or Cmd+K on Mac) to open search modal
-      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault(); // Prevent browser's default search behavior
         setShowSearch(true);
         return;
@@ -74,18 +119,18 @@ const SearchBar = () => {
     };
 
     // Always listen for global keyboard shortcuts
-    document.addEventListener("keydown", handleKeydown);
+    document.addEventListener('keydown', handleKeydown);
 
     // Handle body scroll lock only when modal is open
     if (showSearch) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
 
     return () => {
-      document.removeEventListener("keydown", handleKeydown);
-      document.body.style.overflow = "unset";
+      document.removeEventListener('keydown', handleKeydown);
+      document.body.style.overflow = 'unset';
     };
   }, [showSearch]);
 
@@ -99,22 +144,28 @@ const SearchBar = () => {
     setLoading(true);
     try {
       const searchTerm = search.toLowerCase();
-      
+
       // Search categories
-      const categoryResults = mockCategories.filter(category => 
-        category.title.toLowerCase().includes(searchTerm) ||
-        category.description.toLowerCase().includes(searchTerm)
-      ).map(category => ({ ...category, type: 'category' }));
-      
+      const categoryResults = mockCategories
+        .filter(
+          (category) =>
+            category.title.toLowerCase().includes(searchTerm) ||
+            category.description.toLowerCase().includes(searchTerm)
+        )
+        .map((category) => ({ ...category, type: 'category' }));
+
       // Search sections
-      const sectionResults = mockSections.filter(section => 
-        section.title.toLowerCase().includes(searchTerm) ||
-        section.description.toLowerCase().includes(searchTerm)
-      ).map(section => ({ ...section, type: 'section' }));
-      
+      const sectionResults = mockSections
+        .filter(
+          (section) =>
+            section.title.toLowerCase().includes(searchTerm) ||
+            section.description.toLowerCase().includes(searchTerm)
+        )
+        .map((section) => ({ ...section, type: 'section' }));
+
       setResults([...categoryResults, ...sectionResults]);
     } catch (error) {
-      console.error("Error searching:", error);
+      console.error('Error searching:', error);
     } finally {
       setLoading(false);
     }
@@ -136,7 +187,7 @@ const SearchBar = () => {
         <button
           onClick={() => setShowSearch(true)}
           className="group hidden sm:flex items-center gap-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-shop_light_green rounded-lg px-3 py-2 transition-all duration-200 min-w-[200px] md:min-w-[240px]"
-          aria-label={`Open search (${isMac ? "Cmd" : "Ctrl"}+K)`}
+          aria-label={`Open search (${isMac ? 'Cmd' : 'Ctrl'}+K)`}
         >
           {/* Search Icon */}
           <Search className="w-4 h-4 text-gray-400 group-hover:text-shop_dark_green transition-colors duration-200 flex-shrink-0" />
@@ -148,7 +199,7 @@ const SearchBar = () => {
 
           {/* Keyboard Shortcut Badge */}
           <div className="flex items-center gap-1 bg-white border border-gray-200 group-hover:border-gray-300 px-2 py-1 rounded text-xs text-gray-500 font-mono flex-shrink-0 transition-colors duration-200">
-            <span>{isMac ? "⌘" : "Ctrl"}</span>
+            <span>{isMac ? '⌘' : 'Ctrl'}</span>
             <span>K</span>
           </div>
         </button>
@@ -167,7 +218,7 @@ const SearchBar = () => {
       {showSearch && (
         <div
           className={`fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-20 px-4 search-modal-overlay ${
-            showSearch ? "animate-fadeIn" : "animate-fadeOut"
+            showSearch ? 'animate-fadeIn' : 'animate-fadeOut'
           }`}
         >
           {/* Backdrop */}
@@ -177,7 +228,7 @@ const SearchBar = () => {
           <div
             ref={modalRef}
             className={`relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden search-modal-content ${
-              showSearch ? "animate-scaleIn" : "animate-scaleOut"
+              showSearch ? 'animate-scaleIn' : 'animate-scaleOut'
             }`}
           >
             {/* Header */}
@@ -190,9 +241,7 @@ const SearchBar = () => {
                   <div className="flex items-center gap-3">
                     <h2 className="text-xl font-bold">Find Matches</h2>
                     <div className="hidden sm:flex items-center gap-1 bg-white/10 px-2 py-1 rounded-md border border-white/20">
-                      <span className="text-xs font-mono">
-                        {isMac ? "Cmd" : "Ctrl"}
-                      </span>
+                      <span className="text-xs font-mono">{isMac ? 'Cmd' : 'Ctrl'}</span>
                       <span className="text-xs">+</span>
                       <span className="text-xs font-mono">K</span>
                     </div>
@@ -222,7 +271,7 @@ const SearchBar = () => {
                   {search && (
                     <button
                       type="button"
-                      onClick={() => setSearch("")}
+                      onClick={() => setSearch('')}
                       className="absolute right-12 top-1/2 -translate-y-1/2 p-1 hover:bg-white/20 rounded-full transition-colors duration-200"
                     >
                       <X className="w-4 h-4 text-white/70 hover:text-white" />
@@ -254,7 +303,9 @@ const SearchBar = () => {
                       className="p-4 hover:bg-gray-50 transition-colors duration-200 group"
                     >
                       <Link
-                        href={item.type === 'category' ? `/category/${item.slug.current}` : item.href}
+                        href={
+                          item.type === 'category' ? `/category/${item.slug.current}` : item.href
+                        }
                         onClick={() => setShowSearch(false)}
                         className="flex items-center gap-4 w-full"
                       >
@@ -265,20 +316,20 @@ const SearchBar = () => {
                             <TrendingUp className="w-6 h-6 text-white" />
                           )}
                         </div>
-                        
+
                         <div className="flex-1 min-w-0">
                           <h3 className="font-semibold text-base sm:text-lg line-clamp-1 mb-1 group-hover:text-shop_dark_green transition-colors">
                             {item.title}
                           </h3>
-                          <p className="text-sm text-gray-600 line-clamp-2">
-                            {item.description}
-                          </p>
+                          <p className="text-sm text-gray-600 line-clamp-2">{item.description}</p>
                           <div className="flex items-center gap-2 mt-2">
-                            <span className={`inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full font-medium ${
-                              item.type === 'category' 
-                                ? 'bg-shop_light_green/10 text-shop_dark_green'
-                                : 'bg-blue-100 text-blue-700'
-                            }`}>
+                            <span
+                              className={`inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full font-medium ${
+                                item.type === 'category'
+                                  ? 'bg-shop_light_green/10 text-shop_dark_green'
+                                  : 'bg-blue-100 text-blue-700'
+                              }`}
+                            >
                               {item.type === 'category' ? 'Dating Category' : 'Page Section'}
                             </span>
                           </div>
@@ -289,7 +340,7 @@ const SearchBar = () => {
                 </div>
               ) : (
                 <div className="py-12">
-                  {search === "" ? (
+                  {search === '' ? (
                     <div className="text-center">
                       <div className="bg-gray-50 rounded-2xl p-8 mx-6">
                         <div className="flex items-center justify-center mb-4">
@@ -301,7 +352,7 @@ const SearchBar = () => {
                           Discover Amazing Matches
                         </h3>
                         <div className="text-gray-600 mb-6">
-                          <p>Search and explore thousands of potential matches from</p>{" "}
+                          <p>Search and explore thousands of potential matches from</p>{' '}
                           <Logo className="inline text-base font-bold text-shop_dark_green" />
                         </div>
 
@@ -312,21 +363,16 @@ const SearchBar = () => {
                               Popular Categories:
                             </h4>
                             <div className="flex flex-wrap gap-2">
-                              {featuredCategories
-                                .map((item: any) => (
-                                  <button
-                                    key={item?._id}
-                                    onClick={() =>
-                                      setSearch(item?.title as string)
-                                    }
-                                    className="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-shop_light_green hover:bg-shop_light_green/5 px-3 py-2 rounded-full text-sm font-medium text-gray-700 hover:text-shop_dark_green transition-all duration-200"
-                                  >
-                                    <Search className="w-3 h-3" />
-                                    <span className="line-clamp-1">
-                                      {item?.title}
-                                    </span>
-                                  </button>
-                                ))}
+                              {featuredCategories.map((item: any) => (
+                                <button
+                                  key={item?._id}
+                                  onClick={() => setSearch(item?.title as string)}
+                                  className="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-shop_light_green hover:bg-shop_light_green/5 px-3 py-2 rounded-full text-sm font-medium text-gray-700 hover:text-shop_dark_green transition-all duration-200"
+                                >
+                                  <Search className="w-3 h-3" />
+                                  <span className="line-clamp-1">{item?.title}</span>
+                                </button>
+                              ))}
                             </div>
                           </div>
                         )}
@@ -344,13 +390,11 @@ const SearchBar = () => {
                           No Results Found
                         </h3>
                         <p className="text-gray-600 mb-4">
-                          Sorry, we couldn&apos;t find any matches for{" "}
-                          <span className="font-semibold text-red-600">
-                            &quot;{search}&quot;
-                          </span>
+                          Sorry, we couldn&apos;t find any matches for{' '}
+                          <span className="font-semibold text-red-600">&quot;{search}&quot;</span>
                         </p>
                         <button
-                          onClick={() => setSearch("")}
+                          onClick={() => setSearch('')}
                           className="bg-shop_dark_green hover:bg-shop_light_green text-white px-6 py-2 rounded-full font-medium transition-colors duration-200"
                         >
                           Clear Search

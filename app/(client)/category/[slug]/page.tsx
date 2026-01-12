@@ -9,6 +9,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowLeft,
   ArrowRight,
@@ -40,6 +41,7 @@ const mockCategories = [
       'Find your perfect match with our comprehensive singles dating platform. Connect with like-minded individuals looking for meaningful relationships.',
     featured: true,
     range: '18-65',
+    image: '/categories/singles-dating.jpg',
   },
   {
     _id: '2',
@@ -49,24 +51,27 @@ const mockCategories = [
       'Faith-based dating for Christian singles. Build relationships founded on shared values and beliefs.',
     featured: false,
     range: '21-60',
+    image: '/categories/christian-dating.jpg',
   },
   {
     _id: '3',
     title: 'Gay Dating',
     slug: { current: 'gay-dating' },
     description:
-      'Safe and inclusive dating platform for gay men. Find love, friendship, and meaningful connections.',
+      'Safe and inclusive dating platform for gay men.datingwebsitesonline, friendship, and meaningful connections.',
     featured: false,
     range: '18-65',
+    image: '/categories/gay-dating.jpg',
   },
   {
     _id: '4',
     title: 'Lesbian Dating',
     slug: { current: 'lesbian-dating' },
     description:
-      'Empowering lesbian women to find love and build lasting relationships in a supportive community.',
+      'Empowering lesbian women todatingwebsitesonline and build lasting relationships in a supportive community.',
     featured: false,
     range: '18-65',
+    image: '/categories/lesbian-dating.jpg',
   },
   {
     _id: '5',
@@ -76,6 +81,7 @@ const mockCategories = [
       'Dating for mature singles over 50. Find companionship and love in your golden years.',
     featured: true,
     range: '50+',
+    image: '/categories/senior-dating.jpg',
   },
 ];
 
@@ -120,7 +126,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${currentCategory.title} - Find Love`,
+    title: `${currentCategory.title} -datingwebsitesonline`,
     description: currentCategory.description,
   };
 }
@@ -169,8 +175,14 @@ const CategoryPage = async ({ params }: Props) => {
             <div className="flex-1">
               <div className="flex items-start gap-4 mb-4">
                 {/* Category Icon */}
-                <div className="flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-xl flex items-center justify-center">
-                  <Heart className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
+                <div className="flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden border-2 border-shop_light_green">
+                  <Image
+                    src={currentCategory?.image || '/categories/singles-dating.jpg'}
+                    alt={categoryTitle}
+                    width={80}
+                    height={80}
+                    className="object-cover w-full h-full"
+                  />
                 </div>
 
                 <div className="flex-1">
@@ -300,8 +312,14 @@ const CategoryPage = async ({ params }: Props) => {
                   className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 hover:border-shop_light_green p-4 text-center"
                 >
                   {/* Category Icon */}
-                  <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-lg flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 mx-auto mb-3 rounded-lg overflow-hidden border border-shop_light_green">
+                    <Image
+                      src={category.image || '/categories/singles-dating.jpg'}
+                      alt={category.title}
+                      width={48}
+                      height={48}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
 
                   {/* Category Title */}
@@ -324,7 +342,7 @@ const CategoryPage = async ({ params }: Props) => {
         <div className="mt-12 bg-gradient-to-r from-shop_light_green/10 via-shop_orange/5 to-shop_light_green/10 rounded-xl p-6 lg:p-8 border border-shop_light_green/20 text-center">
           <div className="max-w-2xl mx-auto">
             <h3 className="text-xl lg:text-2xl font-bold text-shop_dark_green mb-3">
-              Ready to Find Love?
+              Ready todatingwebsitesonline?
             </h3>
             <p className="text-dark-text mb-6 text-sm lg:text-base">
               Join thousands of singles who have found meaningful relationships through our{' '}

@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Heart, Star, Users, ArrowRight, Cross } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const ChristianDatingPage = () => {
   const services = [
@@ -37,8 +38,14 @@ const ChristianDatingPage = () => {
       <Container className="py-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="w-20 h-20 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-full flex items-center justify-center mx-auto mb-6">
-            <Cross className="w-10 h-10 text-white" />
+          <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-6 border-4 border-shop_light_green">
+            <Image
+              src="/categories/christian-dating.jpg"
+              alt="Christian Dating"
+              width={80}
+              height={80}
+              className="object-cover w-full h-full"
+            />
           </div>
           <h1 className="text-4xl font-bold text-shop_dark_green mb-4">Christian Dating</h1>
           <p className="text-lg text-dark-text max-w-2xl mx-auto mb-6">

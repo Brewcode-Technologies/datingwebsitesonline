@@ -74,7 +74,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-shop_dark_green">
-          <Logo className="text-white" />
+          <Logo />
           <button
             onClick={onClose}
             className="hover:text-shop_light_green hoverEffect p-2 rounded-md hover:bg-shop_dark_green/30"

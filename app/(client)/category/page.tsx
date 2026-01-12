@@ -9,6 +9,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Package, Tag, Heart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
@@ -22,6 +23,7 @@ const mockCategories = [
       'Find your perfect match with our comprehensive singles dating platform. Connect with like-minded individuals looking for meaningful relationships.',
     featured: true,
     range: '18-65',
+    image: '/categories/singles-dating.jpg',
   },
   {
     _id: '2',
@@ -31,24 +33,27 @@ const mockCategories = [
       'Faith-based dating for Christian singles. Build relationships founded on shared values and beliefs.',
     featured: false,
     range: '21-60',
+    image: '/categories/christian-dating.jpg',
   },
   {
     _id: '3',
     title: 'Gay Dating',
     slug: { current: 'gay-dating' },
     description:
-      'Safe and inclusive dating platform for gay men. Find love, friendship, and meaningful connections.',
+      'Safe and inclusive dating platform for gay men.datingwebsitesonline, friendship, and meaningful connections.',
     featured: false,
     range: '18-65',
+    image: '/categories/gay-dating.jpg',
   },
   {
     _id: '4',
     title: 'Lesbian Dating',
     slug: { current: 'lesbian-dating' },
     description:
-      'Empowering lesbian women to find love and build lasting relationships in a supportive community.',
+      'Empowering lesbian women todatingwebsitesonline and build lasting relationships in a supportive community.',
     featured: false,
     range: '18-65',
+    image: '/categories/lesbian-dating.jpg',
   },
   {
     _id: '5',
@@ -58,6 +63,7 @@ const mockCategories = [
       'Dating for mature singles over 50. Find companionship and love in your golden years.',
     featured: true,
     range: '50+',
+    image: '/categories/senior-dating.jpg',
   },
 ];
 
@@ -116,17 +122,20 @@ const CategoryPage = async () => {
                   className="group relative bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-shop_light_green transform hover:-translate-y-1"
                 >
                   {/* Category Header */}
-                  <div className="relative h-32 bg-gradient-to-br from-shop_light_green to-shop_dark_green overflow-hidden">
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Heart className="w-12 h-12 text-white opacity-80" />
-                    </div>
-
-                    {/* Subtle Overlay */}
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300" />
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={category.image}
+                      alt={category.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
 
                     {/* Featured Badge */}
                     {category.featured && (
-                      <div className="absolute top-3 left-3 bg-shop_orange text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                      <div className="absolute top-3 left-3 bg-shop_orange text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 z-10">
                         <Tag className="w-3 h-3" />
                         <span>Featured</span>
                       </div>
@@ -134,7 +143,7 @@ const CategoryPage = async () => {
 
                     {/* Age Range Badge */}
                     {category.range && (
-                      <div className="absolute top-3 right-3 bg-white/20 text-white px-3 py-1 rounded-full text-xs font-medium">
+                      <div className="absolute top-3 right-3 bg-white/20 text-white px-3 py-1 rounded-full text-xs font-medium z-10">
                         {category.range}
                       </div>
                     )}
@@ -175,7 +184,7 @@ const CategoryPage = async () => {
             <div className="mt-12 text-center">
               <div className="bg-gradient-to-r from-shop_light_green/10 via-shop_orange/5 to-shop_light_green/10 rounded-xl p-8 border border-shop_light_green/20">
                 <h3 className="text-xl lg:text-2xl font-semibold text-shop_dark_green mb-3">
-                  Ready to Find Love?
+                  Ready todatingwebsitesonline?
                 </h3>
                 <p className="text-dark-text text-sm lg:text-base mb-6">
                   Join thousands of singles who have found meaningful relationships through our
@@ -203,7 +212,15 @@ const CategoryPage = async () => {
         ) : (
           <div className="text-center py-12">
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-8 shadow-md border border-gray-100/50 max-w-md mx-auto">
-              <Heart className="w-16 h-16 text-light-text mx-auto mb-4" />
+              <div className="w-16 h-16 rounded-full overflow-hidden mx-auto mb-4 border-2 border-shop_light_green">
+                <Image
+                  src="/categories/singles-dating.jpg"
+                  alt="Dating Categories"
+                  width={64}
+                  height={64}
+                  className="object-cover w-full h-full"
+                />
+              </div>
               <h3 className="text-xl font-bold text-shop_dark_green mb-3">
                 No Categories Available
               </h3>

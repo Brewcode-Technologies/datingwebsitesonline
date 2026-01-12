@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Heart, Star, Users, ArrowRight, Crown } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const SeniorDatingPage = () => {
   const services = [
@@ -37,8 +38,14 @@ const SeniorDatingPage = () => {
       <Container className="py-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="w-20 h-20 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-full flex items-center justify-center mx-auto mb-6">
-            <Crown className="w-10 h-10 text-white" />
+          <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-6 border-4 border-shop_light_green">
+            <Image
+              src="/categories/senior-dating.jpg"
+              alt="Senior Dating"
+              width={80}
+              height={80}
+              className="object-cover w-full h-full"
+            />
           </div>
           <h1 className="text-4xl font-bold text-shop_dark_green mb-4">Senior Dating</h1>
           <p className="text-lg text-dark-text max-w-2xl mx-auto mb-6">
@@ -82,8 +89,8 @@ const SeniorDatingPage = () => {
           <Users className="w-12 h-12 mx-auto mb-4 text-shop_dark_green" />
           <h2 className="text-2xl font-bold text-shop_dark_green mb-4">Love Has No Age Limit</h2>
           <p className="text-dark-text mb-6 max-w-2xl mx-auto">
-            Join mature singles who believe it's never too late to find love, companionship, and
-            happiness.
+            Join mature singles who believe it's never too late todatingwebsitesonline,
+            companionship, and happiness.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-shop_dark_green hover:bg-shop_light_green">

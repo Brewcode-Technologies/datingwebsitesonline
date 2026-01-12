@@ -1,18 +1,20 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { ClerkLoaded, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
-import Container from "./Container";
-import HeaderMenu from "./layout/HeaderMenu";
-import Logo from "./common/Logo";
-import CartIcon from "./cart/CartIcon";
-import MobileMenu from "./layout/MobileMenu";
-import SearchBar from "./common/SearchBar";
-import FavoriteButton from "./FavoriteButton";
-import NotificationBell from "./NotificationBell";
-import UserDropdown from "./UserDropdown";
-import { useRouter, useSearchParams } from "next/navigation";
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { ClerkLoaded, SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import Container from './Container';
+import HeaderMenu from './layout/HeaderMenu';
+import Logo from './common/Logo';
+import CartIcon from './cart/CartIcon';
+import MobileMenu from './layout/MobileMenu';
+import SearchBar from './common/SearchBar';
+import FavoriteButton from './FavoriteButton';
+import NotificationBell from './NotificationBell';
+import UserDropdown from './UserDropdown';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Script } from 'next/script';
+import Image from 'next/image';
 
 const ClientHeader = () => {
   const { user, isSignedIn } = useUser();
@@ -27,8 +29,8 @@ const ClientHeader = () => {
 
   // Handle redirect after successful login
   useEffect(() => {
-    if (isSignedIn && user && isMounted && typeof window !== "undefined") {
-      const redirectTo = searchParams.get("redirectTo");
+    if (isSignedIn && user && isMounted && typeof window !== 'undefined') {
+      const redirectTo = searchParams.get('redirectTo');
       if (redirectTo) {
         // Clean up the URL and redirect
         const cleanUrl = decodeURIComponent(redirectTo);
@@ -41,13 +43,13 @@ const ClientHeader = () => {
   }, [isSignedIn, user, searchParams, router, isMounted]);
 
   const getSignInUrl = () => {
-    if (!isMounted || typeof window === "undefined") return "/sign-in";
+    if (!isMounted || typeof window === 'undefined') return '/sign-in';
     const currentPath = window.location.pathname + window.location.search;
     return `/sign-in?redirectTo=${encodeURIComponent(currentPath)}`;
   };
 
   const getSignUpUrl = () => {
-    if (!isMounted || typeof window === "undefined") return "/sign-up";
+    if (!isMounted || typeof window === 'undefined') return '/sign-up';
     const currentPath = window.location.pathname + window.location.search;
     return `/sign-up?redirectTo=${encodeURIComponent(currentPath)}`;
   };
@@ -59,7 +61,16 @@ const ClientHeader = () => {
           {/* Left Section: Mobile Menu + Logo */}
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <MobileMenu />
-            <Logo />
+            <Link href="/">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={100}
+                height={100}
+                className="object-contain h-10 sm:h-12 md:h-14 lg:h-16 w-auto cursor-pointer hover:scale-105 transition-transform duration-200 bg-transparent"
+                priority
+              />
+            </Link>
           </div>
 
           {/* Center Section: Navigation Menu (Desktop Only) */}
@@ -140,20 +151,7 @@ const ClientHeader = () => {
                   <UserDropdown />
                 </SignedIn>
                 <SignedOut>
-                  <div className="flex items-center gap-1">
-                    <Link
-                      href={getSignInUrl()}
-                      className="bg-transparent border border-shop_btn_dark_green hover:bg-shop_btn_dark_green text-shop_btn_dark_green  hover:text-white px-2 py-1.5 rounded text-xs font-semibold hoverEffect"
-                    >
-                      Sign In
-                    </Link>
-                    <Link
-                      href={getSignUpUrl()}
-                      className="bg-shop_btn_dark_green border border-shop_btn_dark_green hover:bg-transparent text-white hover:text-shop_btn_dark_green px-2 py-1.5 rounded text-xs font-semibold hoverEffect"
-                    >
-                      Sign Up
-                    </Link>
-                  </div>
+                  {/* No buttons on mobile - available in sidebar */}
                 </SignedOut>
               </ClerkLoaded>
             </div>

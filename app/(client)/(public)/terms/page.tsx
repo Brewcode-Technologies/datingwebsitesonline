@@ -3,10 +3,10 @@
 import { motion } from "motion/react";
 import {
   FileText,
-  ShoppingCart,
+  Heart,
   Shield,
   CreditCard,
-  Truck,
+  Users,
   AlertCircle,
   CheckCircle2,
   Calendar,
@@ -27,11 +27,16 @@ import {
 import Link from "next/link";
 
 const TermsPage = () => {
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long'
+  });
+
   const quickLinks = [
-    { icon: ShoppingCart, title: "Orders & Purchases", href: "#orders" },
+    { icon: Users, title: "User Accounts", href: "#accounts" },
+    { icon: Heart, title: "Dating Services", href: "#dating" },
     { icon: CreditCard, title: "Payment Terms", href: "#payment" },
-    { icon: Truck, title: "Shipping & Returns", href: "#shipping" },
-    { icon: Shield, title: "Privacy & Data", href: "#privacy" },
+    { icon: Shield, title: "Privacy & Safety", href: "#privacy" },
     { icon: Scale, title: "Legal & Disputes", href: "#legal" },
   ];
 
@@ -41,87 +46,87 @@ const TermsPage = () => {
       title: "Acceptance of Terms",
       icon: CheckCircle2,
       content: [
-        "By accessing and using ShopCart&apos;s website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.",
-        "These terms constitute a legally binding agreement between you and ShopCart. If you do not agree with any part of these terms, you must not use our services.",
+        "By accessing and using FindLove's dating platform and services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.",
+        "These terms constitute a legally binding agreement between you and FindLove. If you do not agree with any part of these terms, you must not use our dating services.",
         "We may update these terms from time to time. Continued use of our services after changes indicates your acceptance of the modified terms.",
-        "These terms apply to all users, including browsers, vendors, customers, merchants, and contributors of content.",
+        "These terms apply to all users, including members seeking relationships, premium subscribers, and contributors of content.",
       ],
     },
     {
-      id: "orders",
-      title: "Orders & Purchases",
-      icon: ShoppingCart,
+      id: "accounts",
+      title: "User Accounts & Registration",
+      icon: Users,
       content: [
-        "All orders are subject to availability and confirmation. We reserve the right to refuse or cancel any order at our discretion.",
-        "Prices are subject to change without notice. The price charged will be the price displayed at the time of purchase.",
-        "We strive to display accurate product information, but we do not warrant that product descriptions or pricing is error-free.",
-        "By placing an order, you warrant that you are at least 18 years old and legally capable of entering into binding contracts.",
+        "You must be at least 18 years old to create an account and use our dating services. Age verification may be required.",
+        "You agree to provide accurate, current, and complete information during registration and to update your profile as needed.",
+        "You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account.",
+        "Creating multiple accounts, fake profiles, or impersonating others is strictly prohibited and will result in immediate account termination.",
       ],
     },
     {
-      id: "payment",
-      title: "Payment Terms",
-      icon: CreditCard,
+      id: "dating",
+      title: "Dating Services & Features",
+      icon: Heart,
       content: [
-        "We accept major credit cards, debit cards, PayPal, and other payment methods as displayed at checkout.",
-        "All payments must be received before order processing and shipment. Payment authorization may be obtained prior to shipping.",
-        "You are responsible for all charges incurred on your account, including applicable taxes and shipping fees.",
-        "In case of payment disputes, we will work with you and payment processors to resolve issues fairly and promptly.",
-      ],
-    },
-    {
-      id: "shipping",
-      title: "Shipping & Returns",
-      icon: Truck,
-      content: [
-        "We offer various shipping options with different delivery timeframes. Shipping costs and times vary by location and service selected.",
-        "Risk of loss and title for items pass to you upon delivery to the shipping carrier. We are not responsible for lost or damaged packages once shipped.",
-        "Returns are accepted within 30 days of purchase for unused items in original packaging. Customer is responsible for return shipping costs unless the item was defective.",
-        "Refunds will be processed within 5-10 business days after we receive and inspect returned items.",
-      ],
-    },
-    {
-      id: "privacy",
-      title: "Privacy & Data Protection",
-      icon: Shield,
-      content: [
-        "Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and protect your personal information.",
-        "We implement industry-standard security measures to protect your data, but cannot guarantee absolute security of information transmitted over the internet.",
-        "You have the right to access, update, or delete your personal information. Contact our support team for assistance with data requests.",
-        "We may use cookies and similar technologies to improve your shopping experience and analyze website usage patterns.",
+        "Our platform provides various dating services including profile matching, messaging, and relationship coaching to help you find meaningful connections.",
+        "Premium features may require subscription payments. All subscription terms and pricing are clearly displayed before purchase.",
+        "We do not guarantee that you will find a romantic partner or that any particular outcome will result from using our services.",
+        "Success in dating depends on many factors beyond our control, including personal compatibility, communication skills, and individual circumstances.",
       ],
     },
     {
       id: "conduct",
-      title: "User Conduct & Responsibilities",
+      title: "User Conduct & Community Guidelines",
       icon: AlertCircle,
       content: [
-        "You agree to use our services only for lawful purposes and in accordance with these terms and applicable laws.",
-        "You must not attempt to interfere with, disrupt, or gain unauthorized access to our systems or networks.",
-        "Providing false information during registration or checkout is prohibited and may result in account suspension or termination.",
-        "You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account.",
+        "You agree to treat all members with respect and courtesy. Harassment, abuse, or discriminatory behavior is strictly prohibited.",
+        "Sharing explicit content, soliciting money, or using our platform for commercial purposes without permission is not allowed.",
+        "You must not share personal contact information (phone numbers, addresses, social media) in your public profile or initial messages.",
+        "Report any suspicious behavior, fake profiles, or safety concerns to our moderation team immediately.",
       ],
     },
     {
-      id: "intellectual",
-      title: "Intellectual Property Rights",
+      id: "payment",
+      title: "Payment & Subscription Terms",
+      icon: CreditCard,
+      content: [
+        "Premium subscriptions are billed in advance and automatically renew unless cancelled before the next billing cycle.",
+        "We accept major credit cards and secure payment methods. All payments are processed through encrypted, secure systems.",
+        "Refunds are provided according to our refund policy. Premium features remain active until the end of the current billing period after cancellation.",
+        "Subscription prices may change with 30 days notice to existing subscribers. New prices apply to new subscriptions immediately.",
+      ],
+    },
+    {
+      id: "privacy",
+      title: "Privacy & Safety Protection",
+      icon: Shield,
+      content: [
+        "Your privacy and safety are our top priorities. Please review our Privacy Policy to understand how we protect your personal information.",
+        "We implement advanced security measures including profile verification, photo authentication, and AI-powered safety monitoring.",
+        "You control your profile visibility and can block or report users at any time. We provide tools to help you date safely.",
+        "Never share financial information, send money, or meet someone without taking proper safety precautions.",
+      ],
+    },
+    {
+      id: "content",
+      title: "Content & Intellectual Property",
       icon: FileText,
       content: [
-        "All content, trademarks, logos, and intellectual property on our website are owned by ShopCart or our licensors and are protected by copyright and trademark laws.",
-        "You may not reproduce, distribute, modify, or create derivative works from our content without explicit written permission.",
-        "Product images, descriptions, and reviews are provided for informational purposes and may be subject to third-party intellectual property rights.",
-        "If you believe your intellectual property rights have been infringed, please contact us with detailed information about the alleged infringement.",
+        "You retain ownership of photos and content you upload but grant us license to use them for providing our dating services.",
+        "All platform content, algorithms, and matching technology are proprietary to FindLove and protected by intellectual property laws.",
+        "You may not copy, reproduce, or distribute our content, member profiles, or proprietary matching algorithms.",
+        "Report any copyright infringement or unauthorized use of your content to our support team for immediate action.",
       ],
     },
     {
       id: "legal",
-      title: "Legal & Liability",
+      title: "Legal Terms & Liability",
       icon: Scale,
       content: [
-        "These terms are governed by and construed in accordance with applicable laws. Any disputes will be resolved through binding arbitration where permitted by law.",
-        "Our liability is limited to the maximum extent permitted by law. We are not liable for indirect, consequential, or punitive damages.",
-        "In no event shall our total liability exceed the amount you paid for the specific product or service that is the subject of the claim.",
-        "We disclaim all warranties except as expressly stated in these terms or as required by law.",
+        "These terms are governed by applicable laws. Disputes will be resolved through binding arbitration where permitted by law.",
+        "Our liability is limited to the subscription fees paid. We are not liable for actions of other users or outcomes of relationships formed through our platform.",
+        "You agree to indemnify FindLove against claims arising from your use of our services or violation of these terms.",
+        "We reserve the right to suspend or terminate accounts that violate these terms or engage in harmful behavior toward other members.",
       ],
     },
   ];
@@ -141,11 +146,11 @@ const TermsPage = () => {
               Terms of Service
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Please read these terms carefully before using our services. They
-              outline your rights and responsibilities as a ShopCart user.
+              Please read these terms carefully before using our dating services. They
+              outline your rights and responsibilities as a FindLove member.
             </p>
             <Badge className="mt-6 bg-white/20 text-white border-white/30">
-              Last updated: January 2024
+              Last updated: {currentDate}
             </Badge>
           </motion.div>
         </Container>
@@ -177,7 +182,7 @@ const TermsPage = () => {
                       className="flex flex-col items-center p-4 rounded-lg hover:bg-shop_light_green/5 transition-colors group"
                     >
                       <link.icon className="w-8 h-8 text-shop_light_green mb-2 group-hover:scale-110 transition-transform" />
-                      <span className="text-sm font-medium text-center text-dark-text group-hover:text-shop_dark_green">
+                      <span className="text-sm font-medium text-center text-shop_dark_green">
                         {link.title}
                       </span>
                     </motion.a>
@@ -189,14 +194,13 @@ const TermsPage = () => {
         </Container>
       </section>
 
-      {/* Main Content */}
+      {/* Terms Content */}
       <section className="py-12">
         <Container className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-8"
+            transition={{ delay: 0.4 }}
           >
             <Accordion type="single" collapsible className="space-y-4">
               {termsData.map((section, index) => (
@@ -206,34 +210,28 @@ const TermsPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
                 >
-                  <AccordionItem value={section.id} id={section.id}>
-                    <Card className="overflow-hidden">
-                      <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-shop_light_bg/50 transition-colors">
-                        <div className="flex items-center gap-4 text-left">
-                          <div className="p-2 bg-shop_light_green/10 rounded-lg">
-                            <section.icon className="w-5 h-5 text-shop_dark_green" />
-                          </div>
-                          <div>
-                            <h3 className="text-xl font-semibold text-shop_dark_green">
-                              {index + 1}. {section.title}
-                            </h3>
-                          </div>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-6">
-                        <Separator className="mb-4" />
-                        <div className="space-y-4">
-                          {section.content.map((paragraph, pIndex) => (
-                            <p
-                              key={pIndex}
-                              className="text-dark-text leading-relaxed"
-                            >
-                              {paragraph}
-                            </p>
-                          ))}
-                        </div>
-                      </AccordionContent>
-                    </Card>
+                  <AccordionItem
+                    value={section.id}
+                    className="bg-white rounded-lg shadow-sm border"
+                    id={section.id}
+                  >
+                    <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <section.icon className="w-6 h-6 text-shop_light_green" />
+                        <span className="text-lg font-semibold text-shop_dark_green">
+                          {section.title}
+                        </span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6">
+                      <div className="space-y-4">
+                        {section.content.map((paragraph, pIndex) => (
+                          <p key={pIndex} className="text-gray-700 leading-relaxed">
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    </AccordionContent>
                   </AccordionItem>
                 </motion.div>
               ))}
@@ -243,68 +241,41 @@ const TermsPage = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-shop_light_bg">
+      <section className="py-16 bg-shop_light_bg/30">
         <Container className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="text-center"
           >
-            <Card className="text-center">
+            <Card className="bg-white shadow-lg">
               <CardContent className="p-8">
-                <Mail className="w-12 h-12 mx-auto mb-4 text-shop_light_green" />
+                <Mail className="w-12 h-12 text-shop_light_green mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-shop_dark_green mb-4">
                   Questions About Our Terms?
                 </h3>
-                <p className="text-dark-text mb-6 max-w-2xl mx-auto">
+                <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
                   If you have any questions about these Terms of Service or need
-                  clarification on any section, our legal team is here to help.
+                  clarification on any dating-related policies, our support team is here to help.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    asChild
-                    className="bg-shop_dark_green hover:bg-shop_btn_dark_green"
-                  >
-                    <Link href="/contact">Contact Legal Team</Link>
+                  <Button asChild className="bg-shop_dark_green hover:bg-shop_light_green">
+                    <Link href="/contact">
+                      <Mail className="w-4 h-4 mr-2" />
+                      Contact Support
+                    </Link>
                   </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="border-shop_light_green text-shop_light_green hover:bg-shop_light_green/5"
-                  >
-                    <Link href="/faq">View FAQ</Link>
+                  <Button asChild variant="outline" className="border-shop_light_green text-shop_light_green hover:bg-shop_light_green hover:text-white">
+                    <Link href="/privacy">
+                      <Shield className="w-4 h-4 mr-2" />
+                      Privacy Policy
+                    </Link>
                   </Button>
                 </div>
-                <p className="text-sm text-light-text mt-6">
-                  For immediate assistance, email us at{" "}
-                  <a
-                    href="mailto:legal@shopcart.com"
-                    className="text-shop_light_green hover:underline"
-                  >
-                    legal@shopcart.com
-                  </a>
-                </p>
               </CardContent>
             </Card>
           </motion.div>
-        </Container>
-      </section>
-
-      {/* Footer Note */}
-      <section className="py-8 border-t border-gray-200">
-        <Container className="max-w-4xl">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Calendar className="w-4 h-4 text-shop_light_green" />
-              <p className="text-sm text-light-text">
-                These terms were last updated on January 15, 2024
-              </p>
-            </div>
-            <p className="text-xs text-light-text">
-              By continuing to use ShopCart, you agree to the most current
-              version of these terms.
-            </p>
-          </div>
         </Container>
       </section>
     </div>

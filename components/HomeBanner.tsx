@@ -34,12 +34,12 @@ const HomeBanner = async () => {
 
               {/* Main Title */}
               <div className="space-y-4">
-                <Title className="text-shop_dark_green font-bold text-4xl sm:text-5xl leading-tight animate-fadeInUp delay-200">
+                <Title className="text-shop_dark_green font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight animate-fadeInUp delay-200">
                   <span className="block">Looking for a</span>
                   <span className="block bg-gradient-to-r from-shop_light_green to-shop_dark_green bg-clip-text text-transparent animate-shimmer">
                     Life Partner?
                   </span>
-                  <span className="block text-lg font-medium text-gray-700 mt-4">
+                  <span className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700 mt-4 leading-relaxed">
                     If you are looking for a partner, then a dating site would be the correct choice for you. However, do you know how to find the best dating site, which will help you to find your better half? Well, for starters, the site should follow some criteria. Let's have a quick look at the deciding factors.
                   </span>
                 </Title>
@@ -77,14 +77,14 @@ const HomeBanner = async () => {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fadeInUp delay-600">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start animate-fadeInUp delay-600">
                 <Link
                   href="/category/singles-dating"
-                  className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white px-8 py-4 rounded-xl text-base font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-shop_light_green to-shop_dark_green opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                  <span className="relative z-10 flex items-center gap-3">
-                    <Heart className="w-5 h-5 group-hover:animate-bounce text-red-500 fill-current" />
+                  <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                    <Heart className="w-4 h-4 sm:w-5 sm:h-5 group-hover:animate-bounce text-red-500 fill-current" />
                     Start Dating
                   </span>
                   <div className="absolute inset-0 -top-40 -left-10 bg-white/20 w-6 h-40 rotate-12 group-hover:left-full transition-all duration-700"></div>
@@ -92,25 +92,25 @@ const HomeBanner = async () => {
 
                 <Link
                   href="/about"
-                  className="group inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm text-shop_dark_green px-8 py-4 rounded-xl text-base font-semibold shadow-md hover:shadow-lg border-2 border-shop_dark_green/20 hover:border-shop_dark_green/40 transform hover:-translate-y-1 transition-all duration-300"
+                  className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-sm text-shop_dark_green px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold shadow-md hover:shadow-lg border-2 border-shop_dark_green/20 hover:border-shop_dark_green/40 transform hover:-translate-y-1 transition-all duration-300"
                 >
-                  <Zap className="w-5 h-5 group-hover:animate-pulse text-orange-500" />
+                  <Zap className="w-4 h-4 sm:w-5 sm:h-5 group-hover:animate-pulse text-orange-500" />
                   Learn More
                 </Link>
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8 animate-fadeInUp delay-800">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 sm:pt-8 animate-fadeInUp delay-800">
                 {[
                   { value: "50K+", label: "Happy Couples" },
                   { value: "4.9★", label: "Success Rate" },
                   { value: "24/7", label: "Support" },
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-shop_dark_green">
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-shop_dark_green">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-gray-600 font-medium">
+                    <div className="text-xs sm:text-sm text-gray-600 font-medium">
                       {stat.label}
                     </div>
                   </div>
@@ -128,7 +128,7 @@ const HomeBanner = async () => {
                 <Image
                   src={banner_1}
                   alt="Find Your Perfect Match"
-                  className="relative z-10 w-80 sm:w-96 lg:w-[400px] xl:w-[480px] drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                  className="relative z-10 w-64 sm:w-80 md:w-96 lg:w-[400px] xl:w-[480px] drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
                   priority
                 />
 

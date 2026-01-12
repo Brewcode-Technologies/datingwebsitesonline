@@ -61,25 +61,31 @@ const HeaderMenu = () => {
               <Link
                 href={item?.href}
                 className={`hover:text-shop_light_green hoverEffect relative group ${
-                  pathname === item?.href || 
-                  (item.hasDropdown && item.dropdownItems?.some(dropItem => pathname === dropItem.href))
-                    ? 'text-shop_light_green' : ''
+                  pathname === item?.href ||
+                  (item.hasDropdown &&
+                    item.dropdownItems?.some((dropItem) => pathname === dropItem.href))
+                    ? 'text-shop_light_green'
+                    : ''
                 }`}
                 onClick={() => setOpenDropdown(null)}
               >
                 {item?.title}
                 <span
                   className={`absolute -bottom-0.5 left-1/2 w-0 h-0.5 bg-shop_light_green transition-all duration-300 group-hover:w-1/2 group-hover:left-0 ${
-                    pathname === item?.href || 
-                    (item.hasDropdown && item.dropdownItems?.some(dropItem => pathname === dropItem.href))
-                      ? 'w-1/2' : ''
+                    pathname === item?.href ||
+                    (item.hasDropdown &&
+                      item.dropdownItems?.some((dropItem) => pathname === dropItem.href))
+                      ? 'w-1/2'
+                      : ''
                   }`}
                 />
                 <span
                   className={`absolute -bottom-0.5 right-1/2 w-0 h-0.5 bg-shop_light_green transition-all duration-300 group-hover:w-1/2 group-hover:right-0 ${
-                    pathname === item?.href || 
-                    (item.hasDropdown && item.dropdownItems?.some(dropItem => pathname === dropItem.href))
-                      ? 'w-1/2' : ''
+                    pathname === item?.href ||
+                    (item.hasDropdown &&
+                      item.dropdownItems?.some((dropItem) => pathname === dropItem.href))
+                      ? 'w-1/2'
+                      : ''
                   }`}
                 />
               </Link>
@@ -104,7 +110,7 @@ const HeaderMenu = () => {
               />
             </Link>
           )}
-          
+
           {item.hasDropdown && openDropdown === item.title && (
             <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md border z-50">
               {item.dropdownItems?.map((dropItem) => (
