@@ -41,7 +41,7 @@ const mockCategories = [
       'Find your perfect match with our comprehensive singles dating platform. Connect with like-minded individuals looking for meaningful relationships.',
     featured: true,
     range: '18-65',
-    image: '/categories/singles-dating.jpg',
+    image: '/categories/singles-dating.png',
   },
   {
     _id: '2',
@@ -51,7 +51,7 @@ const mockCategories = [
       'Faith-based dating for Christian singles. Build relationships founded on shared values and beliefs.',
     featured: false,
     range: '21-60',
-    image: '/categories/christian-dating.jpg',
+    image: '/categories/christian-dating.jpeg',
   },
   {
     _id: '3',
@@ -61,7 +61,7 @@ const mockCategories = [
       'Safe and inclusive dating platform for gay men.datingwebsitesonline, friendship, and meaningful connections.',
     featured: false,
     range: '18-65',
-    image: '/categories/gay-dating.jpg',
+    image: '/categories/gay-dating.jpeg',
   },
   {
     _id: '4',
@@ -71,7 +71,7 @@ const mockCategories = [
       'Empowering lesbian women todatingwebsitesonline and build lasting relationships in a supportive community.',
     featured: false,
     range: '18-65',
-    image: '/categories/lesbian-dating.jpg',
+    image: '/categories/lesbian-dating.png',
   },
   {
     _id: '5',
@@ -177,7 +177,7 @@ const CategoryPage = async ({ params }: Props) => {
                 {/* Category Icon */}
                 <div className="flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden border-2 border-shop_light_green">
                   <Image
-                    src={currentCategory?.image || '/categories/singles-dating.jpg'}
+                    src={currentCategory?.image || '/categories/singles-dating.png'}
                     alt={categoryTitle}
                     width={80}
                     height={80}
@@ -314,7 +314,7 @@ const CategoryPage = async ({ params }: Props) => {
                   {/* Category Icon */}
                   <div className="w-12 h-12 mx-auto mb-3 rounded-lg overflow-hidden border border-shop_light_green">
                     <Image
-                      src={category.image || '/categories/singles-dating.jpg'}
+                      src={category.image || '/categories/singles-dating.png'}
                       alt={category.title}
                       width={48}
                       height={48}

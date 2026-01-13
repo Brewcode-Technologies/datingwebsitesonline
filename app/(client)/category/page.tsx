@@ -23,7 +23,7 @@ const mockCategories = [
       'Find your perfect match with our comprehensive singles dating platform. Connect with like-minded individuals looking for meaningful relationships.',
     featured: true,
     range: '18-65',
-    image: '/categories/singles-dating.jpg',
+    image: '/categories/singles-dating.png',
   },
   {
     _id: '2',
@@ -33,7 +33,7 @@ const mockCategories = [
       'Faith-based dating for Christian singles. Build relationships founded on shared values and beliefs.',
     featured: false,
     range: '21-60',
-    image: '/categories/christian-dating.jpg',
+    image: '/categories/christian-dating.jpeg',
   },
   {
     _id: '3',
@@ -43,7 +43,7 @@ const mockCategories = [
       'Safe and inclusive dating platform for gay men.datingwebsitesonline, friendship, and meaningful connections.',
     featured: false,
     range: '18-65',
-    image: '/categories/gay-dating.jpg',
+    image: '/categories/gay-dating.jpeg',
   },
   {
     _id: '4',
@@ -53,7 +53,7 @@ const mockCategories = [
       'Empowering lesbian women todatingwebsitesonline and build lasting relationships in a supportive community.',
     featured: false,
     range: '18-65',
-    image: '/categories/lesbian-dating.jpg',
+    image: '/categories/lesbian-dating.png',
   },
   {
     _id: '5',
@@ -214,7 +214,7 @@ const CategoryPage = async () => {
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-8 shadow-md border border-gray-100/50 max-w-md mx-auto">
               <div className="w-16 h-16 rounded-full overflow-hidden mx-auto mb-4 border-2 border-shop_light_green">
                 <Image
-                  src="/categories/singles-dating.jpg"
+                  src="/categories/singles-dating.png"
                   alt="Dating Categories"
                   width={64}
                   height={64}
