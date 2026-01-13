@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { client, writeClient } from "@/sanity/lib/client";
+import { backendClient as client, backendClient as writeClient } from "@/sanity/lib/backendClient";
 import { isUserAdmin } from "@/lib/adminUtils";
 
 export async function DELETE(

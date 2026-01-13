@@ -1,4 +1,5 @@
 import { sanityFetch } from "../lib/live";
+import { backendClient } from "../lib/backendClient";
 
 // User Queries
 export const USER_BY_CLERK_ID_QUERY = `
@@ -373,9 +374,7 @@ export const markNotificationAsRead = async (
       }
     );
 
-    const { writeClient } = await import("../lib/client");
-
-    await writeClient
+    await backendClient
       .patch(user.data._id)
       .set({ notifications: updatedNotifications })
       .commit();
@@ -405,9 +404,7 @@ export const deleteUserNotification = async (
       (notification: any) => notification.id !== notificationId
     );
 
-    const { writeClient } = await import("../lib/client");
-
-    await writeClient
+    await backendClient
       .patch(user.data._id)
       .set({ notifications: updatedNotifications })
       .commit();

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 import { isUserAdmin } from "@/lib/adminUtils";
 
 export async function GET() {
@@ -57,3 +57,4 @@ export async function GET() {
     );
   }
 }
+

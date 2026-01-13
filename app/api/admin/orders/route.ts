@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { isUserAdmin } from "@/lib/adminUtils";
-import { client } from "@/sanity/lib/client";
-import { writeClient } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
+import { backendClient as writeClient } from "@/sanity/lib/backendClient";
 import { revalidatePath } from "next/cache";
 
 // Disable Next.js caching for this route
@@ -229,3 +229,4 @@ export async function DELETE(req: NextRequest) {
     );
   }
 }
+

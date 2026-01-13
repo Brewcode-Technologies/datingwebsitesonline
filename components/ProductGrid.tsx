@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { motion, AnimatePresence } from "motion/react";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 import HomeTabbar from "./HomeTabbar";
 import { productType } from "@/constants";
 import NoProductAvailable from "./product/NoProductAvailable";

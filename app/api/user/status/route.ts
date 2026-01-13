@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
 import { backendClient } from "@/sanity/lib/backendClient";
-import { writeClient } from "@/sanity/lib/client";
+import { backendClient as writeClient } from "@/sanity/lib/backendClient";
 
 export async function GET() {
   try {

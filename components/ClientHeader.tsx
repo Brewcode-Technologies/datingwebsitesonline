@@ -13,7 +13,7 @@ import FavoriteButton from './FavoriteButton';
 import NotificationBell from './NotificationBell';
 import UserDropdown from './UserDropdown';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Script } from 'next/script';
+import Script from 'next/script';
 import Image from 'next/image';
 
 const ClientHeader = () => {

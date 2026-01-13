@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { writeClient, client } from "@/sanity/lib/client";
+import { backendClient as client, backendClient as writeClient } from "@/sanity/lib/backendClient";
 
 export async function POST(request: NextRequest) {
   try {
@@ -85,3 +85,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+

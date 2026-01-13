@@ -1,6 +1,6 @@
 "use server";
 
-import { client } from "@/sanity/lib/client";
+import { backendClient } from "@/sanity/lib/backendClient";
 import { auth } from "@clerk/nextjs/server";
 import { invalidateProductReviews } from "@/lib/cache";
 
@@ -65,7 +65,7 @@ export async function submitReview(
     }
 
     // Get the user from Sanity
-    const sanityUser = await client.fetch(
+    const sanityUser = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]{
         _id,
         firstName,
@@ -82,7 +82,7 @@ export async function submitReview(
     }
 
     // Check if user has already reviewed this product
-    const existingReview = await client.fetch(
+    const existingReview = await backendClient.fetch(
       `*[_type == "review" && user._ref == $userId && product._ref == $productId][0]`,
       { userId: sanityUser._id, productId: data.productId }
     );
@@ -95,13 +95,13 @@ export async function submitReview(
     }
 
     // Check if user has purchased this product
-    const hasPurchased = await client.fetch(
+    const hasPurchased = await backendClient.fetch(
       `count(*[_type == "order" && user._ref == $userId && status == "delivered" && $productId in products[].product._ref]) > 0`,
       { userId: sanityUser._id, productId: data.productId }
     );
 
     // Create the review
-    const review = await client.create({
+    const review = await backendClient.create({
       _type: "review",
       product: {
         _type: "reference",
@@ -146,7 +146,7 @@ export async function getProductReviews(
 ): Promise<ProductReviewsData | null> {
   try {
     // Get approved reviews
-    const reviews = await client.fetch(
+    const reviews = await backendClient.fetch(
       `*[_type == "review" && product._ref == $productId && status == "approved"] | order(createdAt desc) {
         _id,
         rating,
@@ -206,7 +206,7 @@ export async function getProductReviews(
     };
 
     // Update product with calculated values
-    await client
+    await backendClient
       .patch(productId)
       .set({
         averageRating: parseFloat(averageRating.toFixed(1)),
@@ -242,7 +242,7 @@ export async function markReviewHelpful(
     }
 
     // Get the user from Sanity
-    const sanityUser = await client.fetch(
+    const sanityUser = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]{
         _id
       }`,
@@ -257,7 +257,7 @@ export async function markReviewHelpful(
     }
 
     // Get the review
-    const review = await client.fetch(
+    const review = await backendClient.fetch(
       `*[_type == "review" && _id == $reviewId][0]{
         _id,
         helpful,
@@ -278,7 +278,7 @@ export async function markReviewHelpful(
 
     if (alreadyMarked) {
       // Remove the helpful mark
-      await client
+      await backendClient
         .patch(reviewId)
         .set({
           helpful: Math.max(0, review.helpful - 1),
@@ -292,7 +292,7 @@ export async function markReviewHelpful(
       };
     } else {
       // Add the helpful mark
-      await client
+      await backendClient
         .patch(reviewId)
         .set({
           helpful: review.helpful + 1,
@@ -339,7 +339,7 @@ export async function canUserReviewProduct(productId: string): Promise<{
     }
 
     // Get the user from Sanity
-    const sanityUser = await client.fetch(
+    const sanityUser = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]{
         _id
       }`,
@@ -355,13 +355,13 @@ export async function canUserReviewProduct(productId: string): Promise<{
     }
 
     // Check if user has already reviewed this product
-    const hasAlreadyReviewed = await client.fetch(
+    const hasAlreadyReviewed = await backendClient.fetch(
       `count(*[_type == "review" && user._ref == $userId && product._ref == $productId]) > 0`,
       { userId: sanityUser._id, productId }
     );
 
     // Check if user has purchased this product
-    const hasPurchased = await client.fetch(
+    const hasPurchased = await backendClient.fetch(
       `count(*[_type == "order" && user._ref == $userId && status == "delivered" && $productId in products[].product._ref]) > 0`,
       { userId: sanityUser._id, productId }
     );
@@ -388,7 +388,7 @@ export async function approveReview(
 ): Promise<ReviewResponse> {
   try {
     // Update the review status
-    await client
+    await backendClient
       .patch(reviewId)
       .set({
         status: "approved",
@@ -399,7 +399,7 @@ export async function approveReview(
       .commit();
 
     // Get the product ID to update ratings
-    const review = await client.fetch(
+    const review = await backendClient.fetch(
       `*[_type == "review" && _id == $reviewId][0]{
         product-> {
           _id
@@ -433,7 +433,7 @@ export async function rejectReview(
   adminNotes?: string
 ): Promise<ReviewResponse> {
   try {
-    await client
+    await backendClient
       .patch(reviewId)
       .set({
         status: "rejected",
@@ -459,7 +459,7 @@ export async function rejectReview(
 // Get pending reviews for admin
 export async function getPendingReviews() {
   try {
-    const reviews = await client.fetch(
+    const reviews = await backendClient.fetch(
       `*[_type == "review" && status == "pending"] | order(createdAt desc) {
         _id,
         rating,

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
-import { writeClient } from "@/sanity/lib/client";
+import { backendClient as writeClient } from "@/sanity/lib/backendClient";
 import stripe from "@/lib/stripe";
 
 export async function POST(

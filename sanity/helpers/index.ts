@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../lib/live";
-import { writeClient } from "../lib/client";
+import { backendClient } from "../lib/backendClient";
 
 export const getProductsByCategory = async (categorySlug: string) => {
   const PRODUCT_BY_CATEGORY_QUERY = defineQuery(
@@ -56,7 +56,7 @@ export const saveContactMessage = async (contactData: {
       userAgent: contactData.userAgent || "",
     };
 
-    const result = await writeClient.create(doc);
+    const result = await backendClient.create(doc);
     return { success: true, data: result };
   } catch (error) {
     console.error("Error saving contact message:", error);

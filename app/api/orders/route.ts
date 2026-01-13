@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { getMyOrders } from "@/sanity/helpers";
-import { writeClient } from "@/sanity/lib/client";
+import { backendClient as writeClient } from "@/sanity/lib/backendClient";
 import {
   ORDER_STATUSES,
   PAYMENT_STATUSES,
@@ -261,3 +261,4 @@ export const POST = async (request: NextRequest) => {
     );
   }
 };
+

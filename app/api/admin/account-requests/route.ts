@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 
 export async function GET() {
   try {
@@ -114,3 +114,4 @@ export async function GET() {
     );
   }
 }
+

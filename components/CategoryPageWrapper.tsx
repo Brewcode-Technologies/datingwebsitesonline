@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Category, Product } from "@/sanity.types";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";

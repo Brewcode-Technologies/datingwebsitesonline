@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth, currentUser, clerkClient } from "@clerk/nextjs/server";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 import { isUserAdmin } from "@/lib/adminUtils";
 
 export const dynamic = "force-dynamic";
@@ -129,3 +129,4 @@ export async function GET() {
     );
   }
 }
+

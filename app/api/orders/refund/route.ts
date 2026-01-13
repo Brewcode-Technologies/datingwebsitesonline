@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { writeClient, client } from "@/sanity/lib/client";
+import { backendClient as client, backendClient as writeClient } from "@/sanity/lib/backendClient";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -186,3 +186,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

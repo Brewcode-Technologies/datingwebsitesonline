@@ -1,4 +1,4 @@
-import { client } from "../sanity/lib/client";
+import { backendClient as client } from "../sanity/lib/backendClient";
 
 async function checkOrders() {
   try {

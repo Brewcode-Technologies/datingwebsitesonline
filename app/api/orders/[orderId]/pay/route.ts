@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 import Stripe from "stripe";
 import { urlFor } from "@/sanity/lib/image";
 import { ORDER_STATUSES, PAYMENT_STATUSES } from "@/lib/orderStatus";

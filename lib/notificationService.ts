@@ -1,4 +1,4 @@
-import { writeClient } from "@/sanity/lib/client";
+import { backendClient as writeClient } from "@/sanity/lib/backendClient";
 import { v4 as uuidv4 } from "uuid";
 
 export type NotificationType =

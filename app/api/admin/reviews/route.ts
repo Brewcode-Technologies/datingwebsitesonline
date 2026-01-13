@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth, clerkClient } from "@clerk/nextjs/server";
-import { writeClient } from "@/sanity/lib/client";
+import { backendClient as writeClient } from "@/sanity/lib/backendClient";
 import { isUserAdmin } from "@/lib/adminUtils";
 
 // PATCH - Approve or reject a review
@@ -234,3 +234,4 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+

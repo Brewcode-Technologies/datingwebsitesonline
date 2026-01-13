@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -75,3 +75,4 @@ export async function GET() {
     );
   }
 }
+

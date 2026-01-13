@@ -3,7 +3,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { client } from "@/sanity/lib/client";
+import { backendClient } from "@/sanity/lib/backendClient";
 
 // Types for server actions
 interface CreateUserData {
@@ -46,14 +46,14 @@ export async function createOrUpdateUser(userData: CreateUserData) {
     }
 
     // Check if user already exists
-    const existingUser = await client.fetch(
+    const existingUser = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userData.clerkUserId }
     );
 
     if (existingUser) {
       // Update existing user
-      await client
+      await backendClient
         .patch(existingUser._id)
         .set({
           email: userData.email,
@@ -68,7 +68,7 @@ export async function createOrUpdateUser(userData: CreateUserData) {
       return existingUser._id;
     } else {
       // Create new user
-      const newUser = await client.create({
+      const newUser = await backendClient.create({
         _type: "user",
         clerkUserId: userData.clerkUserId,
         email: userData.email,
@@ -111,7 +111,7 @@ export async function addToCart(data: AddToCartData) {
     }
 
     // Get user document
-    const user = await client.fetch(
+    const user = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userId }
     );
@@ -138,7 +138,7 @@ export async function addToCart(data: AddToCartData) {
           : item
       );
 
-      await client
+      await backendClient
         .patch(user._id)
         .set({
           cart: updatedCart,
@@ -158,7 +158,7 @@ export async function addToCart(data: AddToCartData) {
         addedAt: new Date().toISOString(),
       };
 
-      await client
+      await backendClient
         .patch(user._id)
         .setIfMissing({ cart: [] })
         .append("cart", [newCartItem])
@@ -181,7 +181,7 @@ export async function updateCartItem(data: UpdateCartItemData) {
       throw new Error("User not authenticated");
     }
 
-    const user = await client.fetch(
+    const user = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userId }
     );
@@ -198,7 +198,7 @@ export async function updateCartItem(data: UpdateCartItemData) {
         : item
     );
 
-    await client
+    await backendClient
       .patch(user._id)
       .set({
         cart: updatedCart,
@@ -225,7 +225,7 @@ export async function removeFromCart(
       throw new Error("User not authenticated");
     }
 
-    const user = await client.fetch(
+    const user = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userId }
     );
@@ -243,7 +243,7 @@ export async function removeFromCart(
         )
     );
 
-    await client
+    await backendClient
       .patch(user._id)
       .set({
         cart: updatedCart,
@@ -266,7 +266,7 @@ export async function clearCart() {
       throw new Error("User not authenticated");
     }
 
-    const user = await client.fetch(
+    const user = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userId }
     );
@@ -275,7 +275,7 @@ export async function clearCart() {
       throw new Error("User not found");
     }
 
-    await client
+    await backendClient
       .patch(user._id)
       .set({
         cart: [],
@@ -299,7 +299,7 @@ export async function addToWishlist(productId: string) {
       throw new Error("User not authenticated");
     }
 
-    const user = await client.fetch(
+    const user = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userId }
     );
@@ -314,7 +314,7 @@ export async function addToWishlist(productId: string) {
     );
 
     if (!isInWishlist) {
-      await client
+      await backendClient
         .patch(user._id)
         .setIfMissing({ wishlist: [] })
         .append("wishlist", [{ _type: "reference", _ref: productId }])
@@ -337,7 +337,7 @@ export async function removeFromWishlist(productId: string) {
       throw new Error("User not authenticated");
     }
 
-    const user = await client.fetch(
+    const user = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userId }
     );
@@ -349,7 +349,7 @@ export async function removeFromWishlist(productId: string) {
     const updatedWishlist =
       user.wishlist?.filter((item: any) => item._ref !== productId) || [];
 
-    await client
+    await backendClient
       .patch(user._id)
       .set({
         wishlist: updatedWishlist,
@@ -373,7 +373,7 @@ export async function createAddress(addressData: CreateAddressData) {
       throw new Error("User not authenticated");
     }
 
-    const user = await client.fetch(
+    const user = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userId }
     );
@@ -384,18 +384,18 @@ export async function createAddress(addressData: CreateAddressData) {
 
     // If this is set as default, unset all other default addresses
     if (addressData.isDefault) {
-      const userAddresses = await client.fetch(
+      const userAddresses = await backendClient.fetch(
         `*[_type == "address" && user._ref == $userId]`,
         { userId: user._id }
       );
 
       for (const address of userAddresses) {
-        await client.patch(address._id).set({ default: false }).commit();
+        await backendClient.patch(address._id).set({ default: false }).commit();
       }
     }
 
     // Create new address
-    const newAddress = await client.create({
+    const newAddress = await backendClient.create({
       _type: "address",
       name: addressData.name,
       email: user.email,
@@ -412,7 +412,7 @@ export async function createAddress(addressData: CreateAddressData) {
     });
 
     // Add address reference to user
-    await client
+    await backendClient
       .patch(user._id)
       .setIfMissing({ addresses: [] })
       .append("addresses", [{ _type: "reference", _ref: newAddress._id }])
@@ -439,24 +439,24 @@ export async function updateAddress(
 
     // If this is set as default, unset all other default addresses
     if (addressData.isDefault) {
-      const user = await client.fetch(
+      const user = await backendClient.fetch(
         `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
         { clerkUserId: userId }
       );
 
       if (user) {
-        const userAddresses = await client.fetch(
+        const userAddresses = await backendClient.fetch(
           `*[_type == "address" && user._ref == $userId && _id != $addressId]`,
           { userId: user._id, addressId }
         );
 
         for (const address of userAddresses) {
-          await client.patch(address._id).set({ default: false }).commit();
+          await backendClient.patch(address._id).set({ default: false }).commit();
         }
       }
     }
 
-    await client
+    await backendClient
       .patch(addressId)
       .set({
         name: addressData.name,
@@ -483,7 +483,7 @@ export async function deleteAddress(addressId: string) {
       throw new Error("User not authenticated");
     }
 
-    const user = await client.fetch(
+    const user = await backendClient.fetch(
       `*[_type == "user" && clerkUserId == $clerkUserId][0]`,
       { clerkUserId: userId }
     );
@@ -496,7 +496,7 @@ export async function deleteAddress(addressId: string) {
     const updatedAddresses =
       user.addresses?.filter((addr: any) => addr._ref !== addressId) || [];
 
-    await client
+    await backendClient
       .patch(user._id)
       .set({
         addresses: updatedAddresses,
@@ -505,7 +505,7 @@ export async function deleteAddress(addressId: string) {
       .commit();
 
     // Delete the address document
-    await client.delete(addressId);
+    await backendClient.delete(addressId);
 
     revalidatePath("/cart");
     return { success: true };

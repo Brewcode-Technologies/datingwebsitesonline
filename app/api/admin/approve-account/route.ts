@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 import { backendClient } from "@/sanity/lib/backendClient";
 
 export async function POST(request: NextRequest) {
@@ -87,28 +87,13 @@ export async function POST(request: NextRequest) {
       updateData.rejectionReason = null;
     }
 
-    // Try with both methods to see which one works
-    try {
-      const result = await backendClient.patch(userId).set(updateData).commit();
-      console.log(
-        "Successfully updated user with backendClient:",
-        userId,
-        result
-      );
-    } catch (backendError) {
-      console.log(
-        "backendClient failed, trying with writeClient...",
-        backendError
-      );
-      // Import writeClient locally to avoid import issues
-      const { writeClient } = await import("@/sanity/lib/client");
-      const result = await writeClient.patch(userId).set(updateData).commit();
-      console.log(
-        "Successfully updated user with writeClient:",
-        userId,
-        result
-      );
-    }
+    // Update the user
+    const result = await backendClient.patch(userId).set(updateData).commit();
+    console.log(
+      "Successfully updated user:",
+      userId,
+      result
+    );
     return NextResponse.json({
       success: true,
       message: `🎉 ${
@@ -123,3 +108,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+

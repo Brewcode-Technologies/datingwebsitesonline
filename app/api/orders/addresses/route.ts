@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 
 export async function GET() {
   try {
@@ -287,3 +287,4 @@ export async function DELETE(request: NextRequest) {
     );
   }
 }
+

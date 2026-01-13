@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 import { backendClient } from "@/sanity/lib/backendClient";
 
 export async function POST(request: NextRequest) {
@@ -76,3 +76,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+

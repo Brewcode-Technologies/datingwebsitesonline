@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { isUserAdmin } from "@/lib/adminUtils";
-import { client } from "@/sanity/lib/client";
+import { backendClient as client } from "@/sanity/lib/backendClient";
 
 interface Order {
   _id: string;
@@ -130,3 +130,4 @@ function getTimeAgo(date: Date): string {
   const diffInDays = Math.floor(diffInHours / 24);
   return `${diffInDays} day${diffInDays > 1 ? "s" : ""} ago`;
 }
+

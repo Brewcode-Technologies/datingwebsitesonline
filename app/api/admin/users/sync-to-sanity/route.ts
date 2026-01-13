@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { isUserAdmin } from "@/lib/adminUtils";
-import { writeClient } from "@/sanity/lib/client";
+import { backendClient as writeClient } from "@/sanity/lib/backendClient";
 
 export async function POST(req: NextRequest) {
   try {
@@ -159,3 +159,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

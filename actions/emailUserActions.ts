@@ -2,7 +2,7 @@
 
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { client } from "@/sanity/lib/client";
+import { backendClient } from "@/sanity/lib/backendClient";
 
 // Types for server actions
 interface CreateAddressData {
@@ -38,18 +38,18 @@ export async function createAddressForUser(addressData: CreateAddressData) {
 
     // If this is set as default, unset all other default addresses for this email
     if (addressData.isDefault) {
-      const existingAddresses = await client.fetch(
+      const existingAddresses = await backendClient.fetch(
         `*[_type == "address" && email == $email]`,
         { email: userEmail }
       );
 
       for (const address of existingAddresses) {
-        await client.patch(address._id).set({ default: false }).commit();
+        await backendClient.patch(address._id).set({ default: false }).commit();
       }
     }
 
     // Create new address
-    const newAddress = await client.create({
+    const newAddress = await backendClient.create({
       _type: "address",
       name: addressData.name,
       email: userEmail,
@@ -87,7 +87,7 @@ export async function updateAddressForUser(
     }
 
     // Verify the address belongs to the user
-    const existingAddress = await client.fetch(
+    const existingAddress = await backendClient.fetch(
       `*[_type == "address" && _id == $addressId && email == $email][0]`,
       { addressId, email: userEmail }
     );
@@ -98,18 +98,18 @@ export async function updateAddressForUser(
 
     // If this is set as default, unset all other default addresses for this email
     if (addressData.isDefault) {
-      const otherAddresses = await client.fetch(
+      const otherAddresses = await backendClient.fetch(
         `*[_type == "address" && email == $email && _id != $addressId]`,
         { email: userEmail, addressId }
       );
 
       for (const address of otherAddresses) {
-        await client.patch(address._id).set({ default: false }).commit();
+        await backendClient.patch(address._id).set({ default: false }).commit();
       }
     }
 
     // Update the address
-    await client
+    await backendClient
       .patch(addressId)
       .set({
         name: addressData.name,
@@ -144,7 +144,7 @@ export async function deleteAddressForUser(addressId: string) {
     }
 
     // Verify the address belongs to the user
-    const existingAddress = await client.fetch(
+    const existingAddress = await backendClient.fetch(
       `*[_type == "address" && _id == $addressId && email == $email][0]`,
       { addressId, email: userEmail }
     );
@@ -154,7 +154,7 @@ export async function deleteAddressForUser(addressId: string) {
     }
 
     // Delete the address
-    await client.delete(addressId);
+    await backendClient.delete(addressId);
 
     revalidatePath("/cart");
     return { success: true };
