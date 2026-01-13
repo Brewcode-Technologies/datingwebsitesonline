@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typegen": "npx sanity@latest schema extract && npx sanity@latest typegen generate"
+    "typegen": "npx sanity@latest schema extract && npx sanity@latest typegen generate",
+    "export": "next export",
+    "deploy": "next build && next export"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.34.1",
