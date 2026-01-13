@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { saveContactMessage } from "@/sanity/helpers";
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,38 +22,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get client info
-    const ipAddress =
-      request.headers.get("x-forwarded-for") ||
-      request.headers.get("x-real-ip") ||
-      "unknown";
-    const userAgent = request.headers.get("user-agent") || "unknown";
-
-    // Save to Sanity
-    const result = await saveContactMessage({
+    // Log the contact message (since Sanity is disabled)
+    console.log('Contact Form Submission:', {
       name: name.trim(),
       email: email.trim().toLowerCase(),
       subject: subject.trim(),
       message: message.trim(),
-      ipAddress,
-      userAgent,
+      timestamp: new Date().toISOString(),
+      ipAddress: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown",
+      userAgent: request.headers.get("user-agent") || "unknown"
     });
 
-    if (result.success) {
-      return NextResponse.json(
-        {
-          message: "Message sent successfully! We'll get back to you soon.",
-          id: result.data?._id,
-        },
-        { status: 200 }
-      );
-    } else {
-      console.error("Sanity save failed:", result.error);
-      return NextResponse.json(
-        { error: result.error || "Failed to send message. Please try again." },
-        { status: 500 }
-      );
-    }
+    // Return success response
+    return NextResponse.json(
+      {
+        message: "Message sent successfully! We'll get back to you soon.",
+        id: `contact_${Date.now()}`,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Contact API Error:", error);
     return NextResponse.json(
