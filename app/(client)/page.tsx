@@ -1,11 +1,11 @@
-import HomeBanner from "@/components/HomeBanner";
-import IntroductionSection from "@/components/IntroductionSection";
-import WhyOnlineDatingSection from "@/components/WhyOnlineDatingSection";
-import FreeVsPaidSection from "@/components/FreeVsPaidSection";
-import KeyFeaturesSection from "@/components/KeyFeaturesSection";
-import SecurityPrivacySection from "@/components/SecurityPrivacySection";
-import DatingCategoriesSection from "@/components/DatingCategoriesSection";
-import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
+import HomeBanner from '@/components/HomeBanner';
+import IntroductionSection from '@/components/IntroductionSection';
+import WhyOnlineDatingSection from '@/components/WhyOnlineDatingSection';
+import FreeVsPaidSection from '@/components/FreeVsPaidSection';
+import KeyFeaturesSection from '@/components/KeyFeaturesSection';
+import SecurityPrivacySection from '@/components/SecurityPrivacySection';
+import DatingCategoriesSection from '@/components/DatingCategoriesSection';
+import { generateOrganizationSchema, generateWebsiteSchema } from '@/lib/seo';
 
 export default async function Home() {
   // Generate structured data
@@ -31,9 +31,9 @@ export default async function Home() {
       <HomeBanner />
       <IntroductionSection />
       <WhyOnlineDatingSection />
-      <FreeVsPaidSection />
-      <KeyFeaturesSection />
-      <SecurityPrivacySection />
+      {/* <FreeVsPaidSection /> */}
+      {/* <KeyFeaturesSection /> */}
+      {/* <SecurityPrivacySection /> */}
       <DatingCategoriesSection />
     </div>
   );

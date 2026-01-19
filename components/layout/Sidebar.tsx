@@ -1,13 +1,11 @@
-import { X, Home, Phone, Info, LogIn, UserPlus } from 'lucide-react';
+import { X, Home, Phone, Info } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useOutsideClick } from '@/hooks';
 import { categoriesData } from '@/constants';
-import Logo from '../common/Logo';
 import Image from 'next/image';
-import { ClerkLoaded, SignedIn, SignedOut, useUser } from '@clerk/nextjs';
 import UserDropdown from '../UserDropdown';
 
 interface SidebarProps {
@@ -109,41 +107,12 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
         {/* Authentication Section */}
         <div className="mt-auto pt-4 border-t border-shop_dark_green">
-          <ClerkLoaded>
-            <SignedIn>
-              <div className="space-y-3">
-                <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
-                  Account
-                </h3>
-                <UserDropdown />
-              </div>
-            </SignedIn>
-            <SignedOut>
-              <div className="space-y-3">
-                <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
-                  Get Started
-                </h3>
-                <div className="flex flex-col gap-2">
-                  <Link
-                    onClick={onClose}
-                    href="/sign-in"
-                    className="flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 hover:text-shop_light_green hover:bg-shop_dark_green/30 text-zinc-300"
-                  >
-                    <LogIn size={18} />
-                    Sign In
-                  </Link>
-                  <Link
-                    onClick={onClose}
-                    href="/sign-up"
-                    className="flex items-center gap-3 p-2 rounded-md text-sm font-medium tracking-wide transition-all duration-200 bg-shop_light_green text-black hover:bg-shop_light_green/90"
-                  >
-                    <UserPlus size={18} />
-                    Sign Up
-                  </Link>
-                </div>
-              </div>
-            </SignedOut>
-          </ClerkLoaded>
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold text-shop_light_green uppercase tracking-wider">
+              Account
+            </h3>
+            <UserDropdown />
+          </div>
         </div>
       </motion.div>
     </div>
