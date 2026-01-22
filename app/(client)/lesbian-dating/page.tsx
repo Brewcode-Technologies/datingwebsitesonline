@@ -7,5 +7,3 @@ const LesbianDatingPage = () => {
 };
 
 export default LesbianDatingPage;
-
-export default LesbianDatingPage;

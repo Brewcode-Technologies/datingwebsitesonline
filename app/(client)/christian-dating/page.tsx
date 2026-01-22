@@ -7,5 +7,3 @@ const ChristianDatingPage = () => {
 };
 
 export default ChristianDatingPage;
-
-export default ChristianDatingPage;

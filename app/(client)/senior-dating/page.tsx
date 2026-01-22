@@ -7,5 +7,3 @@ const SeniorDatingPage = () => {
 };
 
 export default SeniorDatingPage;
-
-export default SeniorDatingPage;

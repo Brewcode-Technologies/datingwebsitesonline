@@ -15,6 +15,16 @@ const categoryMap: Record<string, DatingCategory> = {
   'senior-dating': 'senior',
 };
 
+export async function generateStaticParams() {
+  return [
+    { slug: 'singles-dating' },
+    { slug: 'christian-dating' },
+    { slug: 'gay-dating' },
+    { slug: 'lesbian-dating' },
+    { slug: 'senior-dating' },
+  ];
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const category = categoryMap[slug];

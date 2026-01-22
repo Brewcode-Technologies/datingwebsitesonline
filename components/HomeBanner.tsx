@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { banner_1 } from "@/images";
-import Link from "next/link";
-import { Heart, Star, TrendingUp, Zap } from "lucide-react";
-import Container from "./Container";
-import Title from "./Title";
+import Image from 'next/image';
+import { banner_1 } from '@/images';
+import Link from 'next/link';
+import { Heart, Star, TrendingUp, Zap } from 'lucide-react';
+import Container from './Container';
+import Title from './Title';
 
 const HomeBanner = async () => {
   return (
@@ -26,7 +26,7 @@ const HomeBanner = async () => {
                 <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-white/20 animate-fadeInUp">
                   <Heart className="w-4 h-4 text-red-500 animate-pulse fill-current" />
                   <span className="text-sm font-semibold text-shop_dark_green">
-                    Find Your Perfect Match
+                    #1 Dating Comparison Site
                   </span>
                   <div className="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
                 </div>
@@ -35,12 +35,14 @@ const HomeBanner = async () => {
               {/* Main Title */}
               <div className="space-y-4">
                 <Title className="text-shop_dark_green font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight animate-fadeInUp delay-200">
-                  <span className="block">Looking for a</span>
+                  <span className="block">Find & Compare</span>
                   <span className="block bg-gradient-to-r from-shop_light_green to-shop_dark_green bg-clip-text text-transparent animate-shimmer">
-                    Life Partner?
+                    Top Dating Websites
                   </span>
                   <span className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700 mt-4 leading-relaxed">
-                    If you are looking for a partner, then a dating site would be the correct choice for you. However, do you know how to find the best dating site, which will help you to find your better half? Well, for starters, the site should follow some criteria. Let's have a quick look at the deciding factors.
+                  Choosing the right dating website is the most important step in your love journey. With hundreds of platforms available today, it’s easy to feel confused.
+
+We help you compare the best dating websites based on features, safety, success rates, and user experience — so you can confidently choose the platform that fits your relationship goals.
                   </span>
                 </Title>
               </div>
@@ -50,28 +52,28 @@ const HomeBanner = async () => {
                 {[
                   {
                     icon: Star,
-                    text: "Verified Profiles",
-                    color: "text-yellow-500",
+                    text: 'Expert Reviews',
+                    color: 'text-yellow-500',
                   },
                   {
                     icon: TrendingUp,
-                    text: "Success Stories",
-                    color: "text-green-500",
+                    text: 'Trusted Comparisons',
+                    color: 'text-green-500',
                   },
                   {
                     icon: Heart,
-                    text: "Perfect Matches",
-                    color: "text-red-500",
+                    text: 'Perfect Matches',
+                    color: 'text-red-500',
                   },
                 ].map((feature, index) => (
                   <div
                     key={index}
                     className="flex items-center gap-2 bg-white/70 backdrop-blur-sm px-3 py-2 rounded-lg shadow-md border border-white/20 hover:bg-white/90 transition-all duration-300 hover:scale-105"
                   >
-                    <feature.icon className={`w-4 h-4 ${feature.color} ${feature.text === 'Perfect Matches' ? 'fill-current' : ''}`} />
-                    <span className="text-sm font-medium text-gray-700">
-                      {feature.text}
-                    </span>
+                    <feature.icon
+                      className={`w-4 h-4 ${feature.color} ${feature.text === 'Perfect Matches' ? 'fill-current' : ''}`}
+                    />
+                    <span className="text-sm font-medium text-gray-700">{feature.text}</span>
                   </div>
                 ))}
               </div>
@@ -85,7 +87,7 @@ const HomeBanner = async () => {
                   <span className="absolute inset-0 bg-gradient-to-r from-shop_light_green to-shop_dark_green opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   <span className="relative z-10 flex items-center gap-2 sm:gap-3">
                     <Heart className="w-4 h-4 sm:w-5 sm:h-5 group-hover:animate-bounce text-red-500 fill-current" />
-                    Start Dating
+                    Compare Dating Sites
                   </span>
                   <div className="absolute inset-0 -top-40 -left-10 bg-white/20 w-6 h-40 rotate-12 group-hover:left-full transition-all duration-700"></div>
                 </Link>
@@ -95,24 +97,22 @@ const HomeBanner = async () => {
                   className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-sm text-shop_dark_green px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold shadow-md hover:shadow-lg border-2 border-shop_dark_green/20 hover:border-shop_dark_green/40 transform hover:-translate-y-1 transition-all duration-300"
                 >
                   <Zap className="w-4 h-4 sm:w-5 sm:h-5 group-hover:animate-pulse text-orange-500" />
-                  Learn More
+                  View All Sites
                 </Link>
               </div>
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 sm:pt-8 animate-fadeInUp delay-800">
                 {[
-                  { value: "50K+", label: "Happy Couples" },
-                  { value: "4.9★", label: "Success Rate" },
-                  { value: "24/7", label: "Support" },
+                  { value: '100+', label: 'Sites Reviewed' },
+                  { value: '4.9★', label: 'User Rating' },
+                  { value: '2026', label: 'Updated' },
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-shop_dark_green">
                       {stat.value}
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-600 font-medium">
-                      {stat.label}
-                    </div>
+                    <div className="text-xs sm:text-sm text-gray-600 font-medium">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -124,21 +124,21 @@ const HomeBanner = async () => {
                 {/* Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-shop_light_green/20 to-orange-300/20 rounded-full blur-3xl scale-110 animate-pulse"></div>
 
-                {/* Main Image */}
-                <Image
-                  src={banner_1}
-                  alt="Find Your Perfect Match"
-                  className="relative z-10 w-64 sm:w-80 md:w-96 lg:w-[400px] xl:w-[480px] drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
-                  priority
-                />
+                {/* Background overlay matching hero colors */}
+                <div className="relative w-80 sm:w-96 md:w-[450px] lg:w-[500px] xl:w-[550px] h-64 sm:h-72 md:h-80 lg:h-[350px] bg-gradient-to-br from-shop_light_pink via-pink-50 to-orange-50 rounded-2xl border-4 border-shop_light_green/30 flex items-center justify-center overflow-hidden">
+                  <Image
+                    src="/categories/hero-image.jpg"
+                    alt="Romantic couple holding hands with hearts"
+                    width={500}
+                    height={350}
+                    className="w-full h-full transform hover:scale-105 transition-transform duration-500 rounded-2xl object-cover object-center opacity-70 mix-blend-normal brightness-125"
+                    priority
+                  />
+                </div>
 
                 {/* Floating Elements */}
                 <div className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-red-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg animate-bounce delay-300">
                   <Heart className="w-6 h-6 text-white fill-current" />
-                </div>
-
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-shop_light_green to-shop_dark_green rounded-full flex items-center justify-center shadow-lg animate-bounce delay-1000">
-                  <span className="text-white font-bold text-sm">💕</span>
                 </div>
               </div>
             </div>

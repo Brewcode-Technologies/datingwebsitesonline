@@ -64,24 +64,24 @@ const StarRating = ({ value = 5 }) => (
 
 const TopDatingCard = ({ logo, score, text, recommended, url }) => (
   <a href={url} target="_blank" rel="noopener noreferrer" className="block">
-    <div className="relative bg-white rounded-lg border shadow-sm p-2 xs:p-3 sm:p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+    <div className="relative bg-white rounded-lg border shadow-sm p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
       {recommended && (
-        <span className="absolute -top-2 xs:-top-3 left-1/2 -translate-x-1/2 bg-green-700 text-white text-[10px] xs:text-xs font-semibold px-1.5 xs:px-2 sm:px-3 py-0.5 xs:py-1 rounded">
-          <TfiHeart className="inline mr-0.5 xs:mr-1 text-white" /> We Recommend
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-700 text-white text-xs font-semibold px-3 py-1 rounded">
+          <TfiHeart className="inline mr-1 text-white" /> We Recommend
         </span>
       )}
 
       <div className="flex items-start justify-between">
-        <img src={logo} alt="logo" className="h-4 xs:h-5 sm:h-7 object-contain" />
+        <img src={logo} alt="logo" className="h-7 object-contain" />
         <div className="text-right">
-          <p className="text-lg xs:text-xl sm:text-2xl font-bold">{score}</p>
+          <p className="text-2xl font-bold">{score}</p>
           <StarRating value={4} />
         </div>
       </div>
 
-      <p className="text-[10px] xs:text-xs sm:text-sm text-gray-700 mt-1.5 xs:mt-2 sm:mt-3">{text}</p>
+      <p className="text-sm text-gray-700 mt-3">{text}</p>
 
-      <p className="text-pink-500 text-[10px] xs:text-xs sm:text-sm font-medium mt-2 xs:mt-3 sm:mt-4 cursor-pointer hover:underline">
+      <p className="text-pink-500 text-sm font-medium mt-4 cursor-pointer hover:underline">
         Get Started →
       </p>
     </div>
@@ -92,24 +92,21 @@ const TopDatingCard = ({ logo, score, text, recommended, url }) => (
 
 const DatingRow = ({ rank, logo, name, title, points, bullets, url }) => {
   const isAdam4Adam = name === 'Adam4Adam';
-  const isCDFF = name === 'CDFF';
   return (
-    <div className="bg-white border rounded-xl shadow-sm p-2 xs:p-3 sm:p-5 flex flex-col sm:flex-row gap-2 xs:gap-3 sm:gap-5">
-      <div className="flex-1">
-        <div className="flex justify-start items-start mb-2 xs:mb-3 sm:mb-4">
+    <div className="bg-white border rounded-xl shadow-sm p-5 flex flex-col md:flex-row gap-5">
+      <div className="md:w-2/3">
+        <div className="flex justify-start items-start mb-4">
           <img
             src={logo}
             alt={name}
-            className={`h-6 xs:h-8 sm:h-10 object-contain ${isAdam4Adam ? 'bg-gray-600 px-1 xs:px-2 py-1 xs:py-2 rounded' : ''} ${isCDFF ? 'bg-black px-1 xs:px-2 py-1 xs:py-2 rounded' : ''}`}
-            onError={(e) => {
-              e.currentTarget.src = `https://dummyimage.com/120x50/000/fff&text=${name.replace(/\s+/g, '')}`;
-            }}
+            className={`h-10 object-contain ${isAdam4Adam ? 'bg-gray-600 px-2 py-2 rounded' : ''}`}
           />
         </div>
         <div>
-          <h3 className="font-semibold text-sm xs:text-base sm:text-lg">{name}</h3>
-          <p className="mt-1 sm:mt-2 font-medium text-xs xs:text-sm sm:text-base">{title}</p>
-          <ul className="mt-1.5 xs:mt-2 space-y-0.5 xs:space-y-1 text-[10px] xs:text-xs sm:text-sm text-gray-600">
+          <h3 className="font-semibold text-lg">{name}</h3>
+          <p className="text-blue-600 text-sm cursor-pointer">Read Review</p>
+          <p className="mt-2 font-medium">{title}</p>
+          <ul className="mt-2 space-y-1 text-sm text-gray-600">
             {bullets.map((b, i) => (
               <li key={i}>✓ {b}</li>
             ))}
@@ -117,17 +114,17 @@ const DatingRow = ({ rank, logo, name, title, points, bullets, url }) => {
         </div>
       </div>
 
-      <div className="flex flex-row sm:flex-col items-center justify-between sm:items-end sm:text-right">
-        <div className="text-left sm:text-right">
-          <p className="text-xl xs:text-2xl sm:text-3xl font-bold">{points}</p>
+      <div className="md:w-1/3 flex md:flex-col items-center md:items-end justify-between">
+        <div className="text-right">
+          <p className="text-3xl font-bold">{points}</p>
           <StarRating value={5} />
-          <p className="text-[10px] xs:text-xs sm:text-sm text-gray-600">Exceptional</p>
+          <p className="text-sm text-gray-600">Exceptional</p>
         </div>
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-pink-500 hover:bg-pink-600 text-white px-3 xs:px-4 sm:px-6 py-1.5 xs:py-2 rounded-lg font-semibold text-xs xs:text-sm sm:text-base inline-block text-center"
+          className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-lg font-semibold mt-3 inline-block text-center"
         >
           Visit Site
         </a>
@@ -147,10 +144,10 @@ const SinglesBox = ({
   singlesCount: string;
   categoryLabel: string;
 }) => (
-  <div className="bg-gray-100 border rounded-xl p-3 sm:p-4 flex gap-2 sm:gap-3 items-center">
-    <TfiHeart className="text-3xl sm:text-4xl text-pink-500 flex-shrink-0" />
-    <p className="text-xs sm:text-sm text-gray-700">
-      <span className="text-lg sm:text-xl font-bold block">
+  <div className="bg-gray-100 border rounded-xl p-4 flex gap-3 items-center">
+    <TfiHeart className="text-4xl text-pink-500" />
+    <p className="text-sm text-gray-700">
+      <span className="text-xl font-bold block">
         {singlesCount} {categoryLabel}
       </span>
       started their love story this month
@@ -213,12 +210,12 @@ const TotalScoreBox = ({ category }: { category: DatingCategory }) => {
   const descriptions = scoreDescriptions[category];
 
   return (
-    <div className="bg-gray-100 border rounded-xl p-3 sm:p-4">
+    <div className="bg-gray-100 border rounded-xl p-4">
       <div className="flex items-center gap-2 mb-2">
-        <TfiStar className="text-lg sm:text-xl text-yellow-500" />
-        <h4 className="font-semibold text-sm sm:text-base">Total Score</h4>
+        <TfiStar className="text-xl text-yellow-500" />
+        <h4 className="font-semibold">Total Score</h4>
       </div>
-      <p className="text-xs sm:text-sm text-gray-600 mb-3">
+      <p className="text-sm text-gray-600 mb-3">
         Our product scores consist of a combination of the following 3 components:
       </p>
       <ScoreItem
@@ -241,19 +238,19 @@ const TotalScoreBox = ({ category }: { category: DatingCategory }) => {
 };
 
 const MustReadsBox = () => (
-  <div className="bg-gray-100 border rounded-xl p-3 sm:p-4">
-    <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Must Reads</h4>
+  <div className="bg-gray-100 border rounded-xl p-4">
+    <h4 className="font-semibold mb-4">Must Reads</h4>
 
-    <div className="space-y-3 sm:space-y-4">
+    <div className="space-y-4">
       {[1, 2, 3].map((i) => (
-        <div key={i} className="flex gap-2 sm:gap-3">
+        <div key={i} className="flex gap-3">
           <img
             src={`https://picsum.photos/seed/dating${i}/80/60`}
             alt=""
-            className="w-16 sm:w-20 h-12 sm:h-14 object-cover rounded flex-shrink-0"
+            className="w-20 h-14 object-cover rounded"
           />
-          <div className="min-w-0">
-            <p className="text-xs sm:text-sm font-medium leading-snug">
+          <div>
+            <p className="text-sm font-medium leading-snug">
               {i === 1 && 'How to Date Without Apps: 10 Effective Ways to Meet People in Real Life'}
               {i === 2 && '10 Great Online Dating Profile Examples to Copy and Paste'}
               {i === 3 && "10 Signs You're in a Situationship and How to Deal With It"}
@@ -397,7 +394,7 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
     },
     {
       name: 'Hinge',
-      logo: '/categories/logo/singles-dating/hinge-logo.svg',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=Hinge',
       score: '8.7',
       title: 'Designed to be deleted dating app',
       bullets: ['Relationship focused', 'Detailed profiles'],
@@ -426,52 +423,63 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
     // Multi-category sites (appear in multiple categories)
     {
       name: 'eHarmony',
-      logo: '/categories/logo/singles-dating/eharmony-logo.svg',
+      logo: '/categories/logo/eHarmony-logo.svg',
       score: '9.9',
       title: 'Connect with quality people seeking long-term commitment',
       bullets: ['10+ million users', 'Personality-based matchmaking'],
-      categories: ['singles'],
+      categories: ['singles', 'christian', 'senior'],
       url: 'https://www.eharmony.com/',
     },
     {
       name: 'Match',
-      logo: '/categories/logo/singles-dating/match-logo.webp',
+      logo: '/categories/logo/match-logo.webp',
       score: '9.1',
       title: 'Match with singles based on true compatibility',
       bullets: ['Millions of couples matched', 'Quick sign up'],
-      categories: ['singles'],
+      categories: ['singles', 'christian', 'senior'],
       url: 'https://www.match.com/',
     },
     {
-      name: 'AmoreDate',
-      logo: '/categories/logo/singles-dating/amoredate-logo.svg',
-      score: '8.5',
-      title: 'Find your perfect match with advanced algorithms',
-      bullets: ['Smart matching', 'Verified profiles'],
-      categories: ['singles'],
-      url: 'https://amoredate.com/land/sp/a4f1221a/?partner=784&subid=504-146905344&ip=124.123.178.53&site=5298&sub1=USdt&sub2=Ig9Qgb9aSE_&sub3=&sub4=&offer_id=504&clickid=171552265&back=#c3RlcDA=',
+      name: 'OkCupid',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=OkCupid',
+      score: '8.8',
+      title: 'Dating with detailed profiles and matching',
+      bullets: ['Detailed profiles', 'LGBTQ+ friendly'],
+      categories: ['singles', 'lesbian'],
+      url: 'https://www.okcupid.com/',
     },
     {
-      name: 'BestDates',
-      logo: '/categories/logo/singles-dating/bestdates-logo.svg',
-      score: '8.7',
-      title: 'Premium dating experience for serious relationships',
-      bullets: ['Quality matches', 'Detailed profiles'],
-      categories: ['singles'],
-      url: 'https://bestdates.com/land/sp/c75606cc/?partner=784&subid=428-146905344&ip=124.123.178.53&site=3617&sub1=USmainstream&sub2=dt_3Z6CfQ82oV_&sub3=&sub4=&offer_id=428&clickid=171552495&back=#c3RlcDE=',
+      name: 'Plenty of Fish',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=POF',
+      score: '8.5',
+      title: 'Free dating with large user base',
+      bullets: ['Free messaging', 'Large community'],
+      categories: ['singles', 'lesbian'],
+      url: 'https://www.pof.com/',
     },
     {
       name: 'Zoosk',
-      logo: '/categories/logo/singles-dating/zoosk-logo.svg',
+      logo: '/categories/logo/zoosk-heart-logo.svg',
       score: '8.9',
       title: 'Smart matchmaking dating platform',
       bullets: ['Behavioral matchmaking', 'Photo verification'],
-      categories: ['singles'],
+      categories: ['singles', 'gay', 'lesbian'],
       url: 'https://www.zoosk.com/',
     },
     {
+      name: 'EliteSingles',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=EliteSingles',
+      score: '8.4',
+      title: 'Premium dating for educated professionals',
+      bullets: ['Professional singles', 'Personality matching'],
+      categories: ['singles', 'senior'],
+      url: 'https://www.elitesingles.com/',
+    },
+
+    // Christian Dating - unique to christian only
+    {
       name: 'ChristianMingle',
-      logo: '/categories/logo/christian-dating/CM_logo.png',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=ChristianMingle',
       score: '9.3',
       title: 'Faith-based dating for Christian singles',
       bullets: ['Christian community', 'Values-based matching'],
@@ -480,7 +488,7 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
     },
     {
       name: 'ChristianCafe',
-      logo: '/categories/logo/christian-dating/christiancafe-logo.jpg',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=ChristianCafe',
       score: '8.9',
       title: 'Christian dating since 1999',
       bullets: ['Established community', 'Faith-centered'],
@@ -489,7 +497,7 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
     },
     {
       name: 'Christian Connection',
-      logo: '/categories/logo/christian-dating/christianconnection-logo.jpg',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=ChristianConnection',
       score: '8.6',
       title: 'UK-based Christian dating platform',
       bullets: ['UK focused', 'Christian values'],
@@ -497,24 +505,25 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
       url: 'https://www.christianconnection.com/',
     },
     {
+      name: 'CatholicMatch',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=CatholicMatch',
+      score: '8.4',
+      title: 'Catholic singles dating platform',
+      bullets: ['Catholic community', 'Faith compatibility'],
+      categories: ['christian'],
+      url: 'https://www.catholicmatch.com/',
+    },
+    {
       name: 'CDFF',
-      logo: '/categories/logo/christian-dating/cdff_logo.png',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=CDFF',
       score: '8.1',
       title: 'Christian Dating For Free',
       bullets: ['Completely free', 'Christian focused'],
       categories: ['christian'],
       url: 'https://www.cdff.com/',
     },
-    {
-      name: 'ROMEO (PlanetRomeo)',
-      logo: '/categories/logo/gay-dating/rome.svg',
-      logoBackground: 'black',
-      score: '9.1',
-      title: 'European gay dating platform',
-      bullets: ['Global gay community', 'Travel-friendly features'],
-      categories: ['gay'],
-      url: 'https://www.planetromeo.com/',
-    },
+
+    // Gay Dating - unique to gay only
     {
       name: 'Grindr',
       logo: '/categories/logo/grindr_logo.png',
@@ -526,8 +535,7 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
     },
     {
       name: 'Scruff',
-      logo: '/categories/logo/gay-dating/scruff-logo.png',
-      logoBackground: 'black',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=Scruff',
       score: '8.4',
       title: 'Gay dating app for bears and masculine men',
       bullets: ['Bear community', 'Travel features'],
@@ -535,55 +543,43 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
       url: 'https://www.scruff.com/',
     },
     {
-      name: "Jack'd",
-      logo: '/categories/logo/gay-dating/jackd_logo.svg',
-      logoBackground: 'black',
-      score: '8.3',
-      title: 'Diverse gay dating community',
-      bullets: ['Diverse user base', 'Photo sharing'],
+      name: 'ROMEO',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=ROMEO',
+      score: '8.5',
+      title: 'European gay dating platform',
+      bullets: ['European focus', 'Community features'],
       categories: ['gay'],
-      url: 'https://www.jackdapp.com/',
+      url: 'https://www.romeo.com/',
     },
     {
-      name: 'Manhunt',
-      logo: '/categories/logo/gay-dating/manhunt_logo.png',
-      logoBackground: 'black',
+      name: 'Jackd',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=Jackd',
       score: '8.1',
-      title: 'Gay dating and hookup platform',
-      bullets: ['Established platform', 'Video chat'],
+      title: 'Diverse gay dating community',
+      bullets: ['Diverse community', 'Photo sharing'],
       categories: ['gay'],
-      url: 'https://www.manhunt.net/',
+      url: 'https://getjackd.com/',
     },
     {
       name: 'Hornet',
-      logo: '/categories/logo/gay-dating/hornet_logo.svg',
-      logoBackground: 'black',
-      score: '8.5',
-      title: 'Gay social network and dating app',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=Hornet',
+      score: '8.0',
+      title: 'Gay social network and dating',
       bullets: ['Social features', 'Global community'],
       categories: ['gay'],
       url: 'https://hornet.com/',
     },
     {
-      name: 'Heesay',
-      logo: '/categories/logo/gay-dating/heesay_logo.png',
-      score: '8.0',
-      title: 'Gay dating and social platform',
-      bullets: ['Social features', 'Community focused'],
-      categories: ['gay'],
-      url: 'https://www.heesay.com/',
-    },
-
-
-    {
-      name: 'Lex (LGBTQ+ app)',
-      logo: '/categories/logo/gay-dating/lexapp_logo.png',
+      name: 'Adam4Adam',
+      logo: '/categories/logo/Adam4Adam-logo.svg',
       score: '8.2',
-      title: 'Text-based LGBTQ+ dating platform',
-      bullets: ['Text-based profiles', 'Inclusive community'],
+      title: 'Free gay dating and chat platform',
+      bullets: ['Free messaging', 'Large user base'],
       categories: ['gay'],
-      url: 'https://www.lexapp.co/',
+      url: 'https://www.adam4adam.com/',
     },
+
+    // Lesbian Dating - unique to lesbian only
     {
       name: 'HER',
       logo: '/categories/logo/logoher.svg',
@@ -595,115 +591,103 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
     },
     {
       name: 'PinkCupid',
-      logo: '/categories/logo/pinkcupid_logo.jpg',
+      logo: '/categories/logo/pinkcupid_logo.svg',
       score: '8.1',
       title: 'Lesbian dating site for women seeking women',
       bullets: ['Women-focused', 'Worldwide community'],
       categories: ['lesbian'],
       url: 'https://www.pinkcupid.com/',
     },
-
-
-
     {
-      name: 'OkCupid (LGBTQ+ friendly)',
-      logo: '/categories/logo/lesbian-dating/okcupid_logo.png',
-      score: '8.4',
-      title: 'Inclusive dating with detailed profiles',
-      bullets: ['LGBTQ+ inclusive', 'Detailed matching'],
+      name: 'Lesly',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=Lesly',
+      score: '7.9',
+      title: 'Lesbian dating app for women',
+      bullets: ['Women only', 'Simple interface'],
       categories: ['lesbian'],
-      url: 'https://www.okcupid.com/',
+      url: 'https://lesly.com/',
     },
     {
-      name: 'Tinder (LGBTQ+ friendly)',
-      logo: '/categories/logo/singles-dating/tinder-logo.png',
-      score: '8.2',
-      title: 'Popular swipe app with LGBTQ+ options',
-      bullets: ['Large user base', 'LGBTQ+ friendly'],
+      name: 'Zoe',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=Zoe',
+      score: '7.8',
+      title: 'Lesbian dating by Badoo',
+      bullets: ['Badoo powered', 'LGBTQ+ focused'],
       categories: ['lesbian'],
-      url: 'https://tinder.com/',
+      url: 'https://zoe.lgbt/',
     },
     {
-      name: 'Bumble (LGBTQ+ friendly)',
-      logo: '/categories/logo/lesbian-dating/bumble_logo.svg',
-      score: '8.5',
-      title: 'Women-first dating app',
-      bullets: ['Women make first move', 'LGBTQ+ inclusive'],
+      name: 'Bumble',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=Bumble',
+      score: '8.3',
+      title: 'Women make the first move',
+      bullets: ['Women first', 'LGBTQ+ friendly'],
       categories: ['lesbian'],
       url: 'https://bumble.com/',
     },
 
+    // Senior Dating - unique to senior only
     {
-      name: 'Feeld (inclusive of queer women)',
-      logo: '/categories/logo/lesbian-dating/feeled_logo.svg',
-      logoBackground: 'black',
-      score: '8.1',
-      title: 'Open-minded dating for all identities',
-      bullets: ['Queer inclusive', 'Alternative relationships'],
-      categories: ['lesbian'],
-      url: 'https://feeld.co/',
+      name: 'OurTime',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=OurTime',
+      score: '8.9',
+      title: 'Dating site for singles over 50',
+      bullets: ['Mature dating focus', 'Easy to use interface'],
+      categories: ['senior'],
+      url: 'https://www.ourtime.com/',
     },
-
     {
-      name: 'SeniorMatch',
-      logo: '/categories/logo/senior-dating/seniormatch-logo.png',
+      name: 'SilverSingles',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=SilverSingles',
       score: '8.5',
       title: 'Premium dating for mature singles',
-      bullets: ['50+ community', 'Verified profiles'],
+      bullets: ['50+ community', 'Personality test matching'],
+      categories: ['senior'],
+      url: 'https://www.silversingles.com/',
+    },
+    {
+      name: 'SeniorMatch',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=SeniorMatch',
+      score: '8.3',
+      title: 'Largest senior dating community',
+      bullets: ['Verified profiles', '50+ exclusive'],
       categories: ['senior'],
       url: 'https://www.seniormatch.com/',
     },
-
     {
-      name: 'DateMyAge',
-      logo: '/categories/logo/senior-dating/datemyage.jpg',
-      score: '8.1',
-      title: 'International mature dating platform',
-      bullets: ['40+ community', 'Video chat features'],
-      categories: ['senior'],
-      url: 'https://www.datemyage.com/',
-    },
-    {
-      name: 'SeniorSizzle',
-      logo: '/categories/logo/senior-dating/seniorsizzle-logo.png',
+      name: 'SeniorPeopleMeet',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=SeniorPeopleMeet',
       score: '7.9',
-      title: 'Dating site exclusively for seniors 50+',
-      bullets: ['Senior-only community', 'Age-verified profiles'],
+      title: 'Meet local seniors in your area',
+      bullets: ['Local connections', 'Simple interface'],
       categories: ['senior'],
-      url: 'https://www.seniorsizzle.com/',
+      url: 'https://www.seniorpeoplemeet.com/',
     },
     {
-      name: 'Match',
-      logo: '/categories/logo/singles-dating/match-logo.webp',
-      score: '8.4',
-      title: 'Trusted dating for all ages',
-      bullets: ['Mature user base', 'Proven success'],
+      name: 'Lumen',
+      logo: 'https://dummyimage.com/120x50/000/fff&text=Lumen',
+      score: '8.0',
+      title: '50+ focused dating app',
+      bullets: ['50+ only', 'Modern interface'],
       categories: ['senior'],
-      url: 'https://www.match.com/',
+      url: 'https://lumendating.com/',
     },
-
-
-
   ];
 
   const config = categoryConfig[category];
   const filteredSites = datingSites.filter((site) => site.categories.includes(category));
-  // Sort by score (highest first) and take top 3
-  const sortedSites = filteredSites.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
-  const topThreeSites = sortedSites.slice(0, 3);
-  // Remove top 3 from main list to avoid duplication
-  const remainingSites = sortedSites.slice(3);
+  const topThreeSites = filteredSites.slice(0, 3);
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* HERO */}
       <div className="relative">
-        <img src={config.heroImage} className="w-full h-[250px] xs:h-[300px] sm:h-[400px] lg:h-[500px] object-cover" alt="hero" />
+        <img src={config.heroImage} className="w-full h-[500px] object-cover" alt="hero" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20 flex items-center">
-          <div className="max-w-6xl mx-auto px-2 xs:px-3 sm:px-4 text-white">
-            <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{config.title}</h1>
-            <div className="mt-3 xs:mt-4 sm:mt-6 text-xs xs:text-sm sm:text-base md:text-lg">{config.subtitle}</div>
-            <p className="mt-3 xs:mt-4 sm:mt-6 text-[10px] xs:text-xs sm:text-sm bg-black/40 inline-block px-2 xs:px-3 sm:px-4 py-1 xs:py-2 rounded">
-              <TfiCheckBox className="inline mr-1 xs:mr-2 text-green-400" /> Last Updated: Jan 2026
+          <div className="max-w-6xl mx-auto px-4 text-white">
+            <h1 className="text-4xl md:text-5xl font-bold">{config.title}</h1>
+            <div className="mt-6 text-base md:text-lg">{config.subtitle}</div>
+            <p className="mt-6 text-sm bg-black/40 inline-block px-4 py-2 rounded">
+              <TfiCheckBox className="inline mr-2 text-green-400" /> Last Updated: Jan 2026
             </p>
           </div>
         </div>
@@ -711,22 +695,22 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
 
       {/* TOP 3 */}
       <div className="bg-gray-200/60">
-        <div className="max-w-6xl mx-auto px-2 xs:px-3 sm:px-4 py-3 xs:py-4 sm:py-6">
-          <h2 className="font-semibold mb-2 xs:mb-3 sm:mb-4 text-sm xs:text-base sm:text-lg">
+        <div className="max-w-6xl mx-auto px-4 py-6">
+          <h2 className="font-semibold mb-4">
             Our Top 3{' '}
             {category === 'singles'
               ? 'Online Dating Sites'
               : `${category.charAt(0).toUpperCase() + category.slice(1)} Dating Sites`}
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 xs:gap-3 sm:gap-5">
+          <div className="grid md:grid-cols-3 gap-5">
             {topThreeSites.map((site, index) => (
               <TopDatingCard
                 key={site.name}
                 logo={site.logo}
                 score={site.score}
                 text={site.bullets[0]}
-                recommended={index === 0}
+                recommended={index === 1}
                 url={site.url}
               />
             ))}
@@ -735,13 +719,13 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
       </div>
 
       {/* CONTENT */}
-      <div className="max-w-6xl mx-auto px-2 xs:px-3 sm:px-4 py-4 xs:py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-6">
+      <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* LEFT */}
-        <div className="lg:col-span-2 space-y-2 xs:space-y-3 sm:space-y-4">
-          {remainingSites.map((site, index) => (
+        <div className="lg:col-span-2 space-y-4">
+          {filteredSites.map((site, index) => (
             <DatingRow
               key={site.name}
-              rank={(index + 4).toString()}
+              rank={(index + 1).toString()}
               logo={site.logo}
               name={site.name}
               title={site.title}
@@ -753,7 +737,7 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
         </div>
 
         {/* RIGHT SIDEBAR */}
-        <div className="space-y-2 xs:space-y-3 sm:space-y-4">
+        <div className="space-y-4">
           <SinglesBox singlesCount={config.singlesCount} categoryLabel={config.categoryLabel} />
           <TotalScoreBox category={category} />
           <MustReadsBox />

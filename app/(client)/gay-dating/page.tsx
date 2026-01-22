@@ -7,5 +7,3 @@ const GayDatingPage = () => {
 };
 
 export default GayDatingPage;
-
-export default GayDatingPage;

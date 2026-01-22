@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { ClerkProvider } from '@clerk/nextjs';
 import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
 import Script from 'next/script';
@@ -105,40 +104,38 @@ export const metadata: Metadata = {
 const RootLayout = async ({ children }: { children: ReactNode }) => {
   const GADSENSE_CLIENT_ID = 'ca-pub-6542623777003381'; // Define it once
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <Head>
-          <meta name="google-adsense-account" content={GADSENSE_CLIENT_ID} />
-        </Head>
-        <body
-          className={`${poppins.variable} ${raleway.variable} ${opensans.variable} antialiased`}
-        >
-          <UserDataProvider>{children}</UserDataProvider>
-          <PremiumFloatingButton />
-          <Toaster
-            position="bottom-right"
-            richColors
-            closeButton
-            toastOptions={{
-              style: {
-                background: '#ffffff',
-                color: '#1f2937',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                fontSize: '14px',
-              },
-              className: 'sonner-toast',
-            }}
-          />
+    <html lang="en" suppressHydrationWarning>
+      <Head>
+        <meta name="google-adsense-account" content={GADSENSE_CLIENT_ID} />
+      </Head>
+      <body
+        className={`${poppins.variable} ${raleway.variable} ${opensans.variable} antialiased`}
+      >
+        <UserDataProvider>{children}</UserDataProvider>
+        <PremiumFloatingButton />
+        <Toaster
+          position="bottom-right"
+          richColors
+          closeButton
+          toastOptions={{
+            style: {
+              background: '#ffffff',
+              color: '#1f2937',
+              border: '1px solid #e5e7eb',
+              borderRadius: '8px',
+              fontSize: '14px',
+            },
+            className: 'sonner-toast',
+          }}
+        />
 
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GADSENSE_CLIENT_ID}`}
-            strategy="beforeInteractive"
-          />
-        </body>
-      </html>
-    </ClerkProvider>
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GADSENSE_CLIENT_ID}`}
+          strategy="beforeInteractive"
+        />
+      </body>
+    </html>
   );
 };
 

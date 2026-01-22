@@ -55,12 +55,10 @@ const DatingCategoriesSection = () => {
       <Container>
         <div className="text-center mb-8 sm:mb-12">
           <Title className="text-2xl sm:text-3xl md:text-4xl font-bold text-shop_dark_green mb-4">
-            Dating Categories We Cover
+            Top Dating Site Categories
           </Title>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
-            Sometimes some dating platforms are restricted for certain user base, for example, same
-            sex couple. So, before you sign up, check out if you have chosen the correct platform to
-            look for your soul mate.
+            Find the perfect dating platform for your specific needs and preferences.
           </p>
         </div>
 
