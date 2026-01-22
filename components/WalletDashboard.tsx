@@ -96,24 +96,24 @@ export default function WalletDashboard() {
     try {
       const [balanceData, transactionsData, withdrawalsData] =
         await Promise.all([
-          getUserWalletBalance(),
-          getWalletTransactions(),
-          getWithdrawalRequests(),
+          getUserWalletBalance(user?.id || ''),
+          getWalletTransactions(user?.id || ''),
+          getWithdrawalRequests(user?.id || ''),
         ]);
 
-      if (balanceData.success && balanceData.balance !== undefined)
+      if (balanceData.balance !== undefined)
         setBalance(balanceData.balance);
-      if (transactionsData.success && transactionsData.transactions) {
+      if (transactionsData.transactions) {
         setTransactions(
-          transactionsData.transactions.map((t, index) => ({
+          transactionsData.transactions.map((t: any, index) => ({
             ...t,
             _id: t.id || `transaction-${index}`,
           }))
         );
       }
-      if (withdrawalsData.success && withdrawalsData.requests) {
+      if (withdrawalsData.requests) {
         setWithdrawalRequests(
-          withdrawalsData.requests.map((r, index) => ({
+          withdrawalsData.requests.map((r: any, index) => ({
             ...r,
             _id: r.id || `withdrawal-${index}`,
           }))
@@ -155,12 +155,7 @@ export default function WalletDashboard() {
       return;
     }
 
-    const result = await requestWithdrawal({
-      amount,
-      method: withdrawMethod as "bank" | "paypal",
-      bankDetails: withdrawMethod === "bank" ? bankDetails : undefined,
-      paypalEmail: withdrawMethod === "paypal" ? paypalEmail : undefined,
-    });
+    const result = await requestWithdrawal(user?.id || '', amount);
 
     if (result.success) {
       toast.success(result.message);

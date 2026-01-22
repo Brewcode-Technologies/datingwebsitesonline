@@ -90,7 +90,7 @@ const RelatedProducts = memo(({ relatedProducts }: RelatedProductsProps) => {
                 {/* Product Info */}
                 <div className="space-y-2">
                   <Link
-                    href={`/product/${product?.slug?.current}`}
+                    href={`/product/${typeof product?.slug === 'string' ? product.slug : product?.slug?.current}`}
                     className="block hover:text-shop_light_green transition-colors"
                   >
                     <h3 className="font-semibold text-shop_dark_green line-clamp-2 text-sm">

@@ -50,7 +50,7 @@ const CategoryPageWrapper = ({ slug }: Props) => {
 
         // Find current category
         const current = fetchedCategories.find(
-          (cat: Category) => cat.slug?.current === slug
+          (cat: Category) => (typeof cat.slug === 'string' ? cat.slug : cat.slug?.current) === slug
         );
         setCurrentCategory(current || null);
 
@@ -106,7 +106,7 @@ const CategoryPageWrapper = ({ slug }: Props) => {
 
   const categoryTitle = currentCategory?.title || slug;
   const relatedCategories = categories
-    .filter((cat) => cat.slug?.current !== slug)
+    .filter((cat) => (typeof cat.slug === 'string' ? cat.slug : cat.slug?.current) !== slug)
     .slice(0, 6);
 
   return (
@@ -226,7 +226,7 @@ const CategoryPageWrapper = ({ slug }: Props) => {
             {relatedCategories.map((category) => (
               <Link
                 key={category._id}
-                href={`/category/${category.slug?.current}`}
+                href={`/category/${typeof category.slug === 'string' ? category.slug : category.slug?.current}`}
                 className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 hover:border-shop_light_green p-4 text-center"
               >
                 {/* Category Image */}

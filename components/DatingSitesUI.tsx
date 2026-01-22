@@ -11,7 +11,6 @@ import {
   TfiBook,
   TfiCheckBox,
   TfiWorld,
-  TfiGlass,
   TfiHandPointRight,
   TfiCup,
   TfiHome,
@@ -33,6 +32,7 @@ interface DatingSitesUIProps {
 interface DatingSite {
   name: string;
   logo: string;
+  logoBackground?: string;
   score: string;
   title: string;
   bullets: string[];
@@ -62,7 +62,13 @@ const StarRating = ({ value = 5 }) => (
 
 /* ---------- TOP 3 CARDS ---------- */
 
-const TopDatingCard = ({ logo, score, text, recommended, url }) => (
+const TopDatingCard = ({ logo, score, text, recommended, url }: {
+  logo: string;
+  score: string;
+  text: string;
+  recommended?: boolean;
+  url: string;
+}) => (
   <a href={url} target="_blank" rel="noopener noreferrer" className="block">
     <div className="relative bg-white rounded-lg border shadow-sm p-2 xs:p-3 sm:p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
       {recommended && (
@@ -90,7 +96,15 @@ const TopDatingCard = ({ logo, score, text, recommended, url }) => (
 
 /* ---------- MAIN RANK LIST ROW ---------- */
 
-const DatingRow = ({ rank, logo, name, title, points, bullets, url }) => {
+const DatingRow = ({ rank, logo, name, title, points, bullets, url }: {
+  rank: string;
+  logo: string;
+  name: string;
+  title: string;
+  points: string;
+  bullets: string[];
+  url: string;
+}) => {
   const isAdam4Adam = name === 'Adam4Adam';
   const isCDFF = name === 'CDFF';
   return (
@@ -158,7 +172,11 @@ const SinglesBox = ({
   </div>
 );
 
-const ScoreItem = ({ title, icon, description }) => {
+const ScoreItem = ({ title, icon, description }: {
+  title: string;
+  icon: React.ReactNode;
+  description: string;
+}) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-t">

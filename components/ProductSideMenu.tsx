@@ -14,7 +14,7 @@ const ProductSideMenu = ({
   product: Product;
   className?: string;
 }) => {
-  const { favoriteProduct, addToFavorite } = useCartStore();
+  const { favoriteProduct, addToFavorite, removeFromFavorite } = useCartStore();
   const [existingProduct, setExistingProduct] = useState<Product | null>(null);
 
   useEffect(() => {
@@ -28,17 +28,21 @@ const ProductSideMenu = ({
   const handleFavorite = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
     if (product?._id) {
-      addToFavorite(product).then(() => {
-        toast.success(
-          existingProduct ? "Removed from wishlist" : "Added to wishlist",
-          {
-            description: existingProduct
-              ? "Product removed successfully!"
-              : "Product added successfully!",
-            duration: 3000,
-          }
-        );
-      });
+      if (existingProduct) {
+        removeFromFavorite(product._id);
+      } else {
+        addToFavorite(product);
+      }
+      
+      toast.success(
+        existingProduct ? "Removed from wishlist" : "Added to wishlist",
+        {
+          description: existingProduct
+            ? "Product removed successfully!"
+            : "Product added successfully!",
+          duration: 3000,
+        }
+      );
     }
   };
   return (

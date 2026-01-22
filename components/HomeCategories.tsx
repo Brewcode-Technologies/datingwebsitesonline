@@ -51,7 +51,7 @@ const HomeCategories = ({ categories }: Props) => {
           {categories?.map((category, index) => (
             <Link
               key={category?._id}
-              href={`/category/${category?.slug?.current}`}
+              href={`/category/${typeof category?.slug === 'string' ? category.slug : category?.slug?.current}`}
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100 hover:border-shop_light_blue hoverEffect transform hover:-translate-y-2 cursor-pointer block"
               style={{ animationDelay: `${index * 0.1}s` }}
             >

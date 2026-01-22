@@ -34,12 +34,12 @@ import {
   ProductSectionWrapper,
 } from "@/components/ProductClientWrapper";
 import RelatedProducts from "./RelatedProducts";
-import { BRAND_QUERYResult } from "@/sanity.types";
+import { BRANDS_QUERYResult } from "@/sanity.types";
 
 interface ProductContentProps {
   product: Product;
   relatedProducts: Product[];
-  brand: BRAND_QUERYResult | null;
+  brand: BRANDS_QUERYResult | null;
 }
 
 const ProductContent = ({
@@ -68,7 +68,7 @@ const ProductContent = ({
         <DynamicBreadcrumb
           productData={{
             name: product?.name || "",
-            slug: product?.slug?.current || "",
+            slug: typeof product?.slug === 'string' ? product.slug : product?.slug?.current || "",
           }}
         />
 

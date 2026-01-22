@@ -47,7 +47,7 @@ const ProductSpecs = ({ product }: ProductSpecsProps) => {
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">SKU:</span>
             <span className="font-medium text-xs text-gray-500">
-              #{product?.slug?.current?.slice(-8).toUpperCase()}
+              #{(typeof product?.slug === 'string' ? product.slug : product?.slug?.current)?.slice(-8).toUpperCase()}
             </span>
           </div>
         </CardContent>

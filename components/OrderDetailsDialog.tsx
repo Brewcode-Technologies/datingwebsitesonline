@@ -101,7 +101,7 @@ const OrderDetailsDialog: FC<OrderDetailsDialogProps> = ({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {order.products?.map((product, index) => (
+            {order.products?.map((product: any, index: number) => (
               <TableRow key={index}>
                 <TableCell className="flex items-center gap-2">
                   {product?.product?.images && (

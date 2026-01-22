@@ -108,7 +108,6 @@ export default function AddressEditSidebar({
       !formData.country
     ) {
       showToast.error(
-        "Validation Error",
         "Please fill in all required fields including location details."
       );
       return;
@@ -132,7 +131,6 @@ export default function AddressEditSidebar({
 
       if (response.ok) {
         showToast.success(
-          isEditing ? "Address Updated" : "Address Added",
           `Your address has been successfully ${
             isEditing ? "updated" : "added"
           }.`
@@ -151,7 +149,6 @@ export default function AddressEditSidebar({
     } catch (error) {
       console.error("Error saving address:", error);
       showToast.error(
-        "Error",
         error instanceof Error
           ? error.message
           : `Failed to ${
@@ -181,7 +178,6 @@ export default function AddressEditSidebar({
 
       if (response.ok) {
         showToast.success(
-          "Address Deleted",
           "Your address has been successfully deleted."
         );
         onClose();
@@ -194,7 +190,7 @@ export default function AddressEditSidebar({
       }
     } catch (error) {
       console.error("Error deleting address:", error);
-      showToast.error("Error", "Failed to delete address. Please try again.");
+      showToast.error("Failed to delete address. Please try again.");
     } finally {
       setDeleteLoading(false);
     }

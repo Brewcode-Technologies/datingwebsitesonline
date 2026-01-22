@@ -16,7 +16,7 @@ const FavoriteButton = ({
   showProduct?: boolean;
   product?: Product;
 }) => {
-  const { favoriteProduct, addToFavorite } = useCartStore();
+  const { favoriteProduct, addToFavorite, removeFromFavorite } = useCartStore();
   const [existingProduct, setExistingProduct] = useState<Product | null>(null);
 
   useEffect(() => {
@@ -32,30 +32,34 @@ const FavoriteButton = ({
     if (product?._id) {
       const isRemoving = !!existingProduct;
 
-      addToFavorite(product).then(() => {
-        toast.success(
-          isRemoving ? "Removed from wishlist" : "Added to wishlist",
-          {
-            description: isRemoving
-              ? "Product removed successfully!"
-              : "Product added successfully!",
-            duration: 3000,
-          }
-        );
+      if (isRemoving) {
+        removeFromFavorite(product._id);
+      } else {
+        addToFavorite(product);
+      }
 
-        // Track wishlist analytics
-        if (isRemoving) {
-          trackWishlistRemove({
-            productId: product._id,
-            name: product.name || "Unknown Product",
-          });
-        } else {
-          trackWishlistAdd({
-            productId: product._id,
-            name: product.name || "Unknown Product",
-          });
+      toast.success(
+        isRemoving ? "Removed from wishlist" : "Added to wishlist",
+        {
+          description: isRemoving
+            ? "Product removed successfully!"
+            : "Product added successfully!",
+          duration: 3000,
         }
-      });
+      );
+
+      // Track wishlist analytics
+      if (isRemoving) {
+        trackWishlistRemove({
+          productId: product._id,
+          name: product.name || "Unknown Product",
+        });
+      } else {
+        trackWishlistAdd({
+          productId: product._id,
+          name: product.name || "Unknown Product",
+        });
+      }
     }
   };
   return (

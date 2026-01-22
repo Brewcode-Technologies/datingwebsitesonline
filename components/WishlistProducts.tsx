@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
 const WishlistProducts = () => {
   const [visibleProducts, setVisibleProducts] = useState(8);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const { favoriteProduct, removeFromFavorite, resetFavorite } = useCartStore();
+  const { favoriteProduct, removeFromFavorite } = useCartStore();
 
   const loadMore = () => {
     setVisibleProducts((prev) => Math.min(prev + 8, favoriteProduct.length));
@@ -38,7 +38,7 @@ const WishlistProducts = () => {
   };
 
   const confirmResetFavorite = () => {
-    resetFavorite();
+    favoriteProduct.forEach(product => removeFromFavorite(product._id));
     setShowDeleteModal(false);
     toast.success("All products removed from wishlist");
   };
@@ -68,7 +68,7 @@ const WishlistProducts = () => {
 
                   <Link
                     href={{
-                      pathname: `/product/${product?.slug?.current}`,
+                      pathname: `/product/${typeof product?.slug === 'string' ? product.slug : product?.slug?.current}`,
                       query: { id: product?._id },
                     }}
                     className="block rounded-lg overflow-hidden bg-gray-50"
@@ -93,7 +93,7 @@ const WishlistProducts = () => {
                   <div className="flex flex-col gap-2 flex-1">
                     <Link
                       href={{
-                        pathname: `/product/${product?.slug?.current}`,
+                        pathname: `/product/${typeof product?.slug === 'string' ? product.slug : product?.slug?.current}`,
                         query: { id: product?._id },
                       }}
                     >

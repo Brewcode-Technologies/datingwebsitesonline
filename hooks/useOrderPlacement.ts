@@ -1,10 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import useCartStore, { CartItem } from "@/store";
-import { PAYMENT_METHODS, PaymentMethod } from "@/lib/orderStatus";
+import useCartStore from "@/store";
+import { Product } from "@/sanity.types";
+
+// Define CartItem interface locally
+interface CartItem extends Product {
+  quantity: number;
+}
 import { toast } from "sonner";
-import { OrderConfirmationData } from "@/lib/emailService";
+
+// Define payment methods locally
+const PAYMENT_METHODS = {
+  STRIPE: 'stripe',
+  CLERK: 'clerk',
+  COD: 'cod'
+} as const;
+
+type PaymentMethod = typeof PAYMENT_METHODS[keyof typeof PAYMENT_METHODS];
 
 // Extended interface for email preparation that can handle Sanity images
 interface EmailOrderItem {
@@ -58,11 +71,6 @@ export function useOrderPlacement({ user }: UseOrderPlacementProps) {
   const {
     items: cart,
     getTotalPrice,
-    getSubTotalPrice,
-    resetCart,
-    isPlacingOrder,
-    orderStep,
-    setOrderPlacementState,
   } = useCartStore();
 
   const placeOrder = async (
@@ -95,7 +103,7 @@ export function useOrderPlacement({ user }: UseOrderPlacementProps) {
 
     // Check stock availability
     const outOfStockItems = cartSnapshot.filter(
-      (item) => item.product.stock === 0
+      (item) => item.stock === 0
     );
     if (outOfStockItems.length > 0) {
       toast.error("Insufficient Stock", {
@@ -109,7 +117,7 @@ export function useOrderPlacement({ user }: UseOrderPlacementProps) {
 
     // Check if any item quantity exceeds available stock
     const insufficientStockItems = cartSnapshot.filter(
-      (item) => item.quantity > (item.product.stock || 0)
+      (item) => item.quantity > (item.stock || 0)
     );
     if (insufficientStockItems.length > 0) {
       toast.error("Stock Limit Exceeded", {
@@ -121,11 +129,8 @@ export function useOrderPlacement({ user }: UseOrderPlacementProps) {
       return { success: false };
     }
 
-    setOrderPlacementState(true, "validating");
-
     try {
       // Step 1: Validate and prepare order data
-      setOrderPlacementState(true, "creating");
 
       const orderData = {
         items: cartSnapshot,
@@ -154,7 +159,6 @@ export function useOrderPlacement({ user }: UseOrderPlacementProps) {
       const orderNumber = orderResult.order.orderNumber;
 
       // Step 2: Send confirmation email
-      setOrderPlacementState(true, "emailing");
 
       const emailData: EmailOrderData = {
         customerName: "Customer", // Will be filled from order data in API
@@ -166,10 +170,10 @@ export function useOrderPlacement({ user }: UseOrderPlacementProps) {
           day: "numeric",
         }),
         items: cartSnapshot.map((item) => ({
-          name: item.product.name || "Unknown Product",
-          price: item.product.price || 0,
+          name: item.name || "Unknown Product",
+          price: item.price || 0,
           quantity: item.quantity,
-          image: item.product.images?.[0] || undefined,
+          image: item.images?.[0] || undefined,
         })),
         subtotal,
         shipping,
@@ -213,8 +217,7 @@ export function useOrderPlacement({ user }: UseOrderPlacementProps) {
         // Don't fail the order if email fails
       }
 
-      // Step 3: Prepare for redirect (don't clear cart yet)
-      setOrderPlacementState(true, "redirecting");
+      // Step 3: Prepare for redirect
 
       toast.success("Order Placed Successfully! 🎉", {
         description: "Confirmation email sent",
@@ -386,16 +389,12 @@ export function useOrderPlacement({ user }: UseOrderPlacementProps) {
         description: errorMessage || "Please try again",
         duration: 5000,
       });
-      // Reset state on error
-      setOrderPlacementState(false, "validating");
       return { success: false, error: errorMessage };
     }
   };
 
   return {
     placeOrder,
-    isPlacingOrder,
-    orderStep,
     cartSnapshot: cart,
   };
 }

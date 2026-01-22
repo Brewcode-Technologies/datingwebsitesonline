@@ -1,5 +1,3 @@
-'use client';
-
 import { notFound } from 'next/navigation';
 import ReviewHero from '../../../../components/ReviewHero';
 import ReviewDetails from '../../../../components/ReviewDetails';

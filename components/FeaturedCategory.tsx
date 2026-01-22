@@ -32,7 +32,7 @@ const FeaturedCategory = async () => {
                 {category?.title}
               </h3>
               <Link
-                href={`/category/${category?.slug?.current}`}
+                href={`/category/${typeof category?.slug === 'string' ? category.slug : category?.slug?.current}`}
                 className="absolute inset-0"
               />
               <p className="text-xs font-bold mt-2">

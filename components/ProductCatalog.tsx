@@ -85,7 +85,7 @@ const ProductCatalog = ({ initialProducts, categories, brands }: Props) => {
     // Category filter
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((product) =>
-        product.categories?.some((cat) => selectedCategories.includes(cat._ref))
+        product.categories?.some((cat) => selectedCategories.includes(typeof cat === 'string' ? cat : cat._ref))
       );
     }
 
@@ -116,7 +116,7 @@ const ProductCatalog = ({ initialProducts, categories, brands }: Props) => {
           return (b.price || 0) - (a.price || 0);
         case "newest":
           return (
-            new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
+            new Date(b._createdAt || 0).getTime() - new Date(a._createdAt || 0).getTime()
           );
         default:
           return 0;

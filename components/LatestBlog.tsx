@@ -73,7 +73,7 @@ const LatestBlog = async () => {
             <div className="p-6">
               {/* Meta Information */}
               <div className="flex flex-wrap items-center gap-3 mb-4">
-                {blog?.blogcategories?.map((item, index) => (
+                {blog?.blogcategories?.map((item: any, index: number) => (
                   <span
                     key={index}
                     className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-shop_light_pink text-shop_dark_green border border-shop_light_green/30"

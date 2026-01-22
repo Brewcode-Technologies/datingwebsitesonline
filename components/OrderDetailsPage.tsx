@@ -177,7 +177,8 @@ const OrderDetailsPage: React.FC<OrderDetailsPageProps> = ({ order }) => {
       }));
 
       // Add all items to cart at once
-      addMultipleItems(cartItems);
+      const products = cartItems.map(item => item.product);
+      addMultipleItems(products);
 
       toast.success(`${order.products.length} items added to cart!`, {
         description: "Redirecting to cart...",

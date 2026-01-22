@@ -4,11 +4,12 @@ async function checkOrders() {
   try {
     console.log("Checking orders in Sanity...\n");
 
-    // Get total count
+    // Get total count - returns empty array for static build
     const totalCount = await client.fetch(`count(*[_type == "order"])`);
-    console.log(`Total orders in database: ${totalCount}\n`);
+    const count = Array.isArray(totalCount) ? 0 : totalCount;
+    console.log(`Total orders in database: ${count}\n`);
 
-    if (totalCount > 0) {
+    if (count > 0) {
       // Get all orders
       const orders = await client.fetch(`
         *[_type == "order"] | order(_createdAt desc) [0...10] {

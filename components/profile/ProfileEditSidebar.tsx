@@ -109,7 +109,6 @@ export default function ProfileEditSidebar({
 
       if (response.ok) {
         showToast.success(
-          "Profile Updated",
           "Your profile has been successfully updated."
         );
         onClose();
@@ -120,7 +119,7 @@ export default function ProfileEditSidebar({
       }
     } catch (error) {
       console.error("Error updating profile:", error);
-      showToast.error("Error", "Failed to update profile. Please try again.");
+      showToast.error("Failed to update profile. Please try again.");
     } finally {
       setLoading(false);
     }

@@ -50,9 +50,9 @@ const CategorySelector = ({ categories }: Props) => {
                     ?.toLowerCase()
                     .includes(e.currentTarget.value.toLowerCase())
                 );
-                if (selectedCategory?.slug?.current) {
-                  setValue(selectedCategory?._id);
-                  router.push(`/categories/${selectedCategory.slug.current}`);
+                if (typeof selectedCategory?.slug === 'string' ? selectedCategory.slug : selectedCategory?.slug?.current) {
+                  setValue(selectedCategory?._id || '');
+                  router.push(`/categories/${typeof selectedCategory?.slug === 'string' ? selectedCategory.slug : selectedCategory?.slug?.current}`);
                   setOpen(false);
                 }
               }
@@ -67,7 +67,7 @@ const CategorySelector = ({ categories }: Props) => {
                   value={category?.title}
                   onSelect={() => {
                     setValue(value === category?._id ? "" : category?._id);
-                    router.push(`/categories/${category.slug?.current}`);
+                    router.push(`/categories/${typeof category.slug === 'string' ? category.slug : category.slug?.current}`);
                     setOpen(false);
                   }}
                 >
