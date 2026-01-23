@@ -44,7 +44,7 @@ const WhyOnlineDatingSection = () => {
             Compare Top Dating Websites{' '}
           </Title>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Professional reviews and comparisons of the best dating platforms:
+            Professional reviews and comparisons of the best dating platforms
           </p>
         </div>
 
