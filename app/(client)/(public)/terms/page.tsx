@@ -25,7 +25,6 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import Link from 'next/link';
-import DatingSitesUI from '@/components/DatingSitesUI';
 
 const TermsPage = () => {
   const currentDate = new Date().toLocaleDateString('en-US', {
@@ -34,11 +33,11 @@ const TermsPage = () => {
   });
 
   const quickLinks = [
-    { icon: Users, title: 'User Accounts', href: '#accounts' },
     { icon: Heart, title: 'Dating Services', href: '#dating' },
-    { icon: CreditCard, title: 'Payment Terms', href: '#payment' },
     { icon: Shield, title: 'Privacy & Safety', href: '#privacy' },
     { icon: Scale, title: 'Legal & Disputes', href: '#legal' },
+    { icon: Users, title: 'Community Guidelines', href: '#conduct' },
+    { icon: FileText, title: 'Content Policy', href: '#content' },
   ];
 
   const termsData = [
@@ -51,17 +50,6 @@ const TermsPage = () => {
         'These terms constitute a legally binding agreement between you and FindLove. If you do not agree with any part of these terms, you must not use our dating services.',
         'We may update these terms from time to time. Continued use of our services after changes indicates your acceptance of the modified terms.',
         'These terms apply to all users, including members seeking relationships, premium subscribers, and contributors of content.',
-      ],
-    },
-    {
-      id: 'accounts',
-      title: 'User Accounts & Registration',
-      icon: Users,
-      content: [
-        'You must be at least 18 years old to create an account and use our dating services. Age verification may be required.',
-        'You agree to provide accurate, current, and complete information during registration and to update your profile as needed.',
-        'You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account.',
-        'Creating multiple accounts, fake profiles, or impersonating others is strictly prohibited and will result in immediate account termination.',
       ],
     },
     {
@@ -84,17 +72,6 @@ const TermsPage = () => {
         'Sharing explicit content, soliciting money, or using our platform for commercial purposes without permission is not allowed.',
         'You must not share personal contact information (phone numbers, addresses, social media) in your public profile or initial messages.',
         'Report any suspicious behavior, fake profiles, or safety concerns to our moderation team immediately.',
-      ],
-    },
-    {
-      id: 'payment',
-      title: 'Payment & Subscription Terms',
-      icon: CreditCard,
-      content: [
-        'Premium subscriptions are billed in advance and automatically renew unless cancelled before the next billing cycle.',
-        'We accept major credit cards and secure payment methods. All payments are processed through encrypted, secure systems.',
-        'Refunds are provided according to our refund policy. Premium features remain active until the end of the current billing period after cancellation.',
-        'Subscription prices may change with 30 days notice to existing subscribers. New prices apply to new subscriptions immediately.',
       ],
     },
     {
@@ -135,7 +112,6 @@ const TermsPage = () => {
   return (
     <div className="bg-gradient-to-b from-shop_light_bg to-white min-h-screen">
       {/* Hero Section */}
-      <DatingSitesUI />
       <section className="py-16 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white">
         <Container className="max-w-6xl">
           <motion.div
