@@ -214,6 +214,7 @@ const CategoryPage = async () => {
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-8 shadow-md border border-gray-100/50 max-w-md mx-auto">
               <div className="w-16 h-16 rounded-full overflow-hidden mx-auto mb-4 border-2 border-shop_light_green">
                 <Image
+                  // src="/categories/singles-dating.png"
                   src="/categories/singles-dating.png"
                   alt="Dating Categories"
                   width={64}

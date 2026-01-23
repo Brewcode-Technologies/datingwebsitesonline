@@ -3,8 +3,6 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
-  basePath: process.env.NODE_ENV === 'production' ? '/dating-website' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/dating-website' : '',
   images: {
     unoptimized: true,
     remotePatterns: [
