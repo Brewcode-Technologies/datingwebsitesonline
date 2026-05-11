@@ -49,7 +49,7 @@ const Footer = () => {
               {categoriesData.map((item) => (
                 <li key={item?.title}>
                   <Link
-                    href={`/category/${item?.href}`}
+                    href={`/${item?.href}`}
                     className="text-gray-600 hover:text-shop_dark_green text-sm font-medium hoverEffect capitalize block"
                   >
                     {item?.title}

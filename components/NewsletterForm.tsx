@@ -39,39 +39,34 @@ const NewsletterForm = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/newsletter/subscribe", {
+      // Using Web3Forms for static site newsletter subscription
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: email.trim().toLowerCase() }),
+        body: JSON.stringify({
+          access_key: "d862c269-dc27-443b-a3e8-c9fb50617d76",
+          email: email.trim().toLowerCase(),
+          subject: "New Newsletter Subscription",
+          from_name: "Newsletter Subscriber",
+          message: `New newsletter subscription from: ${email.trim().toLowerCase()}`,
+        }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         setMessage({
           type: "success",
-          text:
-            data.message ||
-            "Thank you for subscribing! Check your email for a welcome message.",
+          text: "Thank you for subscribing! You'll receive our latest dating site updates.",
         });
-        setEmail(""); // Clear input on success
+        setEmail("");
       } else {
-        // Check if already subscribed
-        if (data.alreadySubscribed) {
-          setMessage({
-            type: "info",
-            text:
-              data.error ||
-              "You're already subscribed to our newsletter! Check your inbox for our latest updates.",
-          });
-        } else {
-          setMessage({
-            type: "error",
-            text: data.error || "Failed to subscribe. Please try again.",
-          });
-        }
+        setMessage({
+          type: "error",
+          text: data.message || "Failed to subscribe. Please try again.",
+        });
       }
     } catch (error) {
       console.error("Newsletter subscription error:", error);

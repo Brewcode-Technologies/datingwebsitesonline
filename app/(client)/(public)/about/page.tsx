@@ -294,7 +294,7 @@ const AboutPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-white text-shop_dark_green hover:bg-white/90">
-                <Link href="/category/singles-dating">
+                <Link href="/singles-dating">
                   Start Dating <Heart className="w-5 h-5 ml-2" />
                 </Link>
               </Button>

@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ReviewHero from '../../../../components/ReviewHero';
 import ReviewDetails from '../../../../components/ReviewDetails';
@@ -17,6 +18,61 @@ export async function generateStaticParams() {
     { slug: 'match' },
     { slug: 'eharmony' },
   ];
+}
+
+export async function generateMetadata({ params }: ReviewPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const reviewMeta: Record<string, { title: string; description: string; keywords: string[] }> = {
+    seniormatch: {
+      title: 'SeniorMatch Review 2026 - Best Senior Dating Site for Over 50',
+      description: 'Read our honest SeniorMatch review. Is it worth it for seniors over 50? Compare pricing, features, pros & cons of this senior dating site. Find mature singles today.',
+      keywords: ['seniormatch review', 'senior dating sites', 'dating sites for seniors over 50', 'mature dating sites', 'senior singles dating sites', 'best senior dating sites', 'over 50 dating', 'datingwebsitesonline'],
+    },
+    grindr: {
+      title: 'Grindr Review 2026 - Best Gay Dating App for Men',
+      description: 'Read our honest Grindr review. Is it the best gay dating app? Compare features, safety, pros & cons. Meet gay men near you with this popular LGBTQ+ dating platform.',
+      keywords: ['grindr review', 'gay dating apps', 'best gay dating sites', 'meet gay men', 'gay singles near me', 'lgbtq dating', 'gay dating', 'datingwebsitesonline'],
+    },
+    her: {
+      title: 'HER App Review 2026 - Best Lesbian Dating App for Women',
+      description: 'Read our honest HER app review. Is it the best lesbian dating app? Compare features, community, pros & cons. Meet lesbian singles and queer women near you.',
+      keywords: ['her app review', 'lesbian dating apps', 'best lesbian dating apps', 'lesbian singles near me', 'queer women dating', 'woman seeking woman', 'datingwebsitesonline'],
+    },
+    match: {
+      title: 'Match.com Review 2026 - Is It Still Worth It?',
+      description: 'Read our honest Match.com review. Compare pricing, features, success rates, pros & cons. Is Match.com still one of the best dating sites for serious relationships?',
+      keywords: ['match.com review', 'match.com', 'match dating', 'best dating sites', 'online dating sites', 'dating site reviews', 'match com free trial', 'datingwebsitesonline'],
+    },
+    eharmony: {
+      title: 'eHarmony Review 2026 - Best for Serious Relationships?',
+      description: 'Read our honest eHarmony review. Is it the best dating site for serious relationships? Compare compatibility matching, pricing, pros & cons of eHarmony.',
+      keywords: ['eharmony review', 'eharmony', 'eharmony com', 'serious dating sites', 'best dating sites for relationships', 'compatibility matching', 'datingwebsitesonline'],
+    },
+  };
+
+  const meta = reviewMeta[slug];
+
+  if (!meta) {
+    return {
+      title: 'Dating Site Review',
+      description: 'Read honest dating site reviews on DatingWebsitesOnline.',
+    };
+  }
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: `https://datingwebsitesonline.com/reviews/${slug}`,
+    },
+    alternates: {
+      canonical: `https://datingwebsitesonline.com/reviews/${slug}`,
+    },
+  };
 }
 
 const ReviewPage = async ({ params }: ReviewPageProps) => {

@@ -56,17 +56,25 @@ const ContactPage = () => {
     setSuccess(false);
 
     try {
-      const response = await fetch('/api/contact', {
+      // Using Web3Forms for static site contact form
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: 'd862c269-dc27-443b-a3e8-c9fb50617d76',
+          name: formData.name,
+          email: formData.email,
+          subject: `Contact Form: ${formData.subject}`,
+          message: formData.message,
+          from_name: formData.name,
+        }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         setSuccess(true);
         setFormData({
           name: '',
@@ -75,7 +83,7 @@ const ContactPage = () => {
           message: '',
         });
       } else {
-        setError(data.error || 'Something went wrong. Please try again.');
+        setError(data.message || 'Something went wrong. Please try again.');
       }
     } catch (err) {
       setError('Network error. Please check your connection and try again.');

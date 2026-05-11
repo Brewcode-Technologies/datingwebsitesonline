@@ -34,7 +34,7 @@ const HomeBanner = async () => {
 
               {/* Main Title */}
               <div className="space-y-4">
-                <Title className="text-shop_dark_green font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight animate-fadeInUp delay-200">
+                <Title as="h1" className="text-shop_dark_green font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight animate-fadeInUp delay-200">
                   <span className="block">Find & Compare</span>
                   <span className="block bg-gradient-to-r from-shop_light_green to-shop_dark_green bg-clip-text text-transparent animate-shimmer">
                     Top Dating Websites
@@ -81,7 +81,7 @@ We help you compare the best dating websites based on features, safety, success 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start animate-fadeInUp delay-600">
                 <Link
-                  href="/category/singles-dating"
+                  href="/singles-dating"
                   className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-shop_dark_green to-shop_light_green text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-shop_light_green to-shop_dark_green opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
@@ -128,7 +128,7 @@ We help you compare the best dating websites based on features, safety, success 
                 <div className="relative w-80 sm:w-96 md:w-[450px] lg:w-[500px] xl:w-[550px] h-64 sm:h-72 md:h-80 lg:h-[350px] bg-gradient-to-br from-shop_light_pink via-pink-50 to-orange-50 rounded-2xl border-4 border-shop_light_green/30 flex items-center justify-center overflow-hidden">
                   <Image
                     src="/categories/hero-image.jpg"
-                    alt="Romantic couple holding hands with hearts"
+                    alt="Best dating sites comparison - find your perfect match online in 2026"
                     width={500}
                     height={350}
                     className="w-full h-full transform hover:scale-105 transition-transform duration-500 rounded-2xl object-cover object-center opacity-70 mix-blend-normal brightness-125"

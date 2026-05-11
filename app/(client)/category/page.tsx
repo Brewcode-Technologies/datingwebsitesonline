@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Container from '@/components/Container';
 import Title from '@/components/Title';
 import {
@@ -12,6 +13,36 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Package, Tag, Heart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+
+export const metadata: Metadata = {
+  title: 'Dating Categories | Singles, Christian, Gay, Senior Dating Sites',
+  description:
+    'Browse dating categories including singles, Christian, gay, lesbian, and senior dating sites in the USA. Compare platforms and meet people near you.',
+  keywords: [
+    'dating categories',
+    'singles dating',
+    'senior dating',
+    'christian dating',
+    'gay dating',
+    'lesbian dating',
+    'dating sites',
+    'best dating sites',
+    'free dating sites',
+    'online dating',
+    'dating platforms',
+    'dating site reviews',
+    'datingwebsitesonline',
+  ],
+  openGraph: {
+    title: 'Dating Categories | DatingWebsitesOnline',
+    description:
+      'Browse all dating categories. Find the best dating sites for singles, seniors, christian, gay & lesbian dating.',
+    url: 'https://datingwebsitesonline.com/category',
+  },
+  alternates: {
+    canonical: 'https://datingwebsitesonline.com/category',
+  },
+};
 
 // Mock categories data
 const mockCategories = [
@@ -118,7 +149,7 @@ const CategoryPage = async () => {
               {categories.map((category) => (
                 <Link
                   key={category._id}
-                  href={`/category/${category.slug?.current}`}
+                  href={`/${category.slug?.current}`}
                   className="group relative bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-shop_light_green transform hover:-translate-y-1"
                 >
                   {/* Category Header */}

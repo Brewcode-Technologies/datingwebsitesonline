@@ -40,7 +40,7 @@ const WhyOnlineDatingSection = () => {
     <section className="py-16 bg-gradient-to-br from-pink-50 to-purple-50">
       <Container>
         <div className="text-center mb-12">
-          <Title className="text-3xl md:text-4xl font-bold text-shop_dark_green mb-4">
+          <Title as="h2" className="text-3xl md:text-4xl font-bold text-shop_dark_green mb-4">
             Compare Top Dating Websites{' '}
           </Title>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">

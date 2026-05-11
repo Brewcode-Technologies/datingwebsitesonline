@@ -1,5 +1,6 @@
 import Container from './Container';
 import Title from './Title';
+import Link from 'next/link';
 import { Heart, Users, Search, Shield } from 'lucide-react';
 
 const IntroductionSection = () => {
@@ -7,7 +8,7 @@ const IntroductionSection = () => {
     <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
       <Container>
         <div className="text-center">
-          <Title className="text-4xl md:text-5xl font-bold text-shop_dark_green mb-6">
+          <Title as="h2" className="text-4xl md:text-5xl font-bold text-shop_dark_green mb-6">
             Smart comparisons. Better choices.
           </Title>
           <p className="text-xl text-gray-700 leading-relaxed mb-12">
@@ -60,6 +61,36 @@ const IntroductionSection = () => {
               <p className="text-gray-600 text-lg">
                 Compare verification, privacy, and security features.
               </p>
+            </div>
+          </div>
+
+          {/* Internal Links for SEO */}
+          <div className="mt-16 pt-8 border-t border-gray-200">
+            <h3 className="text-xl font-semibold text-shop_dark_green mb-6">
+              Browse Dating Sites by Category
+            </h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link href="/singles-dating" className="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium text-gray-700 hover:border-shop_light_green hover:text-shop_dark_green transition-colors">
+                Singles Dating
+              </Link>
+              <Link href="/christian-dating" className="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium text-gray-700 hover:border-shop_light_green hover:text-shop_dark_green transition-colors">
+                Christian Dating
+              </Link>
+              <Link href="/gay-dating" className="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium text-gray-700 hover:border-shop_light_green hover:text-shop_dark_green transition-colors">
+                Gay Dating
+              </Link>
+              <Link href="/lesbian-dating" className="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium text-gray-700 hover:border-shop_light_green hover:text-shop_dark_green transition-colors">
+                Lesbian Dating
+              </Link>
+              <Link href="/senior-dating" className="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium text-gray-700 hover:border-shop_light_green hover:text-shop_dark_green transition-colors">
+                Senior Dating
+              </Link>
+              <Link href="/reviews/match" className="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium text-gray-700 hover:border-shop_light_green hover:text-shop_dark_green transition-colors">
+                Match.com Review
+              </Link>
+              <Link href="/reviews/eharmony" className="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 text-sm font-medium text-gray-700 hover:border-shop_light_green hover:text-shop_dark_green transition-colors">
+                eHarmony Review
+              </Link>
             </div>
           </div>
         </div>

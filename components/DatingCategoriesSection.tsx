@@ -11,7 +11,7 @@ const DatingCategoriesSection = () => {
       description:
         'Connect with single people looking for meaningful relationships and companionship.',
       icon: Heart,
-      href: '/category/singles-dating',
+      href: '/singles-dating',
       color: 'from-pink-500 to-red-500',
       image: '/categories/singles-dating.png',
     },
@@ -19,16 +19,16 @@ const DatingCategoriesSection = () => {
       title: 'Christian Dating',
       description: 'Find faith-based relationships with people who share your Christian values.',
       icon: Cross,
-      href: '/category/christian-dating',
+      href: '/christian-dating',
       color: 'from-blue-500 to-purple-500',
       image: '/categories/christian-dating.jpeg',
     },
     {
       title: 'Gay Dating',
       description:
-        'Safe and inclusive platform for gay men todatingwebsitesonline and build relationships.',
+        'Safe and inclusive platform for gay men to connect and build relationships.',
       icon: Users,
-      href: '/category/gay-dating',
+      href: '/gay-dating',
       color: 'from-green-500 to-teal-500',
       image: '/categories/gay-dating.jpeg',
     },
@@ -36,7 +36,7 @@ const DatingCategoriesSection = () => {
       title: 'Lesbian Dating',
       description: 'Dedicated space for lesbian women to connect and find their perfect match.',
       icon: Users,
-      href: '/category/lesbian-dating',
+      href: '/lesbian-dating',
       color: 'from-purple-500 to-pink-500',
       image: '/categories/lesbian-dating.png',
     },
@@ -44,7 +44,7 @@ const DatingCategoriesSection = () => {
       title: 'Senior Dating',
       description: 'Mature dating platform for seniors looking for companionship and love.',
       icon: Calendar,
-      href: '/category/senior-dating',
+      href: '/senior-dating',
       color: 'from-orange-500 to-red-500',
       image: '/categories/senior-dating.jpg',
     },
@@ -69,7 +69,7 @@ const DatingCategoriesSection = () => {
                 <div className="relative h-40 sm:h-48 w-full">
                   <Image
                     src={category.image}
-                    alt={category.title}
+                    alt={`${category.title} - compare best ${category.title.toLowerCase()} sites in USA`}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -101,7 +101,7 @@ const DatingCategoriesSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
-                href="/category/singles-dating"
+                href="/singles-dating"
                 className="bg-white text-shop_dark_green px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center text-sm sm:text-base"
               >
                 <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-red-500 fill-current" />
