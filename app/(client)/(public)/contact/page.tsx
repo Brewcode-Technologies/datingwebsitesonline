@@ -63,7 +63,7 @@ const ContactPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'd862c269-dc27-443b-a3e8-c9fb50617d76',
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '',
           name: formData.name,
           email: formData.email,
           subject: `Contact Form: ${formData.subject}`,

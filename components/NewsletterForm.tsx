@@ -46,7 +46,7 @@ const NewsletterForm = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          access_key: "d862c269-dc27-443b-a3e8-c9fb50617d76",
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '',
           email: email.trim().toLowerCase(),
           subject: "New Newsletter Subscription",
           from_name: "Newsletter Subscriber",
