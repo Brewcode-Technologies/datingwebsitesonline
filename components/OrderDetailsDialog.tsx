@@ -107,7 +107,7 @@ const OrderDetailsDialog: FC<OrderDetailsDialogProps> = ({
                   {product?.product?.images && (
                     <Image
                       src={urlFor(product?.product?.images[0]).url()}
-                      alt="productImage"
+                      alt={product?.product?.name || "Order product image"}
                       width={50}
                       height={50}
                       className="border rounded-sm"

@@ -23,9 +23,10 @@ interface Props {
     _key: string;
   }>;
   isStock?: number;
+  productName?: string;
 }
 
-const ImageView = ({ images = [], isStock }: Props) => {
+const ImageView = ({ images = [], isStock, productName }: Props) => {
   const [active, setActive] = useState(images[0]);
   return (
     <div className="w-full space-y-2 md:space-y-4">
@@ -40,7 +41,7 @@ const ImageView = ({ images = [], isStock }: Props) => {
         >
           <Image
             src={urlFor(active).url()}
-            alt="productImage"
+            alt={productName ? `${productName} - product image` : "Product detail view"}
             width={700}
             height={700}
             priority
@@ -51,7 +52,7 @@ const ImageView = ({ images = [], isStock }: Props) => {
         </motion.div>
       </AnimatePresence>
       <div className="grid grid-cols-6 gap-2 h-20 md:h-24">
-        {images.map((image) => (
+        {images.map((image, index) => (
           <button
             key={image._key}
             onClick={() => setActive(image)}
@@ -61,7 +62,7 @@ const ImageView = ({ images = [], isStock }: Props) => {
           >
             <Image
               src={urlFor(image).url()}
-              alt={`Thumbnail ${image._key}`}
+              alt={productName ? `${productName} - thumbnail ${index + 1}` : `Product thumbnail ${index + 1}`}
               width={100}
               height={100}
               className="w-full h-auto object-contain"

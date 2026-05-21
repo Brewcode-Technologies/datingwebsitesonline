@@ -62,12 +62,13 @@ const StarRating = ({ value = 5 }) => (
 
 /* ---------- TOP 3 CARDS ---------- */
 
-const TopDatingCard = ({ logo, score, text, recommended, url }: {
+const TopDatingCard = ({ logo, score, text, recommended, url, name }: {
   logo: string;
   score: string;
   text: string;
   recommended?: boolean;
   url: string;
+  name: string;
 }) => (
   <a href={url} target="_blank" rel="noopener noreferrer" className="block">
     <div className="relative bg-white rounded-lg border shadow-sm p-2 xs:p-3 sm:p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
@@ -78,7 +79,7 @@ const TopDatingCard = ({ logo, score, text, recommended, url }: {
       )}
 
       <div className="flex items-start justify-between">
-        <img src={logo} alt="logo" className="h-4 xs:h-5 sm:h-7 object-contain" />
+        <img src={logo} alt={`${name} dating site logo`} className="h-4 xs:h-5 sm:h-7 object-contain" />
         <div className="text-right">
           <p className="text-lg xs:text-xl sm:text-2xl font-bold">{score}</p>
           <StarRating value={4} />
@@ -258,23 +259,27 @@ const TotalScoreBox = ({ category }: { category: DatingCategory }) => {
   );
 };
 
-const MustReadsBox = () => (
+const mustReadArticles = [
+  'How to Date Without Apps: 10 Effective Ways to Meet People in Real Life',
+  '10 Great Online Dating Profile Examples to Copy and Paste',
+  "10 Signs You're in a Situationship and How to Deal With It",
+];
+
+const MustReadsBox = ({ categoryLabel }: { categoryLabel: string }) => (
   <div className="bg-gray-100 border rounded-xl p-3 sm:p-4">
     <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Must Reads</h4>
 
     <div className="space-y-3 sm:space-y-4">
-      {[1, 2, 3].map((i) => (
+      {mustReadArticles.map((title, i) => (
         <div key={i} className="flex gap-2 sm:gap-3">
           <img
-            src={`https://picsum.photos/seed/dating${i}/80/60`}
-            alt=""
+            src={`https://picsum.photos/seed/dating${i + 1}/80/60`}
+            alt={`${categoryLabel} dating article - ${title}`}
             className="w-16 sm:w-20 h-12 sm:h-14 object-cover rounded flex-shrink-0"
           />
           <div className="min-w-0">
             <p className="text-xs sm:text-sm font-medium leading-snug">
-              {i === 1 && 'How to Date Without Apps: 10 Effective Ways to Meet People in Real Life'}
-              {i === 2 && '10 Great Online Dating Profile Examples to Copy and Paste'}
-              {i === 3 && "10 Signs You're in a Situationship and How to Deal With It"}
+              {title}
             </p>
             <p className="text-xs text-pink-500 mt-1 cursor-pointer">Read more</p>
           </div>
@@ -715,7 +720,7 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
     <div className="bg-gray-100 min-h-screen">
       {/* HERO */}
       <div className="relative">
-        <img src={config.heroImage} className="w-full h-[250px] xs:h-[300px] sm:h-[400px] lg:h-[500px] object-cover" alt="hero" />
+        <img src={config.heroImage} className="w-full h-[250px] xs:h-[300px] sm:h-[400px] lg:h-[500px] object-cover" alt={`${config.categoryLabel} dating sites hero banner`} />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20 flex items-center">
           <div className="max-w-6xl mx-auto px-2 xs:px-3 sm:px-4 text-white">
             <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{config.title}</h1>
@@ -746,6 +751,7 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
                 text={site.bullets[0]}
                 recommended={index === 0}
                 url={site.url}
+                name={site.name}
               />
             ))}
           </div>
@@ -774,7 +780,7 @@ export default function DatingSitesUI({ category = 'singles' }: DatingSitesUIPro
         <div className="space-y-2 xs:space-y-3 sm:space-y-4">
           <SinglesBox singlesCount={config.singlesCount} categoryLabel={config.categoryLabel} />
           <TotalScoreBox category={category} />
-          <MustReadsBox />
+          <MustReadsBox categoryLabel={config.categoryLabel} />
         </div>
       </div>
     </div>

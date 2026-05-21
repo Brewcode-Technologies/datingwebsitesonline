@@ -21,7 +21,7 @@ const ProductCard = memo(({ product }: { product: Product }) => {
                 ${
                   product?.stock !== 0 ? "group-hover:scale-105" : "opacity-50"
                 }`}
-              alt="productImage"
+              alt={product?.name || "Product image"}
               loading="lazy"
             />
             {/* <Image

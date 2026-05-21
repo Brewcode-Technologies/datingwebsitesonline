@@ -21,7 +21,7 @@ const ClientHeader = () => {
             <Link href="/">
               <Image
                 src="/logo.png"
-                alt="Logo"
+                alt="DatingWebsitesOnline Logo"
                 width={100}
                 height={100}
                 className="object-contain h-10 sm:h-12 md:h-14 lg:h-16 w-auto cursor-pointer hover:scale-105 transition-transform duration-200 bg-transparent"

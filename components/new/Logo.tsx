@@ -15,7 +15,7 @@ const Logo = ({ className, variant = "default" }: Props) => {
     <Link href="/" className={cn("group hoverEffect", className)}>
       <Image
         src="/logo.png"
-        alt="Logo"
+        alt="DatingWebsitesOnline Logo"
         width={logoSize.width}
         height={logoSize.height}
         className={`object-contain ${logoHeight} w-auto cursor-pointer hover:scale-105 transition-transform duration-200 bg-transparent`}
